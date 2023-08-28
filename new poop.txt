@@ -1,0 +1,1206 @@
+-- Key Binds
+getgenv().ToggleStandJump = "h"
+getgenv().TimeSkip = "x"
+getgenv().TimeSkipBackwards = "y"
+getgenv().YourWatchingMe = "m"
+getgenv().AreYouWatchingMe = "p"
+getgenv().Juggernaut = "k"
+getgenv().KoreanSong = "u"
+getgenv().SuperIdol = "t"
+
+-- Text Commands
+getgenv().TimeStop = "ZA WARUDO!"
+getgenv().TimeStop1 = "STAR PLATINUM ZA WARUDO!"
+getgenv().TimeErase = "Time erase!"
+getgenv().DeadShot = "_DEADSHOT"
+getgenv().YourGone = "You're Gone."
+getgenv().Die = "Die!"
+getgenv().HowManyMins = "How many minutes will you last?"
+getgenv().GoodGrief = "Good Grief."
+getgenv().GoodGrief2 = "Yare Yare Daze."
+getgenv().DiavoloDa = "Diavolo Da!"
+getgenv().Wry = "WRYY!"
+getgenv().YouFool = "You fool."
+getgenv().HAHNW = "Heart Attack Has No Weakness."
+getgenv().KingCrimson = "King Crimson!"
+getgenv().ZaWarudo = "Za Warudo."
+getgenv().Yes = "Yes YES!"
+getgenv().Hey = "Hey HEy HEY!"
+getgenv().Pose = "Pose!"
+
+getgenv().Transform = "Transform!"
+getgenv().Titan = "Rage!"
+getgenv().BatmanLoad = "LOADBATMAN"
+getgenv().VenomLoad = "LOADVENOM"
+getgenv().WolvLoad = "LOADWOLVERINE"
+getgenv().HulkLoad = "LOADHULK"
+getgenv().DashLoad = "LOADDASH"
+getgenv().Stand = "/e stand"
+getgenv().DragonMode = "/e dragonmode"
+getgenv().HideMask = "/e hidemask"
+getgenv().SafeTp = "/safetp"
+getgenv().Revive = "/revive"
+
+--\\ On Execution
+
+
+--// anti cheat bypass goes here
+
+grm = getrawmetatable(game)
+setreadonly(grm, false)
+old = grm.__namecall
+grm.__namecall = newcclosure(function(self, ...)
+	local args = {...}
+	if tostring(args[1]) == "TeleportDetect" then
+		return
+	elseif tostring(args[1]) == "CHECKER_1" then
+		return
+	elseif tostring(args[1]) == "CHECKER" then
+		return
+	elseif tostring(args[1]) == "GUI_CHECK" then
+		return
+	elseif tostring(args[1]) == "OneMoreTime" then
+		return
+	elseif tostring(args[1]) == "checkingSPEED" then
+		return
+	elseif tostring(args[1]) == "BANREMOTE" then
+		return
+	elseif tostring(args[1]) == "PERMAIDBAN" then
+		return
+	elseif tostring(args[1]) == "KICKREMOTE" then
+		return
+	elseif tostring(args[1]) == "BR_KICKPC" then
+		return
+	elseif tostring(args[1]) == "BR_KICKMOBILE" then
+		return
+	end
+	return old(self, ...)
+end)
+
+--// Locals
+local mouse = game.Players.LocalPlayer:GetMouse()
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local OldChar = LocalPlayer.Character
+local OriginalKeyUpValue = 0
+local CoreUI = Instance.new("ScreenGui")
+local SaveLocation = nil
+local RigWalk = nil
+local RigIdle = nil
+local MoveDirection = Vector3.new(0, 0, 0)
+local WSpped = 0
+local LeftSpeed = 0
+local UpSpeed = 0
+local uis = game:GetService("UserInputService")
+
+--// Toggles
+getgenv().StandJump = false
+local InTimeErase = false
+local WalkSpeed = false
+local IsJump = false
+local CD = false
+local XD = false
+local isstped = false
+local bulletdef = false
+local dashtoggle = false
+local isrevive = false
+local standmode = false
+local dragonmode = false
+local Posing = false;
+local Key = 0;
+--// Animations
+local HulkAnim = Instance.new("Animation", game.ReplicatedStorage.Animations)
+HulkAnim.AnimationId = "rbxassetid://2788838708"
+
+--local Cookies = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.Animations.OGG)
+
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://7236569931"
+
+local Pointing = Instance.new("Animation", game.ReplicatedStorage.Animations)
+Pointing.AnimationId = "rbxassetid://507770453"
+local Poter = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(Pointing)
+Poter.Looped = true
+Poter.Priority = Enum.AnimationPriority.Action
+
+local WalkAnimation = Instance.new("Animation", game.ReplicatedStorage.Animations)
+WalkAnimation.AnimationId = "rbxassetid://2510198475"
+
+local Idle = Instance.new("Animation", game.ReplicatedStorage.Animations)
+Idle.AnimationId = "rbxassetid://507766388"
+
+local Timestop = Instance.new("Animation", game.ReplicatedStorage.Animations)
+Timestop.AnimationId = "rbxassetid://4139325504"
+
+local Fashionable = Instance.new('Animation', game:GetService('ReplicatedStorage'):FindFirstChild('Animations'));
+Fashionable.AnimationId = 'rbxassetid://3333331310';
+Fashionable.Name = 'Fashionable';
+
+--// power functions
+CoreUI.Parent = game.CoreGui
+
+function FoV()
+    local fov = coroutine.wrap(function()
+        local Camera = workspace.Camera
+        for i = 1, 20 do
+            Camera.FieldOfView = 8 * i
+            wait(0.01)
+        end
+        for i = 1, 20 do
+            Camera.FieldOfView = 160 - i * 4.5
+            wait(0.01)
+        end
+    end)
+    fov()
+end
+
+function Lighting()
+    if game.Lighting:FindFirstChild("ERASE") == nil then
+        local sound5 = Instance.new("Sound", CoreUI)
+        sound5.Volume = 0.1
+        sound5.Name = "ERASE"
+        sound5.Looped = true
+        sound5.SoundId = "rbxassetid://3167092959"
+        sound5:Play()
+        game.Lighting.Sky.Parent = workspace
+        game:GetObjects("rbxassetid://6546113226")[1].Parent = game.Lighting
+    else
+        workspace.Sky.Parent = game.Lighting
+        CoreUI:FindFirstChild("ERASE"):Destroy()
+        game.Lighting:FindFirstChild("ERASE"):Destroy()
+    end
+end
+
+function TimeEraseUI()
+    local sound5 = Instance.new("Sound", CoreUI)
+    sound5.Volume = 0.1
+    sound5.SoundId = "rbxassetid://6546128175"
+    sound5:Play()
+
+    local Image = Instance.new("ImageLabel", CoreUI)
+    Image.Image = "http://www.roblox.com/asset/?id=6546043746"
+    Image.BackgroundTransparency = 1
+    Image.AnchorPoint = Vector2.new(0.5, 0.5)
+    Image.Size = UDim2.fromScale(1, 1)
+    Image.Position = UDim2.fromScale(-0.5, 0.5)
+    delay(0, function()
+        for i = 0, 1, 0.1 do
+            Image.Position = UDim2.fromScale(-Image.Position.X.Scale + i, 0.5)
+            Image.ImageTransparency = Image.ImageTransparency + i
+            wait(.01)
+        end
+        Image:Destroy()
+        sound5:Destroy()
+    end)
+end
+
+function ModelCharacter()
+    if workspace:FindFirstChild(LocalPlayer.Name .. "StringKOD") == nil then
+        local MODEL = Instance.new("Model", workspace)
+        MODEL.Name = LocalPlayer.Name .. "StringKOD"
+        OldChar.Humanoid:UnequipTools()
+        for i, v in pairs(OldChar:GetChildren()) do
+            if (v:IsA("BasePart") or v:IsA("MeshPart")) and v.Parent:FindFirstChildOfClass("Humanoid") and v.Name ~= "HumanoidRootPart" then
+                local Part = v:Clone()
+                Part.Parent = MODEL
+                Part.Name = v.Name
+                Part.Material = Enum.Material.ForceField
+                Part.CFrame = v.CFrame
+                Part.Transparency = 0.5
+                Part.BrickColor = BrickColor.Red()
+                Part.CanCollide = false
+                Part.Anchored = true
+                for i, v in pairs(Part:GetChildren()) do
+                    if v.ClassName ~= "SpecialMesh" then
+                        v:Destroy()
+                    end
+                end
+            end
+        end
+        local NewCharacter = game:GetObjects("rbxassetid://6547055500")[1]
+        NewCharacter.Parent = MODEL
+        NewCharacter.Name = "Idaro"
+        workspace.Camera.CameraSubject = NewCharacter.Humanoid
+        SaveLocation = OldChar.HumanoidRootPart.CFrame
+        InTimeErase = true
+        NewCharacter.HumanoidRootPart.CFrame = SaveLocation
+        RigIdle = NewCharacter:WaitForChild("Humanoid"):LoadAnimation(Idle)
+        RigIdle.Looped = true
+        RigIdle.Priority = Enum.AnimationPriority.Action
+        RigWalk = NewCharacter:WaitForChild("Humanoid"):LoadAnimation(WalkAnimation)
+        RigWalk.Looped = true
+        RigWalk.Priority = Enum.AnimationPriority.Action
+        WalkSpeed = true
+        RigIdle:Play()
+    else
+        InTimeErase = false
+        WalkSpeed = false
+        workspace.Camera.CameraSubject = OldChar.Humanoid
+        OldChar.HumanoidRootPart.CFrame = workspace:FindFirstChild(LocalPlayer.Name .. "StringKOD").Idaro.HumanoidRootPart.CFrame
+        workspace:FindFirstChild(LocalPlayer.Name .. "StringKOD"):Destroy()
+    end
+end
+
+function Slide()
+    local XD = OldChar.Humanoid:LoadAnimation(Anim)
+    XD:Play()
+    XD.TimePosition = 0.15
+    XD.Looped = false
+    XD:AdjustSpeed(1.1)
+end
+
+function AddVelocity(Vel, Char)
+    Char.HumanoidRootPart.Velocity = Char.HumanoidRootPart.Velocity + Vel
+end
+
+function Jumping()
+    if IsJump == false then
+        return false
+    else
+        return true
+    end
+end
+
+function IdleRigXD()
+    if RigIdle and RigWalk.IsPlaying and WSpped == 0 and LeftSpeed == 0 and UpSpeed == 0 then
+        RigIdle:Play()
+        RigWalk:Stop()
+    end
+end
+
+function WalkRigXD()
+    if RigWalk and RigIdle.IsPlaying then
+        RigIdle:Stop()
+        RigWalk:Play()
+    end
+end
+
+function StopAudio()
+    game:GetService('Players').LocalPlayer.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND'):Stop();
+    game.ReplicatedStorage.MainRemote:FireServer("Stop");
+    game.ReplicatedStorage.MainRemote:FireServer("Remove");
+end
+    
+function stop(ID, Key)
+    local w = coroutine.wrap(function()
+        wait(game:GetService('Players').LocalPlayer.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND').TimeLength-0.1)
+        if game:GetService('Players').LocalPlayer.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND').SoundId == 'rbxassetid://'..i and OriginalKeyUpValue == v then
+            StopAudio();
+        end;
+    end);
+    w();
+end
+    
+function play(ID, STOP, LMAO)
+
+end
+
+function XDDDD(XDR)
+    if XDR == false then
+        XD = true
+        play(6546133414, true, true)
+        wait(1.5)
+        TimeEraseUI()
+        FoV()
+        Lighting()
+        ModelCharacter()
+        for i, v in pairs(game.Workspace.MAP:GetDescendants()) do
+            if
+                v:IsA("BasePart") or v:IsA("WedgePart") or v:IsA("Part") or v:IsA("BallPart") or v:IsA("MeshPart") or
+                    v:IsA("Decal") or
+                    v:IsA("Texture")
+             then
+                v.Transparency = v.Transparency + 1
+            end
+        end
+    else
+        XD = false
+        InTimeErase = false
+        play(6543435253, true, true)
+        TimeEraseUI()
+        ModelCharacter()
+        Lighting()
+        FoV()
+        for i, v in pairs(game.Workspace.MAP:GetDescendants()) do
+            if
+                v:IsA("BasePart") or v:IsA("WedgePart") or v:IsA("Part") or v:IsA("BallPart") or v:IsA("MeshPart") or
+                    v:IsA("Decal") or
+                    v:IsA("Texture")
+             then
+                v.Transparency = v.Transparency - 1
+            end
+        end
+    end
+end
+
+_G.TimeStopped = false
+_G.AmountOfTime = 5
+local stopaudiostand = 8099281782
+local stopaudio = 8099281782
+function stoptime()
+    if _G.TimeStopped or game:GetService("UserInputService"):GetFocusedTextBox() then
+        return
+    end
+    _G.TimeStopped = true
+    if standmode then
+        play(8168385716, true, true)
+        local Animation = Instance.new("Animation")
+        Animation.AnimationId = "rbxassetid://507770453"
+        local LoadAnimation = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):LoadAnimation(Animation)
+        LoadAnimation.Looped = false
+        LoadAnimation.Priority = Enum.AnimationPriority.Action
+        LoadAnimation:Play()
+        wait(2)
+        TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 85}):Play()
+        TweenService:Create(game:GetService("Lighting").ColorCorrection, TweenInfo.new(0.8), {Saturation = -1}):Play()
+        local blur = Instance.new("BlurEffect", game:GetService("Lighting"))
+        TweenService:Create(blur, TweenInfo.new(0.8), {Size = 10}):Play()
+        wait(1)
+        TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 70}):Play()
+        game:GetService("Lighting").ColorCorrection.TintColor = Color3.fromRGB(250, 250, 250)
+        TweenService:Create(blur, TweenInfo.new(0.8), {Size = 0}):Play()
+        wait(_G.AmountOfTime)
+        play(8168390084, true, true)
+        _G.TimeStopped = false
+        TweenService:Create(game:GetService("Lighting").ColorCorrection, TweenInfo.new(0.8), {Saturation = 0}):Play()
+    else
+    play(8099281782, true, true)
+    local Animation = Instance.new("Animation")
+    Animation.AnimationId = "rbxassetid://507770818"
+    local LoadAnimation = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):LoadAnimation(Animation)
+    LoadAnimation.Looped = false
+    LoadAnimation.Priority = Enum.AnimationPriority.Action
+    LoadAnimation:Play()
+    wait(2)
+    TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 85}):Play()
+    TweenService:Create(game:GetService("Lighting").ColorCorrection, TweenInfo.new(0.8), {Saturation = -1}):Play()
+    local blur = Instance.new("BlurEffect", game:GetService("Lighting"))
+    TweenService:Create(blur, TweenInfo.new(0.8), {Size = 10}):Play()
+    wait(1)
+    TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 70}):Play()
+    game:GetService("Lighting").ColorCorrection.TintColor = Color3.fromRGB(250, 250, 250)
+    TweenService:Create(blur, TweenInfo.new(0.8), {Size = 0}):Play()
+    wait(_G.AmountOfTime)
+    play(6546128175, true, true)
+    _G.TimeStopped = false
+    TweenService:Create(game:GetService("Lighting").ColorCorrection, TweenInfo.new(0.8), {Saturation = 0}):Play()
+    end
+end
+
+function titan()
+    game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(HulkAnim):Play()
+    play(862491729, true, true)
+    local function rm()
+        for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if v.Name == "OriginalPosition" then
+                v:Destroy()
+            elseif v.Name == "OriginalSize" then
+                v:Destroy()
+            elseif v.Name == "AvatarPartScaleType" then
+                v:Destroy()
+            end
+        end
+    end
+    local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+    if Humanoid:FindFirstChild("BodyTypeScale") then
+        rm()
+        wait(0.6)
+        Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+        wait(0.6)
+    end
+    if Humanoid:FindFirstChild("HeadScale") then
+        rm()
+        wait(0.6)
+        Humanoid:FindFirstChild("HeadScale"):Destroy()
+        wait(0.6)
+    end 
+end
+
+function loaddeadshot()
+    
+end
+function loadbat()
+
+end
+
+function loadvenom()
+    
+end
+
+function loadwolverine()
+    
+end
+
+function Fly()
+	function sandbox(var,func)
+		local env = getfenv(func)
+		local newenv = setmetatable({},{
+			__index = function(self,k)
+				if k=="script" then
+					return var
+				else
+					return env[k]
+				end
+			end,
+		})
+		setfenv(func,newenv)
+		return func
+	end
+	cors = {}
+	mas = Instance.new("Model",game:GetService("Lighting"))
+	Tool0 = Instance.new("Tool")
+	LocalScript1 = Instance.new("LocalScript")
+	Sound2 = Instance.new("Sound")
+	Sound3 = Instance.new("Sound")
+	Animation4 = Instance.new("Animation")
+	RemoteEvent5 = Instance.new("RemoteEvent")
+	Animation6 = Instance.new("Animation")
+	Tool0.Name = "Fly"
+	Tool0.Parent = mas
+	Tool0.CanBeDropped = false
+	Tool0.RequiresHandle = false
+	LocalScript1.Name = "local"
+	LocalScript1.Parent = Tool0
+	table.insert(cors,sandbox(LocalScript1,function()
+		wait();
+		local l__LocalPlayer__1 = game.Players.LocalPlayer;
+		while true do
+			wait();
+			if l__LocalPlayer__1.Character then
+				break;
+			end;
+		end;
+		local l__Character__2 = l__LocalPlayer__1.Character;
+		local l__Humanoid__3 = l__Character__2:WaitForChild("Humanoid");
+		local l__Parent__4 = script.Parent;
+		local u1 = false;
+		local u2 = l__Humanoid__3:LoadAnimation(script.Hover);
+		local u3 = nil;
+		local u4 = nil;
+		local u5 = false;
+		local u6 = false;
+		local u7 = l__Humanoid__3:LoadAnimation(script.Fly);
+		l__Parent__4.Equipped:connect(function(p1)
+			Sound3:Play()
+			p1.TargetFilter = workspace;
+			u1 = true;
+			u2:Play();
+			u3 = Instance.new("BodyGyro");
+			u3.Name = "NA";
+			u3.Parent = l__Character__2.HumanoidRootPart;
+			u3.MaxTorque = Vector3.new(30000, 0, 30000);
+			u3.P = u3.P * 5;
+			u3.CFrame = CFrame.new(0, 0, 0);
+			u4 = Instance.new("BodyPosition");
+			u4.Name = "NA";
+			u4.Parent = l__Character__2.HumanoidRootPart;
+			u4.MaxForce = Vector3.new(60000, 60000, 60000);
+			u4.Position = l__Character__2.HumanoidRootPart.Position;
+			p1.Button1Down:connect(function()
+				Sound2:Play()
+				if u5 then
+					return;
+				end;
+				u5 = true;
+				u6 = true;
+				u7:Play();
+				local v5 = Instance.new("BodyVelocity", l__Character__2.HumanoidRootPart);
+				v5.MaxForce = Vector3.new(50000, 50000, 50000);
+				v5.Velocity = CFrame.new(l__Character__2.HumanoidRootPart.CFrame.p, p1.Hit.p).lookVector * 85;
+				u3.MaxTorque = Vector3.new(30000, 30000, 30000);
+				u3.CFrame = CFrame.new(l__Character__2.HumanoidRootPart.CFrame.p, p1.Hit.p);
+				u4.Parent = nil;
+				l__Humanoid__3.AutoRotate = false;
+				if u2.IsPlaying then
+					u2:Stop();
+				end;
+				while u6 do
+					v5.Velocity = CFrame.new(l__Character__2.HumanoidRootPart.CFrame.p, p1.Hit.p).lookVector * 85;
+					u3.CFrame = CFrame.new(l__Character__2.HumanoidRootPart.CFrame.p, p1.Hit.p);
+					game:GetService("RunService").Heartbeat:wait();		
+				end;
+				l__Humanoid__3.AutoRotate = true;
+				v5:Destroy();
+				if u4 ~= nil then
+					u4.Position = l__Character__2.HumanoidRootPart.Position;
+					u4.Parent = l__Character__2.HumanoidRootPart;
+				end;
+				if u3 ~= nil then
+					u3.MaxTorque = Vector3.new(30000, 0, 30000);
+					u3.CFrame = CFrame.new(0, 0, 0);
+				end;
+				u6 = false;
+				if u1 then
+					u2:Play();
+				end;
+				u7:Stop();
+				wait(0.3);
+				u5 = false;
+			end);
+			p1.Button1Up:connect(function()
+			    Sound2:Stop()
+				Sound3:Play()
+				u6 = false;
+			end);
+		end);
+		l__Parent__4.Unequipped:connect(function()
+		    Sound2:Stop()
+			Sound3:Play()
+			u1 = false;
+			u6 = false;
+			u3:Destroy();
+			u3 = nil;
+			u4:Destroy();
+			u4 = nil;
+			if u2.IsPlaying then
+				u2:Stop();
+			end;
+		end);
+	end))
+	Sound2.Name = "Flapping"
+	Sound2.Parent = LocalScript1
+	Sound2.Looped = true
+	Sound2.MaxDistance = 100
+	Sound2.Pitch = 1.5
+	Sound2.PlaybackSpeed = 1.5
+	Sound2.SoundId = "rbxassetid://1462718291"
+	Sound3.Name = "Activation"
+	Sound3.Parent = LocalScript1
+	Sound3.MaxDistance = 100
+	Sound3.SoundId = "rbxassetid://2952274135"
+	Sound3.Volume = 0.69999998807907
+	Animation4.Name = "Hover"
+	Animation4.Parent = LocalScript1
+	Animation4.AnimationId = "rbxassetid://3541114300"
+	RemoteEvent5.Name = "re"
+	RemoteEvent5.Parent = LocalScript1
+	Animation6.Name = "Fly"
+	Animation6.Parent = LocalScript1
+	Animation6.AnimationId = "rbxassetid://3541044388"
+	for i,v in pairs(mas:GetChildren()) do
+		v.Parent = game.Players.LocalPlayer.Backpack
+		pcall(function() v:MakeJoints() end)
+	end
+	mas:Destroy()
+	for i,v in pairs(cors) do
+		spawn(function()
+			pcall(v)
+		end)
+	end
+end
+
+function getoverdrive()
+    local backpack = game.Players.LocalPlayer:FindFirstChild("Backpack")
+    local Tool = backpack:FindFirstChild("OverDrive") or game.Players.LocalPlayer.Character:FindFirstChild("OverDrive")
+    if not Tool then
+        local OverDrive = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+        OverDrive.Name = "OverDrive"
+        OverDrive.RequiresHandle = false
+        local overdrive = false
+        local ps = game:GetService("Players")
+        local lp = ps.LocalPlayer
+        local char = lp.Character
+        OverDrive.Activated:Connect(function()
+            if overdrive == true then
+                overdrive = false
+                char.BodyEffects.Movement.HulkJump:Destroy()
+                char.BodyEffects.Movement.SuperSpeed:Destroy()
+            elseif overdrive == false then
+                overdrive = true
+                local HulkJump = Instance.new("IntValue")
+                HulkJump.Name = "HulkJump"
+                HulkJump.Parent = char.BodyEffects.Movement
+                local SuperSpeed = Instance.new("IntValue")
+                SuperSpeed.Name = "SuperSpeed"
+                SuperSpeed.Parent = char.BodyEffects.Movement
+            end
+        end)
+    end
+end
+
+function Hearing()
+	function sandbox(var,func)
+		local env = getfenv(func)
+		local newenv = setmetatable({},{
+			__index = function(self,k)
+				if k=="script" then
+					return var
+				else
+					return env[k]
+				end
+			end,
+		})
+		setfenv(func,newenv)
+		return func
+	end
+	cors = {}
+	mas = Instance.new("Model",game:GetService("Lighting"))
+	Tool0 = Instance.new("Tool")
+	LocalScript1 = Instance.new("LocalScript")
+	BillboardGui2 = Instance.new("BillboardGui")
+	ImageLabel3 = Instance.new("ImageLabel")
+	ScreenGui4 = Instance.new("ScreenGui")
+	TextLabel5 = Instance.new("TextLabel")
+	ScreenGui6 = Instance.new("ScreenGui")
+	ImageLabel7 = Instance.new("ImageLabel")
+	Tool0.Name = "Hearing"
+	Tool0.Parent = mas
+	Tool0.CanBeDropped = false
+	Tool0.RequiresHandle = false
+	LocalScript1.Parent = Tool0
+	table.insert(cors,sandbox(LocalScript1,function()
+		wait();
+		local l__LocalPlayer__1 = game.Players.LocalPlayer;
+		while true do
+			wait();
+			if l__LocalPlayer__1.Character then
+				break;
+			end;
+		end;
+		local l__Character__2 = l__LocalPlayer__1.Character;
+		local u1 = false;
+		local l__PlayerGui__2 = game.CoreGui;
+		function ChatFunc(p1)
+			local v3 = p1.Chatted:connect(function(p2)
+				if u1 then
+					local v4 = BrickColor.Random();
+					local v5 = script.MsgGui:Clone();
+					if string.find(string.lower(p2), "super") then
+						v5.Msg.TextSize = 29;
+					end;
+					v5.Msg.Text = p1.Name .. ": " .. p2;
+					v5.Msg.TextColor3 = v4.Color;
+					v5.Msg.Position = UDim2.new(0.5, math.random(-350, 350), 0.5, math.random(-210, 250));
+					v5.Parent = l__PlayerGui__2;
+					local v6 = script.DotGui:Clone();
+					v6.Dot.ImageColor3 = v4.Color;
+					v6.Enabled = true;
+					if p1.Character then
+						if p1.Character:findFirstChild("Head") then
+							v6.Parent = p1.Character.Head;
+						end;
+					end;
+					spawn(function()
+						local v7 = 1 - 1;
+						while true do
+							v6.Size = v6.Size - UDim2.new(0, 1, 0, 1);
+							game:GetService("RunService").RenderStepped:wait();
+							if 0 <= 1 then
+								if v7 < 70 then
+
+								else
+									break;
+								end;
+							elseif 70 < v7 then
+
+							else
+								break;
+							end;
+							v7 = v7 + 1;				
+						end;
+					end);
+					game.Debris:AddItem(v5, 3);
+					game.Debris:AddItem(v6, 6);
+				end;
+			end);
+		end;
+		for v8, v9 in pairs(game.Players:GetChildren()) do
+			ChatFunc(v9);
+		end;
+		game.Players.PlayerAdded:connect(function(p3)
+			ChatFunc(p3);
+		end);
+		local u3 = false;
+		local u4 = nil;
+		script.Parent.Equipped:connect(function(p4)
+			p4.Button1Down:connect(function()
+				if u3 then
+					return;
+				end;
+				u3 = true;
+				if not u1 then
+					u4 = script.Frame:Clone();
+					u4.Parent = l__PlayerGui__2;
+					u1 = true;
+				else
+					u4:Destroy();
+					u1 = false;
+				end;
+				wait(1);
+				u3 = false;
+			end);
+		end);
+	end))
+	BillboardGui2.Name = "DotGui"
+	BillboardGui2.Parent = LocalScript1
+	BillboardGui2.Enabled = false
+	BillboardGui2.Size = UDim2.new(0, 90, 0, 90)
+	BillboardGui2.Active = true
+	BillboardGui2.ClipsDescendants = true
+	BillboardGui2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	BillboardGui2.AlwaysOnTop = true
+	ImageLabel3.Name = "Dot"
+	ImageLabel3.Parent = BillboardGui2
+	ImageLabel3.Size = UDim2.new(1, 0, 1, 0)
+	ImageLabel3.BackgroundColor = BrickColor.new("Institutional white")
+	ImageLabel3.BackgroundColor3 = Color3.new(1, 1, 1)
+	ImageLabel3.BackgroundTransparency = 1
+	ImageLabel3.Image = "rbxassetid://130424513"
+	ImageLabel3.ImageColor3 = Color3.new(1, 0, 0)
+	ScreenGui4.Name = "MsgGui"
+	ScreenGui4.Parent = LocalScript1
+	ScreenGui4.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	TextLabel5.Name = "Msg"
+	TextLabel5.Parent = ScreenGui4
+	TextLabel5.Position = UDim2.new(0, 300, 0, 25)
+	TextLabel5.Size = UDim2.new(0, 1, 0, 1)
+	TextLabel5.BackgroundColor = BrickColor.new("Institutional white")
+	TextLabel5.BackgroundColor3 = Color3.new(1, 1, 1)
+	TextLabel5.BackgroundTransparency = 1
+	TextLabel5.Font = Enum.Font.SourceSansBold
+	TextLabel5.FontSize = Enum.FontSize.Size28
+	TextLabel5.Text = ""
+	TextLabel5.TextColor = BrickColor.new("Really black")
+	TextLabel5.TextColor3 = Color3.new(0, 0, 0)
+	TextLabel5.TextSize = 25
+	TextLabel5.TextStrokeTransparency = 0.60000002384186
+	ScreenGui6.Name = "Frame"
+	ScreenGui6.Parent = LocalScript1
+	ScreenGui6.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	ImageLabel7.Name = "Image"
+	ImageLabel7.Parent = ScreenGui6
+	ImageLabel7.Size = UDim2.new(1, 0, 1, 0)
+	ImageLabel7.BackgroundColor = BrickColor.new("Institutional white")
+	ImageLabel7.BackgroundColor3 = Color3.new(1, 1, 1)
+	ImageLabel7.BackgroundTransparency = 1
+	ImageLabel7.Image = "rbxassetid://36869195"
+	ImageLabel7.ImageColor3 = Color3.new(0.290196, 1, 0.917647)
+	ImageLabel7.ImageTransparency = 0.80000001192093
+	for i,v in pairs(mas:GetChildren()) do
+		v.Parent = game.Players.LocalPlayer.Backpack
+		pcall(function() v:MakeJoints() end)
+	end
+	mas:Destroy()
+	for i,v in pairs(cors) do
+		spawn(function()
+			pcall(v)
+		end)
+	end
+end
+
+function loadhulk()
+    local Angry = Instance.new('Tool')
+    Angry.Parent = game.Players.LocalPlayer.Backpack
+    Angry.Name = "ANGRYY"
+    Angry.RequiresHandle = false
+    Angry.Activated:Connect(function()
+        game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(HulkAnim):Play()
+        wait(0.30)
+        play(8099554944, true, true)
+    end)
+end
+
+--// KeyBind Commands
+local HumanModCons = {}
+game:GetService('UserInputService').InputBegan:Connect(function(v, i)
+    if not i and v.UserInputType == Enum.UserInputType.Keyboard then
+        if v.KeyCode == Enum.KeyCode.Q and Posing == false then
+            play(6552805469, true);
+            Posing = true;
+            local Char = game.Players.LocalPlayer.Character
+            local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
+            local function WalkSpeedChange()
+                if Char and Human then
+                    Human.WalkSpeed = 0
+                end
+            end
+            WalkSpeedChange()
+            HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) or Human:GetPropertyChangedSignal("WalkSpeed"):Connect(WalkSpeedChange)
+            HumanModCons.wsCA = (HumanModCons.wsCA and HumanModCons.wsCA:Disconnect() and false) or game.Players.LocalPlayer.CharacterAdded:Connect(function(nChar)
+                Char, Human = nChar, nChar:WaitForChild("Humanoid")
+                WalkSpeedChange()
+                HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) or Human:GetPropertyChangedSignal("WalkSpeed"):Connect(WalkSpeedChange)
+            end)
+            repeat game:GetService('RunService').Heartbeat:Wait()
+                local Pose = game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(Fashionable)
+                if not Pose.IsPlaying then
+                    Pose:Play();
+                    Pose.TimePosition = 6;
+                    Pose.Looped = true;
+                    Pose:AdjustSpeed(0);
+                end;
+            until Posing == false;
+            for _, v in pairs(game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):GetPlayingAnimationTracks()) do
+                if (v.Animation.AnimationId:match('rbxassetid')) then
+                    v:Stop();
+                end;
+            end;
+            HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) or nil
+            HumanModCons.wsCA = (HumanModCons.wsCA and HumanModCons.wsCA:Disconnect() and false) or nil
+        elseif v.KeyCode == Enum.KeyCode.Q and Posing == true then
+            Posing = false;
+        end;
+    end;
+end);
+        
+mouse.KeyDown:connect(function(key)
+    if key:lower() == getgenv().ToggleStandJump then
+        getgenv().StandJump = not getgenv().StandJump
+    elseif key:lower() == getgenv().TimeSkip then
+        if dragonmode then
+        play(8205481895, true, true) -- dragon ball one
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -50)
+        TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 85}):Play()
+        TweenService:Create(game:GetService("Lighting").ColorCorrection, TweenInfo.new(0.8), {Saturation = -1}):Play()
+        local blur = Instance.new("BlurEffect", game:GetService("Lighting"))
+        TweenService:Create(blur, TweenInfo.new(0.8), {Size = 10}):Play()
+        wait(0.5)
+        TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 70}):Play()
+        game:GetService("Lighting").ColorCorrection.TintColor = Color3.fromRGB(250, 250, 250)
+        TweenService:Create(blur, TweenInfo.new(0.8), {Size = 0}):Play()
+        wait(0.5)
+        TweenService:Create(game:GetService("Lighting").ColorCorrection, TweenInfo.new(0.8), {Saturation = 0}):Play()
+        else
+        play(6603980575, true, true)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -50)
+        TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 85}):Play()
+        TweenService:Create(game:GetService("Lighting").ColorCorrection, TweenInfo.new(0.8), {Saturation = -1}):Play()
+        local blur = Instance.new("BlurEffect", game:GetService("Lighting"))
+        TweenService:Create(blur, TweenInfo.new(0.8), {Size = 10}):Play()
+        wait(0.5)
+        TweenService:Create(workspace.CurrentCamera, TweenInfo.new(0.5), {FieldOfView = 70}):Play()
+        game:GetService("Lighting").ColorCorrection.TintColor = Color3.fromRGB(250, 250, 250)
+        TweenService:Create(blur, TweenInfo.new(0.8), {Size = 0}):Play()
+        wait(0.5)
+        TweenService:Create(game:GetService("Lighting").ColorCorrection, TweenInfo.new(0.8), {Saturation = 0}):Play()
+        end
+    elseif key:lower() == getgenv().TimeSkipBackwards then
+        play(3280066384, true, true)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 50)
+    elseif key:lower() == getgenv().YourWatchingMe then
+        play(6961399550, true, true)
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("You're watching me!?", "All")
+    elseif key:lower() == getgenv().AreYouWatchingMe then
+        play(6961400034, true, true)
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Are you watching me?!", "All")
+    elseif key:lower() == getgenv().Juggernaut then  
+        play(7148332723, true, true)
+        game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(HulkAnim):Play()
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("I'm gonna rip you in half now!", "All")
+    elseif key:lower() == getgenv().KoreanSong then  
+        play(5160230627, true, true)
+    elseif key:lower() == getgenv().SuperIdol then
+        play(7739913941, true , true)
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Super Idol的笑容", "All")
+        wait(1)
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("都没你的甜八月正午的阳光都没你耀眼", "All")
+        wait(1)
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("热爱105°C的你", "All")
+        wait(1)
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("滴滴清纯的蒸馏水你不知道你有多可爱", "All")
+        wait(1)
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("跌倒后会傻笑着再站起来你从来都不轻言失败", "All")
+            wait(1)
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("跌倒后会傻笑着再站起来你从来都不轻言失败", "All")
+        wait(1)
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("对梦想的执着一直不曾更改很安心 当你对我说", "All")
+        wait(1)
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("对梦想的执着一直不曾更改很安心 当你对我说", "All")
+        wait(1)
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("不怕有我在放着让我来勇敢追自己的梦想那坚定的模样", "All")
+    end
+end)
+
+local oldc = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+game:GetService('Players').LocalPlayer.Chatted:Connect(function(msg)
+    if msg == getgenv().TimeStop then
+        stoptime()
+    elseif msg == TimeStop1 then
+        stoptime()
+    elseif msg == getgenv().TimeErase then
+        if XD == false and not Poter.IsPlaying then
+            XDDDD(XD)
+        elseif XD == true and not Poter.IsPlaying then
+            XDDDD(XD)
+        end
+    elseif msg == getgenv().DeadShot then
+
+    elseif msg == getgenv().YourGone then
+        play(1436242274, true, true)
+    elseif msg == getgenv().Die then    
+        play(247615928, true, true);
+    elseif msg == getgenv().HowManyMins then    
+        play(159882644, true, true);   
+    elseif msg == getgenv().GoodGrief then    
+        play(6603016929, true, true);
+    elseif msg == getgenv().GoodGrief2 then
+        play(6603016929, true, true);   
+    elseif msg == getgenv().DiavoloDa then   
+        play(6553075707, true, true);
+    elseif msg == getgenv().Wry then    
+        play(6661495281, true, true);
+    elseif msg == getgenv().YouFool then    
+        play(2554775814, true, true);
+    elseif msg == getgenv().HAHNW then    
+        play(3077251681, true, true);
+    elseif msg == getgenv().KingCrimson then 
+        play(3373956700, true, true);
+    elseif msg == getgenv().ZaWarudo then    
+        play(3084535090, true, true);
+    elseif msg == getgenv().Yes then   
+        play(3378133256, true, true);
+    elseif msg == getgenv().Hey then   
+        play(2652135070, true, true);
+    elseif msg == getgenv().Pose then   
+        play(6552805469, true, true)
+    elseif msg == getgenv().Stand then
+        standmode = true
+        if standmode then
+        local Animate = game.Players.LocalPlayer.Character.Animate
+        Animate.idle.Animation1.AnimationId = "rbxassetid://7318630720"
+		Animate.idle.Animation2.AnimationId = "rbxassetid://7318630720"
+		Animate.run.RunAnim.AnimationId = "rbxassetid://657564596"
+		Animate.walk.WalkAnim.AnimationId = "rbxassetid://657552124"
+		Animate.climb.ClimbAnim.AnimationId = "rbxassetid://658360781"
+		Animate.fall.FallAnim.AnimationId = "rbxassetid://657600338"
+		Animate.swim.Swim.AnimationId = "rbxassetid://657560551"
+		Animate.swimidle.SwimIdle.AnimationId = "rbxassetid://657557095"
+        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        else 
+            standmode = false
+        end
+    elseif msg == getgenv().DragonMode then
+        if dragonmode then
+            dragonmode = false
+        end
+        dragonmode = true
+    elseif msg == getgenv().Transform then   
+        if bulletdef == false then
+            bulletdef = true
+            local bulletids = {
+                "5185157119";
+                "5185157257";
+            }
+            local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+            local OldHealth = Humanoid.Health
+            Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
+                if bulletdef == true then
+                    if Humanoid.Health < OldHealth then
+                        play(bulletids[math.random(1,#bulletids)], true, true)
+                    end
+                    OldHealth = Humanoid.Health
+                end
+            end)
+        elseif bulletdef == true then
+            bulletdef = false
+        end
+    elseif msg == getgenv().Titan then    
+        titan()
+    elseif msg == getgenv().BatmanLoad then  
+        loadbat()
+    elseif msg == getgenv().VenomLoad then  
+        loadvenom()
+    elseif msg == getgenv().WolvLoad then 
+        loadwolverine()
+    elseif msg == getgenv().HulkLoad then
+        loadhulk()
+    elseif msg == getgenv().DashLoad then
+        if dashtoggle == false then
+            dashtoggle = true
+        local Char = game.Players.LocalPlayer.Character local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
+        while dashtoggle do wait()
+            for i,v in next, Hum:GetPlayingAnimationTracks() do
+                if v.Animation.AnimationId == "rbxassetid://2788289281" then
+                    v:Stop()
+                    for i,v in next, Hum:GetPlayingAnimationTracks() do
+                        if v.Animation.AnimationId == "rbxassetid://2788292075" then
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -30)
+                            wait(0.1)
+                            game:GetService('Players').LocalPlayer.Character:FindFirstChild('HumanoidRootPart').Anchored = true;
+                            wait(1.5)
+                            game:GetService('Players').LocalPlayer.Character:FindFirstChild('HumanoidRootPart').Anchored = false
+                        end
+                    end
+                end
+            end
+        end
+    else
+        dashtoggle = false
+    end
+    elseif msg == getgenv().HideMask then  
+        if game.Players.LocalPlayer.Character:FindFirstChild('In-gameMask'):FindFirstChild('Handle') then
+            game.Players.LocalPlayer.Character:FindFirstChild('In-gameMask'):FindFirstChild('Handle'):Destroy()
+        end
+    elseif msg == getgenv().SafeTp then
+        if isstped == false then
+            isstped = true
+            oldc = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            wait(0.75)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(207, 38, 200016)
+        elseif isstped then
+            isstped = false
+            wait(0.75)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldc
+        end
+    elseif msg == getgenv().Revive then
+        if isrevive == false then
+            isrevive = true
+            game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("I'm back!", "All")
+        while isrevive do
+            wait()
+            for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                if v.Name == "GRABBING_CONSTRAINT" then
+                    v:Destroy()
+                    game.Players.LocalPlayer.Character.Humanoid.Sit = true
+                    wait(0.2)
+                    game.Players.LocalPlayer.Character.Humanoid.Jump = true
+                end
+            end
+        end
+    else 
+        isrevive = false
+    end
+    end
+end)
+
+Mouse.KeyDown:Connect(function(KeyDownXD)
+    if workspace:FindFirstChild(LocalPlayer.Name .. "StringKOD") then
+        if KeyDownXD == "w" then
+            WSpped = -1
+            WalkRigXD()
+        elseif KeyDownXD == "a" then
+            LeftSpeed = -1
+            WalkRigXD()
+        elseif KeyDownXD == "d" then
+            LeftSpeed = 1
+            WalkRigXD()
+        elseif KeyDownXD == "s" then
+            WSpped = 1
+            WalkRigXD()
+        end
+    end
+end)
+
+Mouse.KeyUp:Connect(function(KeyDownXD)
+    if KeyDownXD == "w" then
+        WSpped = 0
+        IdleRigXD()
+    elseif KeyDownXD == "a" then
+        LeftSpeed = 0
+        IdleRigXD()
+    elseif KeyDownXD == "d" then
+        LeftSpeed = -0
+        IdleRigXD()
+    elseif KeyDownXD == "s" then
+        WSpped = 0
+        IdleRigXD()
+    end
+end)
+
+uis.InputBegan:Connect(function(i, XD)
+    if i.KeyCode == Enum.KeyCode.Space and XD == false then
+        if workspace:FindFirstChild(LocalPlayer.Name .. "StringKOD") == nil then
+            if Jumping() == true and not Poter.IsPlaying then
+                AddVelocity(OldChar.HumanoidRootPart.CFrame.LookVector * 150, OldChar)
+                IsJump = false
+                --Cookies:Stop()
+                CD = true
+                play(6543434995, true, true)
+                Slide()
+                repeat wait() until workspace:FindPartOnRayWithWhitelist(Ray.new(OldChar.HumanoidRootPart.Position, Vector3.new(0, -4 * OldChar.HumanoidRootPart.Size.y, 0)), {workspace.Map})
+                CD = false
+                end
+            else
+                workspace:FindFirstChild(LocalPlayer.Name .. "StringKOD"):FindFirstChild("Idaro").Humanoid:ChangeState(3)
+            end
+        end
+    end)
+
+function Jump(...)(...).Jumping:Connect(function()
+    if CD == false and not Poter.IsPlaying and getgenv().StandJump then
+        CD = true
+        delay(1, function()
+            CD = false
+        end)
+        --Cookies:Play(0, 1, 1.4)
+        AddVelocity(OldChar.HumanoidRootPart.CFrame.UpVector * 120, OldChar)
+        play(6543436906, true, true)
+        delay(0, function()
+            IsJump = true
+            wait(1)
+            if IsJump == true then
+                IsJump = false
+            end
+        end)
+    end
+end)
+end
+Jump(OldChar.Humanoid)
+
+--//Loops etc
+LocalPlayer.CharacterAdded:Connect(function(Character)
+    wait(1)
+    if Character.Name == LocalPlayer.Name then
+        Jump(Character.Humanoid)
+        Poter = Character:WaitForChild("Humanoid"):LoadAnimation(Pointing)
+        Poter.Looped = true
+        Poter.Priority = Enum.AnimationPriority.Action
+        --Cookies = Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.Animations.ogg)
+        OldChar = Character
+    end
+end)
+
+game["Run Service"].Heartbeat:Connect(function()
+    if InTimeErase then
+        for i, v in pairs(OldChar:GetChildren()) do
+            if v:IsA("BasePart") then
+                v.CFrame = CFrame.new(math.random(200, 500), math.random(200, 500), math.random(200, 500))
+                v.Velocity = Vector3.new(0, 0, 0)
+            end
+         end
+
+        if OldChar:FindFirstChild("Combat") and XD == true then
+            XD = false
+            XDDDD(true)
+        end
+        if WalkSpeed == true then
+            MoveDirection = Vector3.new(LeftSpeed, UpSpeed, WSpped)
+            workspace:FindFirstChild(LocalPlayer.Name .. "StringKOD"):FindFirstChild("Idaro").Humanoid:Move(MoveDirection, true)
+        end
+    else
+        if OldChar:FindFirstChild("[Flashlight]") then
+            if workspace.Players:FindFirstChild(MyStand) then
+                if not Poter.IsPlaying then
+                    Poter:Play()
+                    Poter:AdjustSpeed(0)
+                    Poter.TimePosition = 1.2
+                end
+                local lol = workspace.Players:FindFirstChild(MyStand).HumanoidRootPart.CFrame * CFrame.new(0, 0.5, 1.25)
+                OldChar.HumanoidRootPart.CFrame = lol
+            end
+        else
+            if Poter.IsPlaying then
+                Poter:Stop()
+            end
+        end
+    end
+end)
+
+
+
+game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
+Hearing()
+getoverdrive()
+Fly()
+game.Players.LocalPlayer.CharacterAdded:connect(function()
+    if standmode then
+
+    end
+	wait(1)
+	Hearing()
+    Fly()
+    getoverdrive()
+    wait(1)
+    game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
+end)

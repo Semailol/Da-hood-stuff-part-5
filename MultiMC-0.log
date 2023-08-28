@@ -1,0 +1,346 @@
+    0.005 D <> Log initialized.
+    0.006 D "MultiMC 5" , (c) 2013-2021  "MultiMC Contributors"
+    0.006 D Version                    :  "0.6.14-3001"
+    0.006 D Git commit                 :  "80beccb2c4585260e5d170c68f72d3d303f777e0"
+    0.006 D Git refspec                :  "refs/heads/stable"
+    0.006 D Work dir before adjustment :  "C:/Windows/system32"
+    0.006 D Work dir after adjustment  :  "C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC"
+    0.006 D Adjusted by                :  "Fallback to binary path C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC"
+    0.006 D Binary path                :  "C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC"
+    0.006 D Application root path      :  "C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC"
+    0.006 D <> Paths set.
+    0.009 D Detected default console font: "Courier" , substitutions: ""
+    0.010 D <> Settings loaded.
+    0.010 D Detecting proxy settings...
+    0.010 D Using no proxy is an option!
+    0.010 D <> Network done.
+    0.015 D Loading Application Language File for en_GB ...
+    0.015 D Your language is "en_GB"
+    0.015 D <> Translations loaded.
+    0.015 D Initializing updater with platform:  "win32"  --  "https://files.multimc.org/update/win32/channels.json"
+    0.015 D <> Updater started.
+    0.016 D Started watching  "C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/icons"
+    0.016 D <> Instance icons intialized.
+    0.017 D <> Icon themes initialized.
+    0.017 D Determining System Theme...
+    0.017 D System theme seems to be: "windowsvista"
+    0.017 D Considering theme from theme factory: "windows"
+    0.017 D Considering theme from theme factory: "windowsxp"
+    0.017 D Considering theme from theme factory: "windowsvista"
+    0.017 D System theme has been determined to be: "WindowsVista"
+    0.017 D Loading theme "custom"
+    0.018 D <> Widget themes initialized.
+    0.018 D Instance path              :  "instances"
+    0.019 D Loading Instances...
+    0.019 D Discovering instances in "C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/instances"
+    0.019 D Found instance ID "1.12.2"
+    0.020 D Will load group list now.
+    0.020 D Group list loaded.
+    0.021 D Loaded instance  "1.12.2"  from  "C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/instances/1.12.2"
+    0.021 D <> Instances loaded.
+    0.021 D Loading accounts...
+    0.021 C "Failed to read the account list file (accounts.json)."
+    0.021 D <> Accounts loaded.
+    0.022 D <> Cache initialized.
+    0.022 D Downloading Translations Index...
+    0.022 D Task "NetJob(Translations Index)" starting for the first time
+    0.029 D <> Icon theme set.
+    0.029 D <> Application theme set.
+    0.029 D <> Initialized analytics with tid "UA-87731965-2"
+    0.049 D Task "JavaListLoadTask(0x3af5a30)" starting for the first time
+    0.050 D Probing the following Java paths: 
+    0.050 D   "C:/Program Files/Java/jre1.8.0_311/bin/javaw.exe"
+    0.050 D   "C:/Program Files/Java/jre8/bin/javaw.exe"
+    0.050 D   "C:/Program Files/Java/jre7/bin/javaw.exe"
+    0.050 D   "C:/Program Files/Java/jre6/bin/javaw.exe"
+    0.051 D   "C:/Program Files (x86)/Java/jre8/bin/javaw.exe"
+    0.051 D   "C:/Program Files (x86)/Java/jre7/bin/javaw.exe"
+    0.051 D   "C:/Program Files (x86)/Java/jre6/bin/javaw.exe"
+    0.051 D   "javaw"
+    0.051 D Task "JavaCheckerJob(0x3af5988)" starting for the first time
+    0.051 D "Java detection"  started.
+    0.051 D "Running java checker: C:/Program Files/Java/jre1.8.0_311/bin/javaw.exe-jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+    0.161 D "Running java checker: C:/Program Files/Java/jre8/bin/javaw.exe-jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+    0.161 D Java checker has failed to start.
+    0.161 D Process environment:
+    0.161 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.162 D Native environment:
+    0.162 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.162 D "Java detection" progress: 1 / 8
+    0.162 D "Running java checker: C:/Program Files/Java/jre7/bin/javaw.exe-jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+    0.162 D Java checker has failed to start.
+    0.162 D Process environment:
+    0.162 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.162 D Native environment:
+    0.162 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.162 D "Java detection" progress: 2 / 8
+    0.162 D "Running java checker: C:/Program Files/Java/jre6/bin/javaw.exe-jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+    0.163 D Java checker has failed to start.
+    0.163 D Process environment:
+    0.163 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.163 D Native environment:
+    0.163 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.163 D "Java detection" progress: 3 / 8
+    0.163 D "Running java checker: C:/Program Files (x86)/Java/jre8/bin/javaw.exe-jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+    0.163 D Java checker has failed to start.
+    0.164 D Process environment:
+    0.164 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.164 D Native environment:
+    0.164 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.164 D "Java detection" progress: 4 / 8
+    0.164 D "Running java checker: C:/Program Files (x86)/Java/jre7/bin/javaw.exe-jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+    0.164 D Java checker has failed to start.
+    0.164 D Process environment:
+    0.164 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.164 D Native environment:
+    0.164 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.164 D "Java detection" progress: 5 / 8
+    0.164 D "Running java checker: C:/Program Files (x86)/Java/jre6/bin/javaw.exe-jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+    0.165 D Java checker has failed to start.
+    0.165 D Process environment:
+    0.165 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.165 D Native environment:
+    0.165 D ("ProgramData=C:\\ProgramData", "USERDOMAIN_ROAMINGPROFILE=DESKTOP-0B3438H", "PROCESSOR_LEVEL=6", "LOCALAPPDATA=C:\\Users\\wilde\\AppData\\Local", "OneDrive=C:\\Users\\wilde\\OneDrive", "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC", "PROCESSOR_ARCHITEW6432=AMD64", "PROCESSOR_ARCHITECTURE=x86", "windir=C:\\Windows", "USERPROFILE=C:\\Users\\wilde", "OS=Windows_NT", "HOMEDRIVE=C:", "PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 10, GenuineIntel", "CommonProgramW6432=C:\\Program Files\\Common Files", "LOGONSERVER=\\\\DESKTOP-0B3438H", "OneDriveConsumer=C:\\Users\\wilde\\OneDrive", "APPDATA=C:\\Users\\wilde\\AppData\\Roaming", "HOMEPATH=\\Users\\wilde", "Path=C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\dotnet\\;C:\\Users\\wilde\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\wilde\\AppData\\Local\\Programs\\Microsoft VS Code\\bin", "ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ", "PUBLIC=C:\\Users\\Public", "SystemRoot=C:\\Windows", "CommonProgramFiles=C:\\Program Files (x86)\\Common Files", "ALLUSERSPROFILE=C:\\ProgramData", "SystemDrive=C:", "SESSIONNAME=Console", "TMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "COMPUTERNAME=DESKTOP-0B3438H", "DriverData=C:\\Windows\\System32\\Drivers\\DriverData", "ProgramW6432=C:\\Program Files", "NUMBER_OF_PROCESSORS=6", "ProgramFiles=C:\\Program Files (x86)", "CommonProgramFiles(x86)=C:\\Program Files (x86)\\Common Files", "PROCESSOR_REVISION=9e0a", "PSModulePath=C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules", "TEMP=C:\\Users\\wilde\\AppData\\Local\\Temp", "ProgramFiles(x86)=C:\\Program Files (x86)", "ComSpec=C:\\Windows\\system32\\cmd.exe", "USERNAME=wilde", "USERDOMAIN=DESKTOP-0B3438H")
+    0.165 D "Java detection" progress: 6 / 8
+    0.165 D "Running java checker: javaw-jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+    0.216 D Downloading  "https://files.multimc.org/translations/index_v2.json"
+    0.745 D Dir changed: "C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/translations"
+    0.747 D Loading Application Language File for en_GB ...
+    0.747 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+    0.747 W STDERR ""
+    0.747 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+    0.747 D Java checker succeeded.
+    0.747 D "Java detection" progress: 7 / 8
+    0.749 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+    0.749 W STDERR ""
+    0.749 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+    0.749 D Java checker succeeded.
+    0.749 D "Java detection" progress: 8 / 8
+    0.750 D Task "JavaCheckerJob(0x3af5988)" succeeded
+    0.750 D Found the following valid Java installations:
+    0.750 D   "1.8.0_311" "64" "C:/Program Files/Java/jre1.8.0_311/bin/javaw.exe"
+    0.750 D   "1.8.0_311" "64" "javaw"
+    0.750 D Task "JavaListLoadTask(0x3af5a30)" succeeded
+    0.754 D "Running java checker: javaw-Xms512m -Xmx1024m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+    0.858 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+    0.858 W STDERR ""
+    0.858 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+    0.858 D Java checker succeeded.
+    1.986 D Download succeeded: "https://files.multimc.org/translations/index_v2.json"
+    1.986 D Task "NetJob(Translations Index)" succeeded
+    1.986 D Got translations index!
+    1.986 D Task "NetJob(Translation for en_GB)" starting for the first time
+    1.986 D Dir changed: "C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/translations"
+    1.987 D Loading Application Language File for en_GB ...
+    1.988 D Downloading  "https://files.multimc.org/translations/957bdc2cd60c1de4954354a4d6916caf7ca5e06c.class"
+    1.998 D Dir changed: "C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/translations"
+    1.999 D Loading Application Language File for en_GB ...
+    2.028 D Download succeeded: "https://files.multimc.org/translations/957bdc2cd60c1de4954354a4d6916caf7ca5e06c.class"
+    2.028 D Task "NetJob(Translation for en_GB)" succeeded
+    2.028 D Got translation: "en_GB"
+    2.029 D Loading Application Language File for en_GB ...
+    2.029 D Dir changed: "C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/translations"
+    2.030 D Loading Application Language File for en_GB ...
+   83.586 D "Running java checker: javaw-Xms640m -Xmx1024m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   83.675 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   83.675 W STDERR ""
+   83.675 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   83.675 D Java checker succeeded.
+   83.773 D "Running java checker: javaw-Xms768m -Xmx1024m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   83.875 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   83.875 W STDERR ""
+   83.876 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   83.876 D Java checker succeeded.
+   84.209 D "Running java checker: javaw-Xms896m -Xmx1024m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   84.294 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   84.294 W STDERR ""
+   84.294 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   84.294 D Java checker succeeded.
+   84.627 D "Running java checker: javaw-Xms1024m -Xmx1024m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   84.716 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   84.716 W STDERR ""
+   84.716 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   84.716 D Java checker succeeded.
+   90.360 D "Running java checker: javaw-Xms1024m -Xmx1152m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   90.451 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   90.451 W STDERR ""
+   90.451 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   90.451 D Java checker succeeded.
+   90.679 D "Running java checker: javaw-Xms1024m -Xmx1280m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   90.769 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   90.769 W STDERR ""
+   90.769 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   90.769 D Java checker succeeded.
+   90.850 D "Running java checker: javaw-Xms1024m -Xmx1408m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   90.939 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   90.939 W STDERR ""
+   90.939 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   90.939 D Java checker succeeded.
+   91.000 D "Running java checker: javaw-Xms1024m -Xmx1536m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   91.089 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   91.090 W STDERR ""
+   91.090 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   91.090 D Java checker succeeded.
+   91.137 D "Running java checker: javaw-Xms1024m -Xmx1664m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   91.226 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   91.226 W STDERR ""
+   91.226 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   91.226 D Java checker succeeded.
+   91.294 D "Running java checker: javaw-Xms1024m -Xmx1792m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   91.391 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   91.392 W STDERR ""
+   91.392 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   91.392 D Java checker succeeded.
+   91.446 D "Running java checker: javaw-Xms1024m -Xmx1920m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   91.536 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   91.536 W STDERR ""
+   91.536 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   91.536 D Java checker succeeded.
+   91.783 D "Running java checker: javaw-Xms1024m -Xmx2048m -jar C:/Users/wilde/Downloads/mmc-stable-win32/MultiMC/jars/JavaCheck.jar"
+   91.904 D STDOUT "os.arch=amd64\njava.version=1.8.0_311\njava.vendor=Oracle Corporation\n"
+   91.904 W STDERR ""
+   91.904 D Java checker finished with status  QProcess::ExitStatus(NormalExit)  exit code  0
+   91.904 D Java checker succeeded.
+   95.956 D Wizard result = 1
+   96.005 W QMetaObject::connectSlotsByName: No matching signal for on_actionInstanceSettings_triggered()
+   96.009 D Reloading news.
+   96.009 D Task "NetJob(News RSS Feed)" starting for the first time
+   96.009 D Checking for updates.
+   96.009 D Channel list isn't loaded yet. Loading channel list and deferring update check.
+   96.009 D Loading the channel list.
+   96.009 D Task "NetJob(Update System Channel List)" starting for the first time
+   96.009 D Task "NetJob(Checking for notifications)" starting for the first time
+   96.031 D Viewport size "800x600"
+   96.031 D RAM size is 32686 MB
+   96.031 D [Analytics] "ScreenView: Main Window"
+   96.031 D <> Main window shown.
+   96.051 D Downloading  "https://multimc.org/rss.xml"
+   96.051 D Downloading  "https://files.multimc.org/update/win32/channels.json"
+   96.052 D Downloading  "https://files.multimc.org/notifications.json"
+   96.115 D Download succeeded: "https://files.multimc.org/update/win32/channels.json"
+   96.115 D Task "NetJob(Update System Channel List)" succeeded
+   96.115 D Successfully loaded UpdateChecker channel list.
+   96.115 D Checking for updates.
+   96.115 D channelEntry =  "stable"
+   96.115 D is intended update channel:  "stable"
+   96.115 D is current update channel:  "stable"
+   96.115 D channelEntry =  "develop"
+   96.115 D m_repoUrl =  "http://files.multimc.org/update/win32/stable/"
+   96.115 D Task "NetJob(GoUpdate Repository Index)" starting for the first time
+   96.115 D Downloading  "http://files.multimc.org/update/win32/stable/index.json"
+   96.175 D Download succeeded: "https://files.multimc.org/notifications.json"
+   96.180 D Task "NetJob(Checking for notifications)" succeeded
+   96.201 D Location header: QUrl("https://files.multimc.org/update/win32/stable/index.json")
+   96.201 D Following redirect to  "https://files.multimc.org/update/win32/stable/index.json"
+   96.201 D Downloading  "https://files.multimc.org/update/win32/stable/index.json"
+   96.201 D Download redirected: "https://files.multimc.org/update/win32/stable/index.json"
+   96.268 D Download succeeded: "https://files.multimc.org/update/win32/stable/index.json"
+   96.268 D Task "NetJob(GoUpdate Repository Index)" succeeded
+   96.268 D Finished downloading repo index. Checking for new versions.
+   96.269 D Processing repository version list.
+   96.344 D Download succeeded: "https://multimc.org/rss.xml"
+   96.344 D Task "NetJob(News RSS Feed)" succeeded
+   96.344 D Finished loading RSS feed.
+   96.349 D Loaded news entry "IMPORTANT MESSAGE - Security vulnerability in Minecraft"
+   96.349 D Loaded news entry "0.6.14 - Microsoft account refinement, Forge 1.17+ and other fixes"
+   96.349 D Loaded news entry "0.6.13 - Microsoft account integration"
+   96.350 D Loaded news entry "0.6.12 - Spring cleaning and modpack platforms"
+   96.350 D Loaded news entry "About Microsoft accounts"
+   96.350 D Loaded news entry "0.6.7 - UI fixes and important metadata news - update required!"
+   96.350 D Loaded news entry "0.6.5 - translation UI and legacy sound fixes"
+   96.350 D Loaded news entry "0.6.4 - better translation workflow and new FTB API location"
+   96.350 D Loaded news entry "0.6.3 - The Big Sync"
+   96.350 D Loaded news entry "0.6.2 Released!"
+   96.351 D Loaded news entry "0.6.1 Released!"
+   96.351 D Loaded news entry "0.6.0 Released!"
+   96.351 D Loaded news entry "Introducing the Archive"
+   96.351 D Loaded news entry "0.5.1 - Bugfixes."
+   96.351 D Loaded news entry "0.5.0 - Running multiple instances at the same time!"
+   96.351 D Loaded news entry "0.4.11 - OSX 10.7 fix and workaround for Minecraft 1.9 compatibility"
+   96.351 D Loaded news entry "0.4.10 - Another wifi fix"
+   96.351 D Loaded news entry "0.4.9 - the Windows wifi fix."
+   96.352 D Loaded news entry "0.4.8 - Worlds and more."
+   96.352 D Loaded news entry "0.4.7 - What 0.4.6 should have been."
+   96.352 D Loaded news entry "0.4.6 - Bug fixes and improvements!"
+   96.352 D Loaded news entry "0.4.5 - Translations, Themes, and Technic"
+   96.353 D Loaded news entry "0.4 out - Jar mods, UI changes, and more!"
+   96.353 D Loaded news entry "Introducing QuickMods - A better way to install mods"
+   96.353 D Loaded news entry "Support us on Patreon!"
+   96.353 D Loaded news entry "Heartbleed Vulnerability Update (fixed!)"
+   96.353 D Loaded news entry "Announcing MultiMC 6"
+   96.353 D Loaded news entry "0.3 - The big feature update."
+   96.353 D Loaded news entry "First official MultiMC 5 release!"
+   96.354 D Loaded news entry "MultiMC Status Update"
+   96.354 D News loading succeeded.
+  114.067 D Opening directory "instances"
+  119.280 D Task "ComponentUpdateTask(0x683ff00)" starting for the first time
+  119.280 D Loading components
+  119.280 D Task "NetJob(Download of meta file index.json)" starting for the first time
+  119.280 D Remote loading is being run for metadata index
+  119.280 D Task "NetJob(Download of meta file net.minecraft/1.12.2.json)" starting for the first time
+  119.280 D Remote loading is being run for "net.minecraft"
+  119.291 D Task "NetJob(Download of meta file net.minecraft/index.json)" starting for the first time
+  119.293 W QMetaObject::connectSlotsByName: No matching signal for on_RunningState_changed(bool)
+  119.296 W QMetaObject::connectSlotsByName: No matching signal for on_RunningState_changed(bool)
+  119.298 W QMetaObject::connectSlotsByName: No matching signal for on_RunningState_changed(bool)
+  119.300 W QMetaObject::connectSlotsByName: No matching signal for on_RunningState_changed(bool)
+  119.303 W QMetaObject::connectSlotsByName: No matching signal for on_RunningState_changed(bool)
+  119.306 W QMetaObject::connectSlotsByName: No matching signal for on_RunningState_changed(bool)
+  119.317 D Applying "net.minecraft" ERROR
+  119.409 D Downloading  "https://meta.multimc.org/v1/index.json"
+  119.410 D Downloading  "https://meta.multimc.org/v1/net.minecraft/1.12.2.json"
+  119.412 D Downloading  "https://meta.multimc.org/v1/net.minecraft/index.json"
+  119.594 D Download succeeded: "https://meta.multimc.org/v1/index.json"
+  119.594 D Task "NetJob(Download of meta file index.json)" succeeded
+  119.595 D Remote task 0 succeeded
+  119.631 D Download succeeded: "https://meta.multimc.org/v1/net.minecraft/1.12.2.json"
+  119.631 D Task "NetJob(Download of meta file net.minecraft/1.12.2.json)" succeeded
+  119.631 D Remote task 1 succeeded
+  119.646 D Task "NetJob(Download of meta file net.minecraft/index.json)" starting for the first time
+  119.647 D Component list save is scheduled for "1.12.2"
+  119.647 D Resolving dependencies
+  119.647 D "Req: org.lwjgl" Is missing and should be added at 0
+  119.647 D Adding "org.lwjgl" at position 0
+  119.647 D Index is already loaded
+  119.648 D Task "NetJob(Download of meta file org.lwjgl/2.9.4-nightly-20150209.json)" starting for the first time
+  119.648 D Remote loading is being run for "org.lwjgl"
+  119.648 D "Minecraft" is already loaded
+  119.649 D Downloading  "https://meta.multimc.org/v1/net.minecraft/index.json"
+  119.651 D Downloading  "https://meta.multimc.org/v1/org.lwjgl/2.9.4-nightly-20150209.json"
+  119.692 D Download succeeded: "https://meta.multimc.org/v1/org.lwjgl/2.9.4-nightly-20150209.json"
+  119.692 D Task "NetJob(Download of meta file org.lwjgl/2.9.4-nightly-20150209.json)" succeeded
+  119.692 D Remote task 0 succeeded
+  119.693 D Resolving dependencies
+  119.693 D "Req: org.lwjgl" Is met.
+  119.693 D Task "ComponentUpdateTask(0x683ff00)" succeeded
+  119.693 D Component list update/resolve task succeeded for "1.12.2"
+  119.713 D Download succeeded: "https://meta.multimc.org/v1/net.minecraft/index.json"
+  119.713 D Task "NetJob(Download of meta file net.minecraft/index.json)" succeeded
+  120.025 D [Analytics] "Query string = v=1&tid=UA-87731965-2&cid=965698ce-0401-4e00-99d0-d2bdb0ab5aa5&t=screenview&ul=en-gb&vp=800x600&sr=1920x1080&aip=1&cd=Main Window&an=MultiMC&av=0.6.14-3001&cd1=&cd2=&cd3=64&cd4=64&cd5=Windows&cd6=10.0&cm1=1024&cm2=2048&cm3=32686&qt=23994"
+  120.189 D [Analytics] "Message sent"
+  121.554 D Task "NetJob(Download of meta file net.minecraftforge/index.json)" starting for the first time
+  121.556 D Downloading  "https://meta.multimc.org/v1/net.minecraftforge/index.json"
+  121.800 D Download succeeded: "https://meta.multimc.org/v1/net.minecraftforge/index.json"
+  121.800 D Task "NetJob(Download of meta file net.minecraftforge/index.json)" succeeded
+  124.680 D Component list save performed now for "1.12.2"
+  127.707 D Component list save is scheduled for "1.12.2"
+  127.708 D Task "ComponentUpdateTask(0x6bb6dd8)" starting for the first time
+  127.708 D Loading components
+  127.708 D Index is already loaded
+  127.708 D "LWJGL 2" is already loaded
+  127.708 D "Minecraft" is already loaded
+  127.708 D Task "NetJob(Download of meta file net.minecraftforge/14.23.5.2859.json)" starting for the first time
+  127.708 D Remote loading is being run for "net.minecraftforge"
+  127.709 D Applying "org.lwjgl" GOOD
+  127.709 D Applying "net.minecraft" GOOD
+  127.709 D Applying "net.minecraftforge" ERROR
+  127.710 D Downloading  "https://meta.multimc.org/v1/net.minecraftforge/14.23.5.2859.json"
+  127.762 D Download succeeded: "https://meta.multimc.org/v1/net.minecraftforge/14.23.5.2859.json"
+  127.762 D Task "NetJob(Download of meta file net.minecraftforge/14.23.5.2859.json)" succeeded
+  127.762 D Remote task 0 succeeded
+  127.763 D Resolving dependencies
+  127.763 D "Req: net.minecraft == 1.12.2" Is met.
+  127.763 D "Req: org.lwjgl" Is met.
+  127.763 D Task "ComponentUpdateTask(0x6bb6dd8)" succeeded
+  127.763 D Component list update/resolve task succeeded for "1.12.2"
+  132.759 D Component list save performed now for "1.12.2"

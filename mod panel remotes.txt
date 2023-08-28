@@ -1,0 +1,32 @@
+[ Mod Panel Remotes ]
+*Me and ben logged these from luutyy and Xavier
+
+BANREMOTE
+
+KICKREMOTE
+
+UNBANREMOTE
+
+FindServer
+
+JoinServer
+
+UNBANINGPLAYYER
+
+PERMAIDBAN
+
+Team1Set
+
+Team2Set
+
+CaptureTheFlagBR
+
+StartBR
+
+StartMatchBR
+
+BRSetFreeForAll
+
+BR_KICKMOBILE
+
+BR_KICKPC

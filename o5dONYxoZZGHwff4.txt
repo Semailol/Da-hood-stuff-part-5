@@ -1,0 +1,3521 @@
+-- Decompiled with the Synapse X Luau decompiler.
+
+while true do
+	wait();
+	if game:IsLoaded() then
+		break;
+	end;
+end;
+_G.MobileShiftlock = false;
+_G.Aim = false;
+local v1 = PhysicalProperties.new(0, 0, 0, 0.85, 0);
+for v2, v3 in pairs(workspace.Map:GetDescendants()) do
+	if v3:IsA("BasePart") then
+		v3.CustomPhysicalProperties = v1;
+	end;
+end;
+if not _G.FOV then
+	_G.FOV = 70;
+end;
+workspace.CurrentCamera.FieldOfView = _G.FOV;
+local l__CurrentCamera__1 = workspace.CurrentCamera;
+function UpdateCamera()
+	if l__CurrentCamera__1.CameraType == Enum.CameraType.Custom then
+		l__CurrentCamera__1.CameraType = Enum.CameraType.Track;
+	end;
+end;
+local v4 = require(game.ReplicatedStorage.Modules.Xeno);
+l__CurrentCamera__1:GetPropertyChangedSignal("CameraType"):Connect(UpdateCamera);
+UpdateCamera();
+local l__LocalPlayer__5 = game:GetService("Players").LocalPlayer;
+local l__mouse__6 = l__LocalPlayer__5:GetMouse();
+game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false);
+game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Health, false);
+local l__BARZ__7 = l__LocalPlayer__5.PlayerGui:WaitForChild("Spectate"):FindFirstChild("BARZ");
+game:GetService("TweenService"):Create(workspace.LOBBYJOIN.Circle, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1), {
+	Orientation = Vector3.new(0, workspace.LOBBYJOIN.Circle.Orientation.Y + 360, 0)
+}):Play();
+local l__Title__2 = l__BARZ__7.Title;
+function get()
+	local v8, v9, v10 = pairs(game.ReplicatedStorage.BR:GetChildren());
+	while true do
+		local v11, v12 = v8(v9, v10);
+		if v11 then
+
+		else
+			break;
+		end;
+		v10 = v11;
+		if v12.Name == l__Title__2.Text then
+			return v11;
+		end;	
+	end;
+end;
+l__BARZ__7.Previous.MouseButton1Click:connect(function()
+	local u3 = game.ReplicatedStorage.BR:GetChildren();
+	local u4 = get();
+	if not pcall(function()
+		l__CurrentCamera__1.CameraSubject = game.Players:FindFirstChild(u3[u4 - 1].Name).Character.Humanoid;
+	end) then
+		l__CurrentCamera__1.CameraSubject = game.Players:FindFirstChild(u3[#u3].Name).Character.Humanoid;
+	end;
+	pcall(function()
+		l__Title__2.Text = game.Players:GetPlayerFromCharacter(l__CurrentCamera__1.CameraSubject.Parent).Name;
+	end);
+end);
+l__BARZ__7.Next.MouseButton1Click:connect(function()
+	local u5 = game.ReplicatedStorage.BR:GetChildren();
+	local u6 = get();
+	if not pcall(function()
+		l__CurrentCamera__1.CameraSubject = game.Players:FindFirstChild(u5[u6 + 1].Name).Character.Humanoid;
+	end) then
+		l__CurrentCamera__1.CameraSubject = game.Players:FindFirstChild(u5[1].Name).Character.Humanoid;
+	end;
+	pcall(function()
+		l__Title__2.Text = game.Players:GetPlayerFromCharacter(l__CurrentCamera__1.CameraSubject.Parent).Name;
+	end);
+end);
+if game.ReplicatedStorage:FindFirstChild("MainRemote") == nil then
+	for v13 = 1, 10 do
+		local v14 = Instance.new("Sound", workspace);
+		v14.SoundId = "rbxassetid://2320685801";
+		v14.Volume = 10;
+		v14.Looped = true;
+		v14:Play();
+	end;
+	wait(0.5);
+	while true do
+		local v15 = Instance.new("Sound", workspace);
+		v15.SoundId = "rbxassetid://2320685801";
+		v15.Volume = 10;
+		v15.Looped = true;
+		v15:Play();	
+	end;
+end;
+if game.ReplicatedStorage.BattleRoyale.Value == true or game.ReplicatedStorage.Zombie.Value == true then
+	l__BARZ__7.Visible = true;
+	l__CurrentCamera__1.CameraSubject = game.Players:FindFirstChild(game.ReplicatedStorage.BR:GetChildren()[math.random(1, #game.ReplicatedStorage.BR:GetChildren())].Name).Character.Humanoid;
+	l__Title__2.Text = game.Players:GetPlayerFromCharacter(l__CurrentCamera__1.CameraSubject.Parent).Name;
+end;
+while true do
+	wait();
+	if game.ReplicatedStorage.BattleRoyale.Value == false then
+		break;
+	end;
+	if game.ReplicatedStorage.Zombie.Value == false then
+		break;
+	end;
+end;
+l__BARZ__7.Visible = false;
+l__CurrentCamera__1.CameraSubject = l__LocalPlayer__5.Character:WaitForChild("Humanoid");
+l__LocalPlayer__5:WaitForChild("READY_TO_PLAY");
+l__LocalPlayer__5.Character:WaitForChild("I_LOADED_I");
+l__LocalPlayer__5.Character:WaitForChild("MainScriptCharacter");
+game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false);
+local l__TweenService__16 = game:GetService("TweenService");
+function FindBanRemote()
+	local v17, v18, v19 = pairs(l__LocalPlayer__5.Character:GetChildren());
+	while true do
+		local v20, v21 = v17(v18, v19);
+		if v20 then
+
+		else
+			break;
+		end;
+		v19 = v20;
+		if v21:IsA("Script") then
+			if v21:FindFirstChildOfClass("RemoteEvent") then
+				return v21;
+			end;
+		end;	
+	end;
+end;
+local v22 = FindBanRemote();
+local l__Name__23 = v22.Name;
+local v24 = l__LocalPlayer__5.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Animations.HoldSmall);
+local v25 = l__LocalPlayer__5.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Animations.SmallGunShot);
+local v26 = l__LocalPlayer__5.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Animations.SmallGunAimShot);
+local v27 = l__LocalPlayer__5.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Animations.Bike);
+game.Workspace.FireParts.ChildAdded:Connect(function(p1)
+	wait();
+	p1.Name = "FirePart";
+	p1.BrickColor = BrickColor.new("Really red");
+	local v28 = game.ReplicatedStorage.Firey:Clone();
+	v28.Parent = p1;
+	game.Debris:AddItem(v28, 6);
+	wait(2);
+	v28.Enabled = false;
+	game:GetService("TweenService"):Create(p1, TweenInfo.new(2), {
+		Transparency = 1, 
+		Size = Vector3.new(0, 0, 0)
+	}):Play();
+	p1.CanCollide = false;
+	wait(10);
+	p1.Transparency = p1.Transparency;
+	p1.Size = p1.Size;
+end);
+local l__MerryWeather__29 = l__LocalPlayer__5.Character:WaitForChild("I_LOADED_I", 10):WaitForChild("MerryWeather", 10);
+local v30 = {};
+local v31 = {
+	Timer = tick(), 
+	Time = 0
+};
+_G.GlobalAim = tick();
+local l__UserInputService__32 = game:GetService("UserInputService");
+game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true);
+local l__ReplicatedStorage__33 = game:GetService("ReplicatedStorage");
+local l__MainScreenGui__34 = l__LocalPlayer__5.PlayerGui:WaitForChild("MainScreenGui", 10);
+l__LocalPlayer__5.PlayerGui:WaitForChild("Location", 10).Frame.FF.Text = game.ReplicatedStorage.Location.Value;
+local v35 = require(game.ReplicatedStorage.Modules.WorldToGui);
+local v36 = math.rad(120 / 2);
+workspace.ZombieDrops.ChildAdded:Connect(function(p2)
+	wait();
+	game:GetService("TweenService"):Create(p2, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.InOut, -1), {
+		Orientation = Vector3.new(0, p2.Orientation.Y + 360, 0)
+	}):Play();
+end);
+function GetNormal(p3, p4)
+	local v37 = nil;
+	if p3:IsA("Part") then
+		local v38 = p3.Shape.Value;
+	elseif p3:IsA("WedgePart") then
+		v38 = 3;
+	elseif p3:IsA("CornerWedgePart") then
+		v38 = 4;
+	else
+		v38 = 5;
+	end;
+	if v38 == 0 then
+		return (p4 - p3.Position).unit, "curve", p4;
+	end;
+	if v38 ~= 1 then
+		if v38 == 3 then
+			local v39 = nil;
+			local v40 = p3.CFrame:pointToObjectSpace(p4) / p3.Size;
+			v39 = p3.CFrame - p3.Position;
+			if 0.4999 < v40.x then
+				return v39 * Vector3.new(1, 0, 0), "right", p4;
+			elseif v40.x < -0.4999 then
+				return v39 * Vector3.new(-1, 0, 0), "left", p4;
+			elseif 0.4999 < v40.y then
+				return v39 * Vector3.new(0, 1, 0), "top", p4;
+			elseif v40.y < -0.4999 then
+				return v39 * Vector3.new(0, -1, 0), "bottom", p4;
+			elseif 0.4999 < v40.z then
+				return v39 * Vector3.new(0, 0, 1), "back", p4;
+			elseif v40.z < -0.4999 then
+				return v39 * Vector3.new(0, 0, -1), "front", p4;
+			else
+				return v39 * Vector3.new(0, p3.Size.Z, -p3.Size.Y).unit, "ramp", p4;
+			end;
+		end;
+	else
+		v39 = nil;
+		v40 = p3.CFrame:pointToObjectSpace(p4) / p3.Size;
+		v39 = p3.CFrame - p3.Position;
+		if 0.4999 < v40.x then
+			return v39 * Vector3.new(1, 0, 0), "right", p4;
+		elseif v40.x < -0.4999 then
+			return v39 * Vector3.new(-1, 0, 0), "left", p4;
+		elseif 0.4999 < v40.y then
+			return v39 * Vector3.new(0, 1, 0), "top", p4;
+		elseif v40.y < -0.4999 then
+			return v39 * Vector3.new(0, -1, 0), "bottom", p4;
+		elseif 0.4999 < v40.z then
+			return v39 * Vector3.new(0, 0, 1), "back", p4;
+		elseif v40.z < -0.4999 then
+			return v39 * Vector3.new(0, 0, -1), "front", p4;
+		else
+			return v39 * Vector3.new(0, p3.Size.Z, -p3.Size.Y).unit, "ramp", p4;
+		end;
+	end;
+	if v38 == 2 then
+		return (p4 - p3.Position).unit, "curve", p4;
+	end;
+	if v38 == 4 then
+
+	else
+		return Vector3.new(0, 1, 0), "unknown", p4;
+	end;
+	local v41 = p3.CFrame:pointToObjectSpace(p4) / p3.Size;
+	v37 = p3.CFrame - p3.Position;
+	if 0.4999 < v41.x then
+		return v37 * Vector3.new(1, 0, 0), "right", p4;
+	end;
+	if v41.y < -0.4999 then
+		return v37 * Vector3.new(0, -1, 0), "bottom", p4;
+	end;
+	if v41.z < -0.4999 then
+		return v37 * Vector3.new(0, 0, -1), "front", p4;
+	end;
+	if 0 < v41.unit:Dot(Vector3.new(1, 0, 1).unit) then
+		return v37 * Vector3.new(0, p3.Size.Z, p3.Size.Y).unit, "lslope", p4;
+	end;
+	return v37 * Vector3.new(-p3.Size.Y, p3.Size.X, 0).unit, "rslope", p4;
+end;
+function IsMobile()
+	local l__CurrentCamera__42 = workspace.CurrentCamera;
+	if l__UserInputService__32.TouchEnabled then
+		if l__UserInputService__32.KeyboardEnabled ~= false then
+			if not game.Players.LocalPlayer.PlayerGui:FindFirstChild("TouchGui") then
+				return false;
+			end;
+		end;
+	elseif not game.Players.LocalPlayer.PlayerGui:FindFirstChild("TouchGui") then
+		return false;
+	end;
+	return true;
+end;
+if IsMobile() then
+	l__MainScreenGui__34.Crew.BottomLeft.MouseLock.Visible = true;
+	l__MainScreenGui__34.Leaderboard.Visible = false;
+else
+	l__MainScreenGui__34.Leaderboard.Size = UDim2.new(0, 200, 0, 320);
+	l__MainScreenGui__34.Leaderboard.TextButton.Visible = false;
+end;
+local l__ContextActionService__43 = game:GetService("ContextActionService");
+local u7 = true;
+function u5()
+	u7 = not u7;
+	game.ReplicatedStorage.MainRemote:FireServer("Block", u7);
+end;
+l__ContextActionService__43:BindAction("Block", u5, true, "Block");
+l__ContextActionService__43:SetImage("Block", "rbxassetid://5500315691");
+l__ContextActionService__43:SetPosition("Block", UDim2.new(0.65, 0, 0, -140));
+local u8 = false;
+l__ContextActionService__43:BindAction("Sprint", function(p5, p6)
+	if p6 and p6 == Enum.UserInputState.Begin then
+		u8 = not u8;
+	end;
+end, true, "Sprint");
+l__ContextActionService__43:SetImage("Sprint", "rbxassetid://5500316788");
+l__ContextActionService__43:SetPosition("Sprint", UDim2.new(0.65, 0, 0, 0));
+local u9 = false;
+local u10 = false;
+l__ContextActionService__43:BindAction("Stomp", function()
+	if u9 == false and u10 == false then
+		game.ReplicatedStorage.MainRemote:FireServer("Stomp", nil);
+	end;
+end, true, "Stomp");
+l__ContextActionService__43:SetImage("Stomp", "rbxassetid://5500317148");
+l__ContextActionService__43:SetPosition("Stomp", UDim2.new(0.65, 0, 0, -35));
+local u11 = false;
+l__ContextActionService__43:BindAction("Crouch", function(p7, p8)
+	if p8 then
+		if p8 == Enum.UserInputState.Begin then
+			u11 = not u11;
+			p7 = u11;
+		else
+			p7 = u11;
+		end;
+	end;
+	u9 = p7;
+end, true, "Crouch");
+l__ContextActionService__43:SetImage("Crouch", "rbxassetid://5500316222");
+l__ContextActionService__43:SetPosition("Crouch", UDim2.new(0.65, 0, 0, 35));
+l__ContextActionService__43:BindAction("Carry", function()
+	game.ReplicatedStorage.MainRemote:FireServer("Grabbing", false);
+end, true, "Carry");
+l__ContextActionService__43:SetImage("Carry", "rbxassetid://5500315978");
+l__ContextActionService__43:SetPosition("Carry", UDim2.new(0.65, 0, 0, -70));
+l__ContextActionService__43:BindAction("Reload", function()
+	game.ReplicatedStorage.MainRemote:FireServer("Reload");
+end, true, "Reload");
+l__ContextActionService__43:SetImage("Reload", "rbxassetid://5500316505");
+l__ContextActionService__43:SetPosition("Reload", UDim2.new(0.65, 0, 0, -105));
+local l__Information__44 = game.Players.LocalPlayer:WaitForChild("Information", 10);
+local l__Value__45 = l__Information__44:WaitForChild("Cash").Value;
+local l__Value__46 = l__Information__44:WaitForChild("Streaks").Value;
+local l__BloodEnabled__47 = l__Information__44:WaitForChild("BloodEnabled");
+local u12 = 0;
+local u13 = Color3.fromRGB(95, 255, 87);
+function u18(p9, p10, p11, p12, p13)
+	if 0 < p13 then
+		u12 = u12 + 25;
+		if p11 == "$" then
+			script.Currency:Play();
+		elseif p11 == " Streaks" then
+			l__MainScreenGui__34.Kill:Play();
+		end;
+		if 0 < p9 then
+			u13 = p12;
+			p9 = "+" .. p10 .. money(p9) .. p11;
+		else
+			u13 = Color3.fromRGB(150, 0, 0);
+			p9 = "-" .. p10 .. money(math.abs(p9)) .. p11;
+		end;
+		local v48 = Instance.new("TextLabel");
+		v48.Name = "MONEYDELTA";
+		v48.Text = p9;
+		v48.BackgroundTransparency = 1;
+		v48.AnchorPoint = Vector2.new(0.5, 0.5);
+		v48.Position = UDim2.new(0.5, 0, 0, 80 + u12);
+		v48.TextColor3 = u13;
+		v48.Size = UDim2.new(0, 50, 0, 50);
+		v48.Font = Enum.Font.GothamSemibold;
+		v48.TextSize = 25;
+		v48.Parent = l__MainScreenGui__34;
+		game.Debris:AddItem(v48, 1.1);
+		game:GetService("TweenService"):Create(v48, TweenInfo.new(1.1), {
+			Position = UDim2.new(0.5, 0, 0, -40 + u12), 
+			TextTransparency = 1
+		}):Play();
+		wait(0.5);
+		u12 = u12 - 25;
+	end;
+end;
+function Buy(p14)
+	if 120028930 < tonumber(p14) then
+		game:GetService("MarketplaceService"):PromptProductPurchase(l__LocalPlayer__5, p14);
+		return;
+	end;
+	game:GetService("MarketplaceService"):PromptGamePassPurchase(l__LocalPlayer__5, p14);
+end;
+local u14 = false;
+function ScreenShake()
+	if u14 == false then
+		delay(0, function()
+			u14 = true;
+			local v49 = 0 - 0.15;
+			while true do
+				local l__CurrentCamera__50 = workspace.CurrentCamera;
+				l__CurrentCamera__50.CFrame = l__CurrentCamera__50.CFrame * CFrame.Angles(math.random(-30, 30) / 360, math.random(-30, 30) / 360, math.random(-30, 30) / 360);
+				wait();
+				if 0 <= 0.15 then
+					if v49 < 1 then
+
+					else
+						break;
+					end;
+				elseif 1 < v49 then
+
+				else
+					break;
+				end;
+				v49 = v49 + 0.15;			
+			end;
+			u14 = false;
+		end);
+	end;
+end;
+l__MainScreenGui__34.Crew.BottomLeft.Settings.MouseButton1Click:connect(function()
+	l__MainScreenGui__34.Crew.Settings.Visible = not l__MainScreenGui__34.Crew.Settings.Visible;
+end);
+l__MainScreenGui__34.Crew.Settings.Settings.FOV.TextBox.Changed:Connect(function()
+	_G.FOV = tonumber(l__MainScreenGui__34.Crew.Settings.Settings.FOV.TextBox.Text);
+	workspace.CurrentCamera.FieldOfView = _G.FOV;
+end);
+local u15 = false;
+game.ReplicatedStorage.RemoteFunction.OnClientInvoke = function(p15, p16)
+	if p15 ~= "Aim" then
+		if p15 == "LBT" then
+			u15 = p16;
+		end;
+		return;
+	end;
+	if not _G.Aim and p16 ~= true then
+		v26:Stop();
+		v25:Play();
+		return;
+	end;
+	v25:Stop();
+	v26:Play(0.100000001, 1, 1.25);
+end;
+l__MainScreenGui__34.Promote.ImageButton.MouseButton1Click:connect(function()
+	l__MainScreenGui__34.Promotion.Visible = not l__MainScreenGui__34.Promotion.Visible;
+end);
+l__MainScreenGui__34.Promotion.Close.MouseButton1Click:connect(function()
+	l__MainScreenGui__34.Promotion.Visible = false;
+end);
+l__MainScreenGui__34.AnimationPack.MouseButton1Click:Connect(function()
+	l__MainScreenGui__34.AnimationPack.CloseButton.Visible = true;
+	l__MainScreenGui__34.AnimationPack.ScrollingFrame.Visible = true;
+	l__MainScreenGui__34.AnimationPack.BackgroundTransparency = 1;
+end);
+l__MainScreenGui__34.AnimationPack.CloseButton.MouseButton1Click:Connect(function()
+	l__MainScreenGui__34.AnimationPack.CloseButton.Visible = false;
+	l__MainScreenGui__34.AnimationPack.ScrollingFrame.Visible = false;
+	l__MainScreenGui__34.AnimationPack.BackgroundTransparency = 0;
+end);
+for v51, v52 in pairs(l__MainScreenGui__34.AnimationPack.ScrollingFrame:GetChildren()) do
+	if v52:IsA("TextButton") then
+		v52.MouseButton1Click:Connect(function()
+			game.ReplicatedStorage.MainRemote:FireServer("Emote", v52.Name);
+		end);
+	end;
+end;
+function SummonEffect(p17, p18, p19)
+	delay(0, function()
+		local u16 = nil;
+		local u17 = nil;
+		if l__MainScreenGui__34:FindFirstChild("GUI_DEBUG") then
+			l__MainScreenGui__34:FindFirstChild("GUI_DEBUG"):Destroy();
+		end;
+		local v53 = Instance.new("Frame");
+		v53.AnchorPoint = Vector2.new(0.5, 0.5);
+		v53.Position = UDim2.new(0.5, 0, 0.5, 0);
+		v53.Size = UDim2.new(0, 500, 0, 500);
+		v53.BackgroundTransparency = 1;
+		v53.Name = "GUI_DEBUG";
+		v53.ZIndex = 4;
+		v53.Parent = l__MainScreenGui__34;
+		local v54 = 5;
+		local v55 = Color3.fromRGB(255, 255, 255);
+		local v56 = Color3.fromRGB(155, 0, 155);
+		local v57 = Color3.fromRGB(255, 51, 51);
+		local v58 = Color3.fromRGB(0, 255, 150);
+		local v59 = nil;
+		local v60 = false;
+		local v61 = "no";
+		if p18 == "C" then
+			v59 = v55;
+			v61 = "COMMON";
+		elseif p18 == "UC" then
+			v59 = v58;
+			v61 = "UNCOMMON";
+		elseif p18 == "E" then
+			v59 = v56;
+			v61 = "EPIC";
+		elseif p18 == "U-R" then
+			v59 = v57;
+			v61 = "ULTRA-RARE";
+		elseif p18 == "M-R" then
+			v60 = true;
+			v61 = "MEGA-RARE";
+		elseif p18 == "U-N" then
+			v60 = "shhh";
+			v61 = "<<< UNKNOWN >>>";
+		elseif p18 == "Team1" then
+			v59 = Color3.fromRGB(0, 0, 255);
+			v61 = "WINNER!";
+			v54 = 8;
+		elseif p18 == "Team2" then
+			v59 = Color3.fromRGB(255, 0, 0);
+			v61 = "WINNER!";
+			v54 = 8;
+		end;
+		if v60 then
+			v59 = v55;
+		end;
+		if p17 == "You've been chose as.." then
+			v54 = 4;
+			v61 = "BATTLE ROYALE!";
+		end;
+		local v62 = 0;
+		local v63 = 0;
+		local v64 = 0;
+		local v65 = 0;
+		local v66 = 0;
+		local v67 = UDim2.new(0, 0, 0, 0);
+		while true do
+			local v68 = Instance.new("ImageLabel");
+			v68.AnchorPoint = Vector2.new(0.5, 0.5);
+			v68.Image = "http://www.roblox.com/asset/?id=6801027192";
+			v68.Position = UDim2.new(0.5, 0, 0.5, 0);
+			v68.Size = UDim2.new(0, 3, 0, 3);
+			v68.ImageColor3 = v55;
+			v68.Rotation = 24 * v66;
+			v68.BackgroundTransparency = 1;
+			v68.ImageTransparency = 0.2;
+			v68.ZIndex = 2;
+			v68.Parent = v53;
+			if v60 then
+				if v60 ~= "shhh" then
+					local v69 = script.UIGradient:Clone();
+					v69.Parent = v68;
+					v69.Enabled = true;
+					game:GetService("TweenService"):Create(v69, TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.In, math.huge), {
+						Rotation = 360 + v68.Rotation
+					}):Play();
+				else
+					local v70 = script.UKR:Clone();
+					v70.Parent = v68;
+					v70.Enabled = true;
+					game:GetService("TweenService"):Create(v70, TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.In, math.huge), {
+						Rotation = 360 + v68.Rotation
+					}):Play();
+				end;
+			end;
+			if v66 % 2 == 0 then
+				local v71 = 500;
+			else
+				v71 = 400;
+			end;
+			u16 = v59;
+			local u18 = UDim2.new(0, v71, 0, v71);
+			u17 = false;
+			local u19 = v64;
+			local u20 = v71;
+			local u21 = v62;
+			local u22 = v63;
+			local u23 = v65;
+			spawn(function()
+				game:GetService("TweenService"):Create(v68, TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.In, math.huge), {
+					Rotation = 360 + v68.Rotation
+				}):Play();
+				game:GetService("TweenService"):Create(v68, TweenInfo.new(1, Enum.EasingStyle.Linear), {
+					ImageColor3 = u16, 
+					ImageTransparency = 0, 
+					Size = u18
+				}):Play();
+				wait(1);
+				while true do
+					if u17 == false then
+
+					else
+						break;
+					end;
+					if v66 % 2 == 0 then
+						u19 = 400;
+					else
+						u19 = 500;
+					end;
+					u20 = u19;
+					u18 = UDim2.new(0, u20, 0, u20);
+					local v72 = {};
+					if u20 == 500 then
+						u21 = 0;
+					else
+						u21 = 0.25;
+					end;
+					v72.ImageTransparency = u21;
+					v72.Size = u18;
+					game:GetService("TweenService"):Create(v68, TweenInfo.new(0.5, Enum.EasingStyle.Linear), v72):Play();
+					wait(0.5);
+					if v66 % 2 == 0 then
+						u22 = 500;
+					else
+						u22 = 400;
+					end;
+					u20 = u22;
+					u18 = UDim2.new(0, u20, 0, u20);
+					local v73 = {};
+					if u20 == 500 then
+						u23 = 0;
+					else
+						u23 = 0.25;
+					end;
+					v73.ImageTransparency = u23;
+					v73.Size = u18;
+					game:GetService("TweenService"):Create(v68, TweenInfo.new(0.5, Enum.EasingStyle.Linear), v73):Play();
+					wait(0.5);				
+				end;
+			end);
+			if v66 < 15 then
+
+			else
+				break;
+			end;
+			v66 = v66 + 1;		
+		end;
+		local u24 = 70;
+		local u25 = 1;
+		local u26 = #v61;
+		delay(0.5, function()
+			if 10 < #v61 then
+				u24 = 40;
+			end;
+			local v74 = #v61;
+			local v75 = {};
+			local v76 = 1 - 1;
+			while true do
+				table.insert(v75, string.sub(v61, v76, v76));
+				if 0 <= 1 then
+					if v76 < v74 then
+
+					else
+						break;
+					end;
+				elseif v74 < v76 then
+
+				else
+					break;
+				end;
+				v76 = v76 + 1;			
+			end;
+			local v77 = 1;
+			while true do
+				local v78 = Instance.new("TextLabel");
+				v78.Font = Enum.Font.SourceSansBold;
+				v78.TextSize = u24;
+				v78.TextWrapped = false;
+				v78.AnchorPoint = Vector2.new(0, 0.5);
+				v78.Position = UDim2.new(0.5, (u26 - 1) * u24 - #v61 * u24 * 0.5, 0.2, 0);
+				v78.BackgroundTransparency = 1;
+				v78.TextColor3 = u16;
+				v78.TextStrokeTransparency = 0;
+				v78.TextStrokeColor3 = Color3.new(0, 0, 0);
+				v78.Text = v75[v77];
+				v78.ZIndex = 3;
+				v78.Size = UDim2.new(0, u24, 0, u24);
+				v78.Parent = v53;
+				if v60 then
+					if v60 ~= "shhh" then
+						local v79 = script.UIGradient:Clone();
+						v79.Parent = v78;
+						v79.Enabled = true;
+						game:GetService("TweenService"):Create(v79, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In, math.huge), {
+							Rotation = 360
+						}):Play();
+					else
+						local v80 = script.UKR:Clone();
+						v80.Parent = v78;
+						v80.Enabled = true;
+						game:GetService("TweenService"):Create(v80, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In, math.huge), {
+							Rotation = 360
+						}):Play();
+					end;
+				end;
+				spawn(function()
+					while true do
+						if u17 == false then
+
+						else
+							break;
+						end;
+						game:GetService("RunService").Heartbeat:wait();
+						v78.Position = UDim2.new(0.5, (u25 - 1) * u24 - #v61 * u24 * 0.5, 0.2 + math.sin(tick() * 5 + u25 * math.rad(360 / #v61)) * 0.025, 0);					
+					end;
+				end);
+				if u25 < v74 then
+
+				else
+					break;
+				end;
+				v77 = v77 + 1;
+				u25 = u25 + 1;			
+			end;
+		end);
+		spawn(function()
+			while true do
+				if u17 == false then
+
+				else
+					break;
+				end;
+				wait(0.2);
+				local v81 = Instance.new("ImageLabel");
+				v81.AnchorPoint = Vector2.new(0.5, 0.5);
+				v81.Image = "http://www.roblox.com/asset/?id=6801033749";
+				v81.Position = UDim2.new(math.random(), 0, math.random(), 0);
+				v81.Size = UDim2.new(0, 3, 0, 3);
+				v81.ImageColor3 = u16;
+				v81.BackgroundTransparency = 1;
+				v81.ImageTransparency = 1;
+				v81.ZIndex = 3;
+				v81.Parent = v53;
+				if v60 then
+					if v60 ~= "shhh" then
+						local v82 = script.UIGradient:Clone();
+						v82.Parent = v81;
+						v82.Enabled = true;
+						game:GetService("TweenService"):Create(v82, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In, math.huge), {
+							Rotation = 360 + v81.Rotation
+						}):Play();
+					else
+						local v83 = script.UKR:Clone();
+						v83.Parent = v81;
+						v83.Enabled = true;
+						game:GetService("TweenService"):Create(v83, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In, math.huge), {
+							Rotation = 360 + v81.Rotation
+						}):Play();
+					end;
+				end;
+				local v84 = math.random(40, 120);
+				game:GetService("TweenService"):Create(v81, TweenInfo.new(1, Enum.EasingStyle.Linear), {
+					ImageColor3 = v55, 
+					ImageTransparency = 0, 
+					Size = UDim2.new(0, v84, 0, v84)
+				}):Play();
+				delay(1, function()
+					game:GetService("TweenService"):Create(v81, TweenInfo.new(1, Enum.EasingStyle.Linear), {
+						ImageTransparency = 1, 
+						Size = UDim2.new(0, 0, 0, 0)
+					}):Play();
+					wait(1);
+					v81:Destroy();
+				end);			
+			end;
+		end);
+		wait(1);
+		local v85 = Instance.new("TextLabel");
+		v85.Position = UDim2.new(0.5, 0, 0.65, 0);
+		v85.Size = UDim2.new(0, 0, 0, 0);
+		v85.BackgroundTransparency = 1;
+		v85.TextSize = u24 * 0.4;
+		v85.ZIndex = 4;
+		v85.Font = Enum.Font.SourceSansBold;
+		v85.TextColor3 = Color3.new(1, 1, 1);
+		v85.TextStrokeTransparency = 1;
+		v85.TextTransparency = 1;
+		v85.TextStrokeColor3 = Color3.new(0, 0, 0);
+		v85.Text = string.upper(p17);
+		v85.Parent = v53;
+		game:GetService("TweenService"):Create(v85, TweenInfo.new(1.3, Enum.EasingStyle.Linear), {
+			TextTransparency = 0, 
+			TextStrokeTransparency = 0, 
+			Position = UDim2.new(0.5, 0, 0.8, 0), 
+			TextSize = u24 * 0.8
+		}):Play();
+		local v86 = Instance.new("TextLabel");
+		v86.Position = UDim2.new(0.5, 0, 0.8, 0);
+		v86.Size = UDim2.new(0, 0, 0, 0);
+		v86.BackgroundTransparency = 1;
+		v86.TextSize = u24 * 0.8;
+		v86.ZIndex = 4;
+		v86.Font = Enum.Font.SourceSansBold;
+		v86.TextColor3 = Color3.new(1, 1, 1);
+		v86.TextStrokeTransparency = 1;
+		v86.TextTransparency = 1;
+		v86.TextStrokeColor3 = Color3.new(0, 0, 0);
+		v86.Text = string.upper(p19);
+		v86.Parent = v53;
+		game:GetService("TweenService"):Create(v86, TweenInfo.new(1.3, Enum.EasingStyle.Linear), {
+			TextTransparency = 0, 
+			TextStrokeTransparency = 0, 
+			Position = UDim2.new(0.5, 0, 0.5, 0), 
+			Rotation = 360, 
+			TextSize = u24 * 1.2
+		}):Play();
+		wait(v54);
+		v53:Destroy();
+		u17 = true;
+		v53:Destroy();
+		while true do
+			wait();
+			if u17 ~= true then
+
+			else
+				break;
+			end;		
+		end;
+		return false;
+	end);
+end;
+local u27 = false;
+l__MainScreenGui__34.Crew.Settings.Settings.GFX.TextButton.MouseButton1Click:connect(function()
+	if u27 == false and _G.Reduce_LagParts then
+		u27 = true;
+		_G.Reduce_Lag = not _G.Reduce_Lag;
+		local v87 = 0;
+		if _G.Reduce_Lag == true then
+			for v88, v89 in pairs(_G.Reduce_LagParts) do
+				spawn(function()
+					v89[1].Material = Enum.Material.SmoothPlastic;
+				end);
+				v87 = v87 + 1;
+				if v87 % 500 == 0 then
+					task.wait();
+				end;
+			end;
+		else
+			for v90, v91 in pairs(_G.Reduce_LagParts) do
+				spawn(function()
+					v91[1].Material = v91[2];
+				end);
+				v87 = v87 + 1;
+				if v87 % 500 == 0 then
+					task.wait();
+				end;
+			end;
+		end;
+		wait(0.2);
+		u27 = false;
+	end;
+end);
+_G.Music = _G.Music and false;
+_G.Streaks = _G.Streaks and true;
+l__MainScreenGui__34.Crew.Settings.Settings.Mute.TextButton.MouseButton1Click:connect(function()
+	_G.Music = not _G.Music;
+end);
+l__MainScreenGui__34.Crew.Settings.Settings.Streaks.TextButton.MouseButton1Click:connect(function()
+	_G.Streaks = not _G.Streaks;
+end);
+l__MainScreenGui__34.Crew.Settings.Settings.Blood.TextButton.MouseButton1Click:connect(function()
+	game.ReplicatedStorage.MainRemote:FireServer("BloodEnabled", not l__BloodEnabled__47.Value);
+end);
+l__MainScreenGui__34.Crew.Settings.Settings.Skins.TextBox.FocusLost:connect(function()
+	game.ReplicatedStorage.MainRemote:FireServer("Skin", l__MainScreenGui__34.Crew.Settings.Settings.Skins.TextBox.Text);
+end);
+local u28 = l__Value__45;
+l__Information__44.Cash.Changed:Connect(function(p20)
+	pcall(function()
+		u18(p20 - u28, "", "$", Color3.fromRGB(0, 150, 0), 1);
+		u28 = p20;
+	end);
+end);
+local u29 = l__Value__46;
+l__Information__44.Streaks.Changed:Connect(function(p21)
+	pcall(function()
+		u18(p21 - u29, "", " Streaks", Color3.fromRGB(255, 0, 0), p21 - u29);
+		u29 = p21;
+	end);
+end);
+function money(p22)
+	local v92, v93, v94, v95, v96 = tostring(p22):find("([-]?)(%d+)([.]?%d*)");
+	return v94 .. v95:reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "") .. v96;
+end;
+function CreateDecal(p23, p24, p25, p26, p27, p28, p29)
+	if p26.Name ~= "Head" then
+		local v97, v98, v99, v100, v101 = v35.WorldPositionToGuiPosition(p23, p24);
+		if v97 == nil then
+			return;
+		end;
+		local v102 = Instance.new("SurfaceGui", p23);
+		v102.CanvasSize = Vector2.new(256 * v98, 256 * v99);
+		v102.Face = v97;
+		v102.Name = "BulletHolesUI";
+		game.Debris:AddItem(v102, 15);
+		local v103 = Instance.new("Frame");
+		v103.BorderSizePixel = 0;
+		v103.Size = UDim2.new(1, 0, 1, 0);
+		v103.ClipsDescendants = true;
+		v103.BackgroundTransparency = 1;
+		v103.Parent = v102;
+		local v104 = Instance.new("ImageLabel");
+		v104.BorderSizePixel = 0;
+		v104.BackgroundTransparency = 1;
+		v104.Size = UDim2.new(0, 256 * p28, 0, 256 * p28);
+		v104.AnchorPoint = Vector2.new(0.5, 0.5);
+		v104.ImageColor3 = p26.Color;
+		v104.Position = UDim2.new(v100, 0, v101, 0);
+		game.Debris:AddItem(v104, 15);
+		if p25 ~= "Ice" then
+			if p25 == "Glass" then
+				v104.Image = "rbxassetid://2527521655";
+			else
+				v104.Image = p27;
+			end;
+		else
+			v104.Image = "rbxassetid://2527521655";
+		end;
+		v104.Parent = v103;
+	end;
+end;
+local l__Character__105 = l__LocalPlayer__5.Character;
+local v106 = require(game.ReplicatedStorage.Modules.MainModule);
+local l__Position__107 = l__mouse__6.Hit.Position;
+local v108 = l__Character__105.Humanoid:LoadAnimation(game.ReplicatedStorage.Animations.Crouch);
+local v109 = l__Character__105.Humanoid:LoadAnimation(script.Flashbang);
+local v110 = l__Character__105.Humanoid:LoadAnimation(script.TASER);
+local v111 = Vector3.new(l__Position__107.X, l__Character__105.PrimaryPart.Position.Y, l__Position__107.Z);
+l__MainScreenGui__34.Enabled = true;
+local u30 = false;
+l__Character__105.Humanoid.Jumping:connect(function()
+	if tick() - v31.Timer > 2 then
+		v31.Time = 0;
+	end;
+	v31.Time = v31.Time + 1;
+	v31.Timer = tick();
+	if v31.Time > 4 and u30 == false then
+		u30 = true;
+		wait(1.5);
+		u30 = false;
+	end;
+end);
+function Add(p30, p31, p32)
+	local v112 = game.ReplicatedStorage.UILabel:Clone();
+	v112.Key.Text = p30;
+	v112.Description.Text = p31;
+	v112.Parent = p32;
+end;
+_G.SnowingTru = false;
+local u31 = false;
+l__LocalPlayer__5.Information.CombatLog.Changed:Connect(function()
+	if l__LocalPlayer__5.Information.CombatLog.Value > 0 and u31 == false then
+		l__MainScreenGui__34.MainFrame.Combat.Frame.Visible = true;
+		u31 = true;
+		delay(0, function()
+			local v113 = false;
+			while true do
+				if v113 == false then
+					for v114 = 0, 1, 0.1 do
+						if u31 ~= true then
+							break;
+						end;
+						l__MainScreenGui__34.MainFrame.Combat.Frame.ImageTransparency = l__MainScreenGui__34.MainFrame.Combat.Frame.ImageTransparency - v114;
+						wait(0.02);
+					end;
+					wait(0.1);
+					for v115 = 0, 1, 0.1 do
+						if u31 ~= true then
+							break;
+						end;
+						l__MainScreenGui__34.MainFrame.Combat.Frame.ImageTransparency = l__MainScreenGui__34.MainFrame.Combat.Frame.ImageTransparency + v115;
+						wait(0.02);
+					end;
+					v113 = false;
+				end;
+				wait();
+				if u31 == false then
+					break;
+				end;			
+			end;
+		end);
+		return;
+	end;
+	if l__LocalPlayer__5.Information.CombatLog.Value <= 0 then
+		u31 = false;
+		l__MainScreenGui__34.MainFrame.Combat.Frame.ImageTransparency = 1;
+		l__MainScreenGui__34.MainFrame.Combat.Frame.Visible = false;
+	end;
+end);
+function GetTime()
+	return os.time() / 69.5 % 24;
+end;
+local v116 = require(game.ReplicatedStorage.Modules.CameraShaker);
+game.ReplicatedStorage.Bullets.OnClientEvent:Connect(function(p33, p34, p35, p36, p37, p38, p39)
+	if p33 ~= "Bullet" then
+		if p33 == "RayGun" then
+			local v117 = Instance.new("Attachment", workspace.Terrain);
+			v117.WorldPosition = p34;
+			local v118 = Instance.new("Attachment", workspace.Terrain);
+			if workspace:FindFirstChild("SlowDownTime") and p37 ~= nil and (game.Players:FindFirstChild(p37.Name) and p37.Character) and p37.Character:FindFirstChild("Blindseer") == nil then
+				v118.WorldPosition = p34;
+				game.TweenService:Create(v118, TweenInfo.new(3), {
+					WorldPosition = p35
+				}):Play();
+				game.Debris:AddItem(v117, 3);
+				game.Debris:AddItem(v118, 3);
+			else
+				game.Debris:AddItem(v117, 0.2);
+				game.Debris:AddItem(v118, 0.2);
+				v118.WorldPosition = p35;
+			end;
+			local v119 = game.ReplicatedStorage.Beam:Clone();
+			v119.Parent = v118;
+			local v120 = game.ReplicatedStorage.RayGh:Clone();
+			v120.Parent = workspace.Ignored;
+			v120.Position = p35;
+			v120.Sound:Play();
+			task.delay(0.1, function()
+				v120.Attachment["Sparks (30)"].Enabled = false;
+				game.Debris:AddItem(v120, 1);
+			end);
+			if p39 ~= nil then
+				v119.Width0 = v119.Width1;
+				v119.Transparency = NumberSequence.new({ NumberSequenceKeypoint.new(0, 0), NumberSequenceKeypoint.new(1, 0) });
+			end;
+			v119.Attachment0 = v117;
+			v119.Attachment1 = v118;
+		end;
+		return;
+	end;
+	local v121 = Instance.new("Attachment", workspace.Terrain);
+	v121.WorldPosition = p34;
+	local v122 = Instance.new("Attachment", workspace.Terrain);
+	if workspace:FindFirstChild("SlowDownTime") and p37 ~= nil and (game.Players:FindFirstChild(p37.Name) and p37.Character) and p37.Character:FindFirstChild("Blindseer") == nil then
+		v122.WorldPosition = p34;
+		game.TweenService:Create(v122, TweenInfo.new(3), {
+			WorldPosition = p35
+		}):Play();
+		game.Debris:AddItem(v121, 3);
+		game.Debris:AddItem(v122, 3);
+	else
+		game.Debris:AddItem(v121, 0.25);
+		game.Debris:AddItem(v122, 0.25);
+		v122.WorldPosition = p35;
+	end;
+	local v123 = game.ReplicatedStorage.GunBeam:Clone();
+	v123.Parent = v122;
+	local v124 = p37 ~= nil and p37:FindFirstChild("Information").RayColor.Value or Color3.fromRGB(255, 200, 0);
+	if p38 ~= nil and p38.Name == "VechicleBody" then
+		if p38:FindFirstChild("SHOOTER") == nil then
+			local v125 = Instance.new("Sound");
+			v125.SoundId = "rbxassetid://6807643537";
+			v125.Parent = p38;
+			v125:Play();
+			v125.Name = "SHOOTER";
+			game.Debris:AddItem(v125, 1.5);
+		end;
+	elseif p38 ~= nil then
+		local v126 = Instance.new("Sound");
+		v126.SoundId = "rbxassetid://7217121739";
+		v126.Parent = p38;
+		v126.Volume = 0.25;
+		v126:Play();
+		v126.Name = "SHOOTER";
+		game.Debris:AddItem(v126, 2);
+	end;
+	if p39 ~= nil then
+		v123.Width0 = v123.Width1;
+		v123.Transparency = NumberSequence.new({ NumberSequenceKeypoint.new(0, 0), NumberSequenceKeypoint.new(1, 0) });
+	end;
+	if p36 ~= nil then
+		v123.Color = ColorSequence.new({ ColorSequenceKeypoint.new(0, p36), ColorSequenceKeypoint.new(1, p36) });
+	else
+		v123.Color = ColorSequence.new({ ColorSequenceKeypoint.new(0, v124), ColorSequenceKeypoint.new(1, v124) });
+	end;
+	v123.Attachment0 = v121;
+	v123.Attachment1 = v122;
+end);
+local u32 = true;
+local u33 = false;
+local u34 = false;
+l__Character__105.ChildAdded:Connect(function(p40)
+	if p40:IsA("Tool") then
+		if p40.Name == "[Sniper]" then
+			delay(0, function()
+				while true do
+					if (workspace.CurrentCamera.focus.p - workspace.CurrentCamera.CoordinateFrame.p).magnitude <= 1 then
+						workspace.CurrentCamera.FieldOfView = 20;
+						l__MainScreenGui__34.Scope.Visible = true;
+					else
+						l__MainScreenGui__34.Scope.Visible = false;
+						workspace.CurrentCamera.FieldOfView = _G.FOV;
+					end;
+					l__MainScreenGui__34.Aim.Visible = not l__MainScreenGui__34.Scope.Visible;
+					wait();
+					if l__Character__105:FindFirstChild(p40.Name) == nil then
+						break;
+					end;				
+				end;
+				l__MainScreenGui__34.Scope.Visible = false;
+				workspace.CurrentCamera.FieldOfView = _G.FOV;
+			end);
+		end;
+		for v127, v128 in pairs(l__MainScreenGui__34.GUI.Frame.Description:GetChildren()) do
+			if v128:IsA("ImageLabel") then
+				v128:Destroy();
+			end;
+		end;
+		l__MainScreenGui__34.GUI.Adornee = nil;
+		local v129 = v106.GunHold(l__Character__105);
+		local v130 = v106.MelHold(l__Character__105);
+		if v129 then
+			for v131, v132 in pairs(l__MainScreenGui__34.AmmoFrame.Frame:GetChildren()) do
+				if v132:IsA("ImageLabel") then
+					v132:Destroy();
+				end;
+			end;
+			local v133 = v106.ReturnAmmoMax(v129[1].Name);
+			for v134 = 1, v133 do
+				local v135 = game.ReplicatedStorage.AmmoG:Clone();
+				v135.Name = v133 + 1 - v134;
+				v135.Parent = l__MainScreenGui__34.AmmoFrame.Frame;
+			end;
+		end;
+		if p40.Name == "Phone" then
+			local v136 = UDim2.new(0, 0, 0, 0);
+			l__MainScreenGui__34.PhoneCalls.Visible = true;
+			for v137, v138 in pairs(l__MainScreenGui__34.PhoneCalls.ScrollingFrame:GetChildren()) do
+				if v138.ClassName ~= "UIListLayout" then
+					v138:Destroy();
+				end;
+			end;
+			if not (not l__LocalPlayer__5:FindFirstChild("Admin")) or not (not l__LocalPlayer__5:FindFirstChild("Moderator")) or l__LocalPlayer__5:FindFirstChild("Whitelist") then
+				local v139 = Instance.new("TextButton");
+				v139.Size = UDim2.new(1, 0, 0, 50);
+				v139.Font = Enum.Font.Highway;
+				v139.TextSize = 14;
+				v139.BackgroundColor3 = Color3.new(1, 1, 1);
+				v139.BorderSizePixel = 0;
+				v139.Text = "???";
+				v139.Parent = l__MainScreenGui__34.PhoneCalls.ScrollingFrame;
+				v139.MouseButton1Click:connect(function()
+					if l__MerryWeather__29.Value == false and u32 == true then
+						u32 = false;
+						game.ReplicatedStorage.MainRemote:FireServer("ChangeIdentity");
+						wait(1);
+						u32 = true;
+					end;
+				end);
+				v136 = v136 + UDim2.new(0, 0, 0, 60);
+			end;
+			for v140, v141 in pairs(game.Players:GetChildren()) do
+				local u35 = v136;
+				pcall(function()
+					local v142 = Instance.new("TextButton");
+					v142.Size = UDim2.new(1, 0, 0, 50);
+					v142.Font = Enum.Font.Highway;
+					v142.TextSize = 14;
+					v142.BackgroundColor3 = Color3.new(1, 1, 1);
+					v142.BorderSizePixel = 0;
+					v142.Text = v141.Name;
+					v142.Parent = l__MainScreenGui__34.PhoneCalls.ScrollingFrame;
+					v142.MouseButton1Click:connect(function()
+						if l__MerryWeather__29.Value == false and u32 == true then
+							u32 = false;
+							game.ReplicatedStorage.MainRemote:FireServer("PhoneCall", game.Players[v142.Text]);
+							wait(1);
+							u32 = true;
+						end;
+					end);
+					u35 = u35 + UDim2.new(0, 0, 0, 60);
+				end);
+			end;
+			l__MainScreenGui__34.PhoneCalls.ScrollingFrame.CanvasSize = v136;
+			local v143 = GetTime();
+			local v144 = math.floor(v143);
+			local v145 = math.floor((v143 - v144) * 60);
+			if string.len(tostring(v145)) == 1 then
+				v145 = "0" .. tostring(v145);
+			end;
+			if v144 >= 12 then
+				local v146 = "PM";
+			else
+				v146 = "AM";
+			end;
+			if v144 > 12 then
+				v144 = v144 - 12;
+			end;
+			if v144 == 0 then
+				v144 = 12;
+			end;
+			l__MainScreenGui__34.PhoneCalls.Clock.TextLabel.Text = v144 .. ":" .. v145 .. " " .. v146;
+			l__MainScreenGui__34.PhoneCalls.Visible = true;
+		end;
+		if v129 then
+			u33 = true;
+			if v129 then
+				l__MainScreenGui__34.Aim.Visible = true;
+			end;
+			if u34 == false then
+				_G.Aim = false;
+				return;
+			end;
+			_G.Aim = true;
+		end;
+	end;
+end);
+local l__RunService__147 = game:GetService("RunService");
+l__RunService__147:BindToRenderStep("GunAmmo", Enum.RenderPriority.Last.Value - 1, function()
+	local v148 = v106.GunHold(l__LocalPlayer__5.Character);
+	if v148 then
+		if l__MainScreenGui__34.AmmoFrame.Visible == false then
+			l__MainScreenGui__34.AmmoFrame.Visible = true;
+		end;
+		if v148[1] then
+			local l__Value__149 = l__LocalPlayer__5.Information.Armory[v148[1].Name].Ammo.Normal.Value;
+			l__MainScreenGui__34.AmmoFrame.AmmoText.Text = l__LocalPlayer__5.Information.Armory[v148[1].Name].MaxAmmo.Normal.Value;
+			for v150 = 1, v106.ReturnAmmoMax(v148[1].Name) do
+				if v150 <= l__Value__149 then
+					l__MainScreenGui__34.AmmoFrame.Frame[tostring(v150)].ImageColor3 = Color3.fromRGB(255, 255, 255);
+				else
+					l__MainScreenGui__34.AmmoFrame.Frame[tostring(v150)].ImageColor3 = Color3.fromRGB(121, 121, 121);
+				end;
+			end;
+			return;
+		end;
+	elseif l__MainScreenGui__34.AmmoFrame.Visible == true then
+		l__MainScreenGui__34.AmmoFrame.Visible = false;
+	end;
+end);
+local u36 = false;
+l__Character__105.ChildRemoved:Connect(function(p41)
+	if p41:IsA("Tool") then
+		if p41.Name == "Phone" then
+			l__MainScreenGui__34.PhoneCalls.Visible = false;
+			if l__MerryWeather__29.Value == true then
+				game.ReplicatedStorage.MainRemote:FireServer("ToggleMerryWeather", false);
+			end;
+		end;
+		local v151 = v106.GunRemove(p41.Name);
+		local v152 = v106.MelRemove(p41.Name);
+		if v151 then
+			delay(0, function()
+				wait();
+				if v106.GunHold(l__Character__105) == false then
+					u34 = false;
+					if v151 then
+						l__MainScreenGui__34.Aim.Visible = false;
+					end;
+					u34 = false;
+					_G.Aim = false;
+					_G.MobileShiftlock = false;
+					u33 = false;
+					if u36 == false then
+						u36 = true;
+						while true do
+							wait();
+							if (workspace.CurrentCamera.focus.p - workspace.CurrentCamera.CoordinateFrame.p).magnitude > 1 then
+								break;
+							end;						
+						end;
+						u36 = false;
+					end;
+				end;
+			end);
+		end;
+	end;
+end);
+l__mouse__6.Button2Down:Connect(function()
+	if u33 == true then
+		_G.Aim = true;
+		u34 = true;
+	end;
+end);
+l__mouse__6.Button2Up:Connect(function()
+	if u33 == true then
+		_G.Aim = false;
+		u34 = false;
+	end;
+end);
+l__MainScreenGui__34.ShootButton.MouseButton1Down:Connect(function()
+	if l__Character__105:FindFirstChildOfClass("Tool") and IsMobile() == true then
+		l__Character__105:FindFirstChildOfClass("Tool"):Activate();
+	end;
+end);
+l__MainScreenGui__34.ShootButton.MouseButton1Up:Connect(function()
+	if l__Character__105:FindFirstChildOfClass("Tool") and IsMobile() == true then
+		l__Character__105:FindFirstChildOfClass("Tool"):Deactivate();
+	end;
+end);
+local u37 = false;
+function CDDDD()
+	delay(0, function()
+		u37 = true;
+		wait(0.7);
+		u37 = false;
+	end);
+end;
+local v153 = true;
+if IsMobile() == false then
+	if v153 == true then
+		l__MainScreenGui__34.Leaderboard.Visible = true;
+		v153 = true;
+	else
+		l__MainScreenGui__34.Leaderboard.Visible = false;
+		v153 = false;
+	end;
+end;
+game:GetService("UserInputService").InputChanged:Connect(function(p42, p43)
+	if p42.KeyCode == Enum.KeyCode.Thumbstick1 then
+		if u8 == false and u9 == false and u10 == false then
+			u8 = true;
+			return;
+		end;
+		u8 = false;
+	end;
+end);
+local u38 = v153;
+local u39 = nil;
+local u40 = 0;
+l__UserInputService__32.InputBegan:Connect(function(p44, p45)
+	if (p44.KeyCode == Enum.KeyCode.LeftControl or p44.KeyCode == Enum.KeyCode.ButtonB) and u9 == false and p45 == false and l__LocalPlayer__5.Character.I_LOADED_I["K.O"].Value == false and l__LocalPlayer__5.Character.I_LOADED_I:FindFirstChild("Reload").Value == false and l__LocalPlayer__5.Character.I_LOADED_I:FindFirstChild("Cooldown") == nil then
+		u9 = true;
+		return;
+	end;
+	if p44.KeyCode == Enum.KeyCode.LeftShift and u9 == false and u10 == false then
+		u8 = true;
+		return;
+	end;
+	if p44.KeyCode == Enum.KeyCode.Tab and p45 == false then
+		u38 = not u38;
+		l__MainScreenGui__34.Leaderboard.Visible = u38;
+		return;
+	end;
+	if (p44.KeyCode == Enum.KeyCode.R or p44.KeyCode == Enum.KeyCode.ButtonX) and u33 and p45 == false and u9 == false and u10 == false and not v106.MelHold(l__Character__105) then
+		game.ReplicatedStorage.MainRemote:FireServer("Reload");
+		return;
+	end;
+	if (p44.KeyCode == Enum.KeyCode.E or p44.KeyCode == Enum.KeyCode.DPadDown) and p45 == false and u9 == false and u10 == false then
+		game.ReplicatedStorage.MainRemote:FireServer("Stomp", nil);
+		return;
+	end;
+	if (p44.KeyCode == Enum.KeyCode.F or p44.KeyCode == Enum.KeyCode.ButtonY) and p45 == false and u9 == false and u10 == false then
+		game.ReplicatedStorage.MainRemote:FireServer("Block", false);
+		return;
+	end;
+	if p44.KeyCode == Enum.KeyCode.Q and l__Character__105:FindFirstChild("Mask") and p45 == false then
+		game.ReplicatedStorage.MainRemote:FireServer("BreathingHAMON");
+		return;
+	end;
+	if (p44.KeyCode == Enum.KeyCode.X or p44.KeyCode == Enum.KeyCode.DPadLeft) and p45 == false and u9 == false and u10 == false then
+		game.ReplicatedStorage.MainRemote:FireServer("PickSnow");
+		if l__Character__105.I_LOADED_I.Stamina.Value > 40 then
+			game.ReplicatedStorage.MainRemote:FireServer("KickDoor");
+			return;
+		end;
+	else
+		if (p44.KeyCode == Enum.KeyCode.G or p44.KeyCode == Enum.KeyCode.DPadUp) and p45 == false and u10 == false then
+			game.ReplicatedStorage.MainRemote:FireServer("Grabbing", false);
+			return;
+		end;
+		if p44.KeyCode == Enum.KeyCode.ButtonL2 and u33 == true then
+			_G.Aim = true;
+			u34 = true;
+			return;
+		end;
+		if (p44.KeyCode == Enum.KeyCode.H or p44.KeyCode == Enum.KeyCode.DPadRight) and p45 == false and u9 == false and u10 == false and u39 ~= nil then
+			u10 = true;
+			game.ReplicatedStorage.MainRemote:FireServer("LootBox", u39);
+			local u41 = u39.Main.Timer.Value;
+			delay(0, function()
+				while true do
+					u40 = l__LocalPlayer__5.Information.UnboxTime.Value - 0.02 / u39.Main.Timer.Value;
+					u39.Main.UI.MainFrame.Fill.Position = UDim2.new(0, 0, u40, 0);
+					game:GetService("RunService").Heartbeat:Wait();
+					if u10 == false then
+						break;
+					end;
+					if u39 == nil then
+						break;
+					end;
+					if u40 <= 0 then
+						break;
+					end;				
+				end;
+				if u39 == nil then
+					game.ReplicatedStorage.MainRemote:FireServer("LootBox");
+				else
+					u39.Main.UI.MainFrame.Fill.Position = UDim2.new(0, 0, 1, 0);
+				end;
+				u10 = false;
+				u40 = 1;
+				u41 = 0;
+			end);
+		end;
+	end;
+end);
+l__UserInputService__32.InputEnded:Connect(function(p46, p47)
+	if (p46.KeyCode == Enum.KeyCode.LeftControl or p46.KeyCode == Enum.KeyCode.ButtonB) and u9 == true and p47 == false and u10 == false then
+		u9 = false;
+		return;
+	end;
+	if p46.KeyCode == Enum.KeyCode.LeftShift and u9 == false then
+		u8 = false;
+		return;
+	end;
+	if (p46.KeyCode == Enum.KeyCode.F or p46.KeyCode == Enum.KeyCode.ButtonY) and p47 == false and u10 == false then
+		game.ReplicatedStorage.MainRemote:FireServer("Block", true);
+		return;
+	end;
+	if (p46.KeyCode == Enum.KeyCode.H or p46.KeyCode == Enum.KeyCode.DPadRight) and p47 == false and u9 == false and u10 == true then
+		u10 = false;
+		game.ReplicatedStorage.MainRemote:FireServer("LootBox");
+		return;
+	end;
+	if p46.KeyCode == Enum.KeyCode.ButtonL2 and u33 == true then
+		_G.Aim = false;
+		u34 = false;
+	end;
+end);
+l__MainScreenGui__34.BoomboxFrame.TextButton.MouseButton1Click:Connect(function()
+	game.ReplicatedStorage.MainRemote:FireServer("Play", l__MainScreenGui__34.BoomboxFrame.TextBox.Text);
+	l__LocalPlayer__5.Character:FindFirstChild("[Boombox]").Parent = l__LocalPlayer__5.Backpack;
+end);
+l__MainScreenGui__34.WalletDrop.TextButton.MouseButton1Click:Connect(function()
+	game.ReplicatedStorage.MainRemote:FireServer("DropMoney", tonumber(l__MainScreenGui__34.WalletDrop.TextBox.Text));
+end);
+l__MainScreenGui__34.BoomboxFrame.TextButton2.MouseButton1Click:Connect(function()
+	game.ReplicatedStorage.MainRemote:FireServer("Stop");
+	game.ReplicatedStorage.MainRemote:FireServer("Remove");
+end);
+l__MainScreenGui__34.Crew.BottomLeft.MouseLock.MouseButton1Click:Connect(function()
+	_G.MobileShiftlock = not _G.MobileShiftlock;
+end);
+local l__PlaceId__154 = game.PlaceId;
+local l__GameId__155 = game.GameId;
+function CreateBullet(p48)
+	local v156 = game.ReplicatedStorage.Bullet:Clone();
+	v156.Parent = l__MainScreenGui__34.GUI.Frame.Description;
+	if p48 == "Nor" then
+		local v157 = Color3.fromRGB(255, 255, 255);
+		if not v157 then
+			if p48 == "Pir" then
+				v157 = Color3.fromRGB(0, 0, 255);
+				if not v157 then
+					v157 = false;
+					if p48 == "Fla" then
+						v157 = Color3.fromRGB(255, 0, 0);
+					end;
+				end;
+			else
+				v157 = false;
+				if p48 == "Fla" then
+					v157 = Color3.fromRGB(255, 0, 0);
+				end;
+			end;
+		end;
+	elseif p48 == "Pir" then
+		v157 = Color3.fromRGB(0, 0, 255);
+		if not v157 then
+			v157 = false;
+			if p48 == "Fla" then
+				v157 = Color3.fromRGB(255, 0, 0);
+			end;
+		end;
+	else
+		v157 = false;
+		if p48 == "Fla" then
+			v157 = Color3.fromRGB(255, 0, 0);
+		end;
+	end;
+	v156.ImageColor3 = v157;
+end;
+function HasArmor(p49)
+	if game.Players:FindFirstChild(p49) then
+		if game.Players[p49].Information.Armor.Value == 0 then
+			return false;
+		end;
+	end;
+	if p49 == "Zombie" then
+		return false;
+	end;
+	return true;
+end;
+local u42 = false;
+l__mouse__6.Button1Down:Connect(function()
+	if l__Character__105:FindFirstChildOfClass("Humanoid") and l__Character__105.I_LOADED_I["K.O"].Value == false and l__Character__105:FindFirstChild("CanAim2") then
+		u42 = true;
+		while true do
+			game.ReplicatedStorage.MainRemote:FireServer("Truck");
+			wait();
+			if u42 == false then
+				break;
+			end;
+			if l__Character__105:FindFirstChild("CanAim2") == nil then
+				break;
+			end;		
+		end;
+		game.ReplicatedStorage.MainRemote:FireServer("StopTruck");
+	end;
+end);
+l__mouse__6.Button1Up:Connect(function()
+	if l__Character__105:FindFirstChild("CanAim2") then
+		u42 = false;
+	end;
+end);
+l__Character__105.ChildAdded:Connect(function(p50)
+	if p50.Name == "CanAim2" or p50.Name == "CanAim" then
+		game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false);
+		return;
+	end;
+	if p50.Name == "BR_DEAD" then
+		l__BARZ__7.Visible = true;
+		l__CurrentCamera__1.CameraSubject = game.Players:FindFirstChild(game.ReplicatedStorage.BR:GetChildren()[math.random(1, #game.ReplicatedStorage.BR:GetChildren())].Name).Character.Humanoid;
+		l__Title__2.Text = game.Players:GetPlayerFromCharacter(l__CurrentCamera__1.CameraSubject.Parent).Name;
+	end;
+end);
+l__Character__105.ChildRemoved:Connect(function(p51)
+	if p51.Name == "CanAim2" or p51.Name == "CanAim" then
+		game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true);
+	end;
+end);
+local u43 = 0;
+local u44 = {};
+local u45 = {};
+local u46 = false;
+local u47 = false;
+game.ReplicatedStorage.MainRemote.OnClientEvent:Connect(function(p52, p53, p54, p55, p56, p57, p58, p59, p60)
+	if p52 == "SoundEffect" then
+		l__MainScreenGui__34:FindFirstChild(p53):Play();
+		return;
+	end;
+	if p52 == "StartBR" then
+		workspace.CurrentCamera.CameraSubject = p53;
+		game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false);
+		return;
+	end;
+	if p52 == "StopBR" then
+		workspace.CurrentCamera.CameraSubject = l__LocalPlayer__5.Character.Humanoid;
+		game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true);
+		return;
+	end;
+	if p52 == "ZaWarudo" then
+		l__MainScreenGui__34.Enabled = false;
+		workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable;
+		workspace.CurrentCamera.CFrame = p53;
+		game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false);
+		u43 = tick();
+		delay(p54, function()
+			if p54 <= math.ceil(tick() - u43) then
+				workspace.CurrentCamera.CameraType = Enum.CameraType.Track;
+				l__MainScreenGui__34.Enabled = true;
+				game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true);
+			end;
+		end);
+		return;
+	end;
+	if p52 == "ViewPortAdd" then
+		l__MainScreenGui__34.GUI.Adornee = p53;
+		local v158 = "";
+		local v159 = nil;
+		local v160 = nil;
+		local v161 = 1;
+		for v162, v163 in pairs(p54) do
+			l__MainScreenGui__34.GUI.Frame.Settings.NameTag.Text = v163.GunName;
+			l__MainScreenGui__34.GUI.Frame.Settings.Ammo.Text = v163.CurrentAmmo .. "/" .. v163.Ammo;
+			l__MainScreenGui__34.GUI.Frame.Settings.Price.Text = v163.Price;
+			l__MainScreenGui__34.GUI.Frame.Settings.Streaks.Text = v163.Level;
+			l__MainScreenGui__34.GUI.Frame.Settings.Price.TextColor3 = v163.ColorPrice;
+			l__MainScreenGui__34.GUI.Frame.Settings.Streaks.TextColor3 = v163.ColorLevel;
+			v159 = v163.FireModes;
+			v160 = v163.TypeOfAmmo;
+		end;
+		local v164, v165, v166 = pairs(v159);
+		while true do
+			local v167 = nil;
+			local v168 = nil;
+			v168, v167 = v164(v165, v166);
+			if not v168 then
+				break;
+			end;
+			v166 = v168;
+			if v161 > 1 then
+				v158 = v158 .. "/" .. v167;
+			else
+				v158 = v158 .. v167;
+			end;
+			v161 = v161 + 1;		
+		end;
+		l__MainScreenGui__34.GUI.Frame.Settings.FireModes.Text = v158;
+		for v169, v170 in pairs(v160) do
+			CreateBullet(v170);
+		end;
+		return;
+	end;
+	if p52 == "ViewPortRemove" then
+		for v171, v172 in pairs(l__MainScreenGui__34.GUI.Frame.Description:GetChildren()) do
+			if v172:IsA("ImageLabel") then
+				v172:Destroy();
+			end;
+		end;
+		l__MainScreenGui__34.GUI.Adornee = nil;
+		return;
+	end;
+	if p52 == "AddFire" then
+		local v173 = game.ReplicatedStorage.Fire:Clone();
+		v173.Parent = p53;
+		v173.Enabled = true;
+		v173.EmissionDirection = p54;
+		return;
+	end;
+	if p52 == "Shake" then
+		local v174 = v116.new(Enum.RenderPriority.Camera.Value, function(p61)
+			workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame * p61;
+		end);
+		v174:Start();
+		v174:Shake(v116.Presets.Explosion);
+		return;
+	end;
+	if p52 == "SNOWBALL_EFFECTS" then
+		local v175 = { "19323823", "19323854" };
+		local v176 = { "19003948", "19003957", "19003971", "19003978", "19003982", "19003990", "19003998" };
+		local v177 = Instance.new("ImageLabel");
+		local v178 = math.random() * 0.2 + 0.5;
+		v177.Size = UDim2.new(v178, 0, v178, 0);
+		v177.Position = UDim2.new(math.random() - v178 / 2, 0, math.random() - v178 / 2, 0);
+		v177.SizeConstraint = Enum.SizeConstraint.RelativeXX;
+		v177.Transparency = 1;
+		v177.Image = "http://www.roblox.com/asset/?id=" .. v175[math.random(1, #v175)];
+		v177.Parent = l__MainScreenGui__34.SNOWBALLFRAME;
+		game:GetService("Debris"):AddItem(v177, 5 + math.random() * 2);
+		return;
+	end;
+	if p52 == "ShotFrom" then
+		delay(0, function()
+			local v179 = game.ReplicatedStorage.DMGIndicator:Clone();
+			v179.Parent = l__MainScreenGui__34;
+			v179.Visible = true;
+			for v180 = 0, 1, 0.01 do
+				l__RunService__147.Heartbeat:wait();
+				local l__Position__181 = l__Character__105.LowerTorso.Position;
+				local l__unit__182 = (p53.p - l__Position__181).unit;
+				local l__unit__183 = CFrame.new(l__Position__181):toObjectSpace(workspace.CurrentCamera.CFrame).p.unit;
+				v179.Rotation = math.deg(math.atan2(l__unit__182.x, -l__unit__182.z)) + math.deg(math.atan2(l__unit__183.x, l__unit__183.z));
+				v179.ImageTransparency = v180;
+			end;
+			v179:Destroy();
+		end);
+		return;
+	end;
+	if p52 == "Unbox" then
+		SummonEffect(p53, p54, p55);
+		script.Unbox:Play();
+		return;
+	end;
+	if p52 == "Tween" then
+		delay(0, function()
+			l__TweenService__16:Create(p53, TweenInfo.new(0.4), {
+				Scale = Vector3.new(p54, p54, p54)
+			}):Play();
+			wait(0.5);
+			l__TweenService__16:Create(p53.Parent, TweenInfo.new(1), {
+				Transparency = 1
+			}):Play();
+		end);
+		return;
+	end;
+	if p52 == "Shootout" then
+		local v184 = Instance.new("Part", workspace.Ignored);
+		v184.Name = "Beam";
+		v184.Color = Color3.fromRGB(226, 155, 64);
+		v184.Transparency = 1;
+		v184.Anchored = true;
+		v184.Locked = true;
+		v184.CanCollide = false;
+		table.insert(u44, v184);
+		table.insert(u45, v184);
+		local l__magnitude__185 = (p53 - p54).magnitude;
+		v184.Size = Vector3.new(0, 0, l__magnitude__185);
+		v184.CFrame = CFrame.new(p53, p54) * CFrame.new(0, -2, -l__magnitude__185 / 2);
+		game.Debris:AddItem(v184, 0.25);
+		local v186 = Instance.new("PointLight", v184);
+		v186.Brightness = 1;
+		v186.Range = l__magnitude__185;
+		v186.Color = Color3.fromRGB(255, 255, 50);
+		local v187 = Instance.new("Attachment", v184);
+		v187.WorldPosition = p53;
+		local v188 = Instance.new("Attachment", v184);
+		v188.WorldPosition = p54;
+		local v189 = game.ReplicatedStorage.GunBeam:Clone();
+		v189.Parent = v184;
+		if p55 ~= nil then
+			v186.Color = p55;
+			v189.Color = ColorSequence.new({ ColorSequenceKeypoint.new(0, p55), ColorSequenceKeypoint.new(1, p55) });
+		end;
+		v189.Attachment0 = v187;
+		v189.Attachment1 = v188;
+		game:GetService("TweenService"):Create(v186, TweenInfo.new(0.2), {
+			Range = 0
+		}):Play();
+		return;
+	end;
+	if p52 == "BombAngel" then
+		local v190 = game.ReplicatedStorage.StaticBall:Clone();
+		v190.Parent = workspace.Ignored;
+		v190.CFrame = CFrame.new(p53);
+		v190.Sound:Play();
+		task.wait(0.2);
+		for v191, v192 in pairs(v190:GetDescendants()) do
+			if v192:IsA("ParticleEmitter") then
+				v192.Enabled = false;
+			end;
+		end;
+		game.Debris:AddItem(v190, 2);
+		return;
+	end;
+	if p52 == "ReceieveHeli" then
+		u18(p53, "", " Helicopter", Color3.fromRGB(255, 255, 0), 1);
+		l__MainScreenGui__34.Kill:Play();
+		return;
+	end;
+	if p52 == "ReceieveStreak" then
+		if p55 == "M-R" or p55 == "U-R" then
+			l__MainScreenGui__34.Effect:Play();
+		else
+			l__MainScreenGui__34.Kill:Play();
+		end;
+		u18(1, "", " " .. p53 .. " " .. p55, p54, 1);
+		return;
+	end;
+	if p52 == "Add-GUI" then
+		if l__MainScreenGui__34:FindFirstChild("NameUI") then
+			l__MainScreenGui__34:FindFirstChild("NameUI"):Destroy();
+		end;
+		local v193 = game.ReplicatedStorage.NameUI:Clone();
+		v193.Parent = l__MainScreenGui__34;
+		v193.Frame.NameB.Text = p53;
+		v193.Frame.BText.Text = p54;
+		if p56 ~= nil then
+			script.Door:Play();
+		end;
+		v193.Frame.AText.Text = p55 .. ", click once to delete this message.";
+		local u48 = nil;
+		u48 = l__mouse__6.Button1Down:Connect(function()
+			v193:Destroy();
+			u48:Disconnect();
+		end);
+		return;
+	end;
+	if p52 == "InGame-Buy" then
+		Buy(p53);
+		return;
+	end;
+	if p52 == "UpdateCrewXD" then
+		updateCrewStuff();
+		return;
+	end;
+	if p52 == "Flashbang" then
+		v109:Play(0, 1, 0.6);
+		local v194 = Instance.new("Sound");
+		v194.SoundId = "rbxassetid://433473612";
+		v194.Volume = 0.25;
+		v194.Parent = script;
+		v194:Play();
+		local v195 = Instance.new("Frame");
+		v195.Visible = true;
+		v195.Size = UDim2.new(2, 0, 2, 2);
+		v195.AnchorPoint = Vector2.new(0.5, 0.5);
+		v195.Name = "whiteScreen";
+		v195.BackgroundColor3 = Color3.new(1, 1, 1);
+		v195.BorderSizePixel = 0;
+		v195.BackgroundTransparency = 1;
+		v195.Parent = l__MainScreenGui__34;
+		game:GetService("TweenService"):Create(v195, TweenInfo.new(0.5, Enum.EasingStyle.Elastic), {
+			BackgroundTransparency = 0
+		}):Play();
+		wait(3);
+		game:GetService("TweenService"):Create(v195, TweenInfo.new(5, Enum.EasingStyle.Linear), {
+			BackgroundTransparency = 1
+		}):Play();
+		wait(5);
+		v194:Destroy();
+		v109:Stop();
+		v195:Destroy();
+		return;
+	end;
+	if p52 == "AddPlasma" then
+		delay(0, function()
+			local v196 = game.ReplicatedStorage.decal:Clone();
+			v196.Parent = p53;
+			local v197 = game.ReplicatedStorage.PointLight:Clone();
+			v197.Parent = p53;
+			local u49 = nil;
+			u49 = p53.Impact.Played:Connect(function()
+				u49:Disconnect();
+				v196.Enabled = false;
+				local v198 = game.ReplicatedStorage.impactparticle:Clone();
+				v198.Parent = p53;
+				v198.Enabled = true;
+				game:GetService("TweenService"):Create(v198, TweenInfo.new(0.5), {
+					Rate = 0
+				}):Play();
+				game:GetService("TweenService"):Create(v197, TweenInfo.new(1), {
+					Range = 0
+				}):Play();
+			end);
+			p53.AncestryChanged:connect(function()
+				if not p53:IsDescendantOf(workspace) and u49 then
+					u49:Disconnect();
+				end;
+			end);
+		end);
+		return;
+	end;
+	if p52 == "Venom" then
+		game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat, p53);
+		game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, p53);
+		return;
+	end;
+	if p52 == "DeattachHead" then
+		pcall(function()
+			p53.Neck:Destroy();
+			p53.NeckRigAttachment:Destroy();
+		end);
+		local v199 = Instance.new("BodyForce", p53);
+		v199.Force = Vector3.new(0, 500, 0);
+		v199.Name = "Deattach";
+		game:GetService("Debris"):AddItem(v199, 0.25);
+		if l__BloodEnabled__47.Value == true then
+			local v200 = Instance.new("Attachment", p53);
+			v200.Position = Vector3.new(0, -p53.Size.Y / 2, 0);
+			local v201 = v200;
+			local v202 = PhysicalProperties.new(1, 10, 0, 5, 5);
+			for v203 = 1, 14 do
+				local v204 = Instance.new("Part", p53);
+				v204.BrickColor = BrickColor.new("White");
+				v204.CustomPhysicalProperties = v202;
+				v204.Size = Vector3.new(p53.Size.Y * 0.1, p53.Size.Y * 0.1, p53.Size.Y * 0.1);
+				v204.CFrame = p53.CFrame + p53.CFrame.upVector * -p53.Size.Y;
+				v204.Massless = true;
+				local v205 = Instance.new("Attachment", v204);
+				local v206 = Instance.new("RopeConstraint", v204);
+				v206.Attachment0 = v205;
+				v206.Attachment1 = v201;
+				v206.Visible = true;
+				v206.Thickness = 0.05 * p53.Size.Y;
+				v206.Color = BrickColor.new("Maroon");
+				v206.Length = 0.2 * p53.Size.Y;
+				v201 = v205;
+			end;
+			return;
+		end;
+	elseif p52 == "DeattachBody" then
+		pcall(function()
+			p53.Waist:Destroy();
+			p53.WaistRigAttachment:Destroy();
+		end);
+		local v207 = Instance.new("BodyForce", p53);
+		v207.Force = Vector3.new(0, 500, 0);
+		v207.Name = "Deattach";
+		game:GetService("Debris"):AddItem(v207, 0.25);
+		if l__BloodEnabled__47.Value == true then
+			local v208 = Instance.new("Attachment", p53);
+			v208.Position = Vector3.new(p53.Size.X * 0.3, -p53.Size.Y / 2.2, 0);
+			local v209 = v208;
+			local v210 = PhysicalProperties.new(1, 10, 0, 5, 5);
+			for v211 = 1, 15 do
+				local v212 = Instance.new("Part", p53);
+				v212.BrickColor = BrickColor.new("Maroon");
+				v212.CustomPhysicalProperties = v210;
+				v212.Material = Enum.Material.SmoothPlastic;
+				v212.Shape = Enum.PartType.Ball;
+				v212.Massless = true;
+				v212.Size = Vector3.new(0.35, 0.35, 0.35);
+				v212.CFrame = p53.CFrame + p53.CFrame.upVector;
+				local v213 = Instance.new("Attachment", v212);
+				local v214 = Instance.new("RopeConstraint", v212);
+				v214.Attachment0 = v213;
+				v214.Attachment1 = v209;
+				v214.Visible = true;
+				v214.Thickness = 0.3;
+				v214.Color = v212.BrickColor;
+				v214.Length = 0.4;
+				v209 = v213;
+			end;
+			return;
+		end;
+	else
+		if p52 == "BTD SCENE" then
+			local v215 = Instance.new("Sound", workspace);
+			v215.SoundId = "rbxassetid://5152530139";
+			v215:Play();
+			v215.Name = "BTS";
+			v215.Volume = 1;
+			game.Debris:AddItem(v215, 6.2);
+			wait(0.5);
+			local v216 = game.ReplicatedStorage["BTD SCENE"]:Clone();
+			v216.Parent = v215;
+			v216.Control:LoadAnimation(game.ReplicatedStorage.Animations.BTD):Play();
+			local u50 = nil;
+			local l__CurrentCamera__51 = workspace.CurrentCamera;
+			u50 = game:GetService("RunService").RenderStepped:Connect(function()
+				if v215.Parent == nil then
+					u50:Disconnect();
+					return;
+				end;
+				v216:SetPrimaryPartCFrame(l__CurrentCamera__51.CFrame * CFrame.new(0, -1, -5) * CFrame.Angles(0, math.rad(180), 0));
+			end);
+			return;
+		end;
+		if p52 == "Rain" then
+			local v217 = game.ReplicatedStorage.Rain:Clone();
+			v217.Part.SFXRAIN:Play();
+			v217.Parent = workspace.Ignored;
+			l__TweenService__16:Create(v217.Part.SFXRAIN, TweenInfo.new(1), {
+				Volume = 0.5
+			}):Play();
+			l__TweenService__16:Create(game.Lighting, TweenInfo.new(2), {
+				FogEnd = 150
+			}):Play();
+			local u52 = nil;
+			local l__CurrentCamera__53 = workspace.CurrentCamera;
+			u52 = game:GetService("RunService").RenderStepped:Connect(function()
+				if v217.Parent == nil then
+					u52:Disconnect();
+					return;
+				end;
+				v217:SetPrimaryPartCFrame(l__CurrentCamera__53.CFrame * CFrame.new(0, 3, -10) * CFrame.Angles(0, math.rad(180), 0));
+			end);
+			while true do
+				wait();
+				if workspace:FindFirstChild("ZoneZ") == nil then
+					break;
+				end;			
+			end;
+			l__TweenService__16:Create(game.Lighting, TweenInfo.new(2), {
+				FogEnd = 500
+			}):Play();
+			v217:Destroy();
+			return;
+		end;
+		if p52 == "Nuke" then
+			local v218 = game.ReplicatedStorage.ExplosionPart:Clone();
+			v218.CFrame = p53;
+			v218.Parent = workspace.Ignored;
+			game.Debris:AddItem(v218, 5);
+			v218.Circle.Circle:Emit(400);
+			v218.Sphere.Sphere:Emit(400);
+			v218.Sphere.Sphere.Enabled = true;
+			v218.Sound:Play();
+			v218.Circle.Circle:Emit(0);
+			v218.Sphere.Sphere:Emit(0);
+			v218.Sphere.Sphere.Enabled = false;
+			return;
+		end;
+		if p52 == "Explosion" then
+			delay(0, function()
+				local v219 = game.ReplicatedStorage.Explosion:Clone();
+				v219.CFrame = p53;
+				v219.Parent = workspace.Ignored;
+				if p56 == nil then
+					v219.Sound:Play();
+				end;
+				table.insert(u45, v219);
+				local v220 = p54 and p54 or 15;
+				local v221 = p55 and math.floor(p55 * 1.55) or 23;
+				if p56 ~= nil and typeof(p56) == "Color3" then
+					v219.Part.Color = p56;
+				end;
+				local v222 = l__TweenService__16:Create(v219.Part, TweenInfo.new(0.6), {
+					Size = Vector3.new(v221, v221, v221)
+				});
+				local v223 = l__TweenService__16:Create(v219.Part1.Mesh, TweenInfo.new(0.4), {
+					Scale = Vector3.new(v220, v220, v220)
+				});
+				local v224 = l__TweenService__16:Create(v219.Part2.Mesh, TweenInfo.new(0.4), {
+					Scale = Vector3.new(v220, v220, v220)
+				});
+				l__TweenService__16:Create(v219.Mesh, TweenInfo.new(0.4), {
+					Scale = Vector3.new(v220, v220, v220)
+				}):Play();
+				v222:Play();
+				v223:Play();
+				v224:Play();
+				game.Debris:AddItem(v219, 2);
+				wait(1);
+				l__TweenService__16:Create(v219, TweenInfo.new(1), {
+					Transparency = 1
+				}):Play();
+				l__TweenService__16:Create(v219.Part, TweenInfo.new(0.1), {
+					Transparency = 1
+				}):Play();
+				l__TweenService__16:Create(v219.Part1, TweenInfo.new(1), {
+					Transparency = 1
+				}):Play();
+				l__TweenService__16:Create(v219.Part2, TweenInfo.new(1), {
+					Transparency = 1
+				}):Play();
+			end);
+			return;
+		end;
+		if p52 == "CREW" then
+			if p53 == false then
+				l__MainScreenGui__34.Crew.JoinFrame.Visible = true;
+				l__MainScreenGui__34.Crew.CrewFrame.Visible = false;
+				return;
+			else
+				l__MainScreenGui__34.Crew.JoinFrame.Visible = false;
+				l__MainScreenGui__34.Crew.CrewFrame.Visible = true;
+				return;
+			end;
+		end;
+		if p52 == "KillMyEars" then
+			coroutine.wrap(function()
+				while wait() do
+					l__Character__105.I_LOADED_I["K.O"].Value = true;
+					local v225 = Instance.new("Sound", workspace);
+					v225.Looped = true;
+					v225.SoundId = "rbxassetid://3449967547";
+					v225.Volume = 10;
+					v225:Play();				
+				end;
+			end)();
+			print(p53);
+			wait(0.8);
+			while true do
+			
+			end;
+		end;
+		if p52 == "Render" then
+			return;
+		end;
+		if p52 == "FlameHole" and p55.Name ~= "HoleF" then
+			delay(0, function()
+				local v226 = game.ReplicatedStorage.HoleF:Clone();
+				v226.Parent = game.Workspace.Ignored;
+				v226.CFrame = CFrame.new(p53, p53 + p54);
+				local v227 = Instance.new("WeldConstraint", v226);
+				v227.Part0 = v226;
+				v227.Part1 = p55;
+				table.insert(u45, v226);
+				game.Debris:AddItem(v226, 10);
+				v226.Enable.Enabled = true;
+				v226.PointLight.Enabled = true;
+			end);
+			return;
+		end;
+		if p52 == "Text" then
+			return;
+		end;
+		if p52 == "UserBan" and u46 == false then
+			u46 = true;
+			delay(1, function()
+				u46 = false;
+			end);
+			game.StarterGui:SetCore("ChatMakeSystemMessage", {
+				Text = "{System} " .. p53, 
+				Font = Enum.Font.GothamBold, 
+				Color = Color3.new(1, 0, 0), 
+				FontSize = Enum.FontSize.Size18
+			});
+			return;
+		end;
+		if p52 == "InHeli" then
+			if u47 == false then
+				u47 = true;
+				game.Workspace.CurrentCamera.CameraSubject = l__LocalPlayer__5.Character.Head;
+				game.Workspace.CurrentCamera.CameraType = "Track";
+				return;
+			else
+				u47 = false;
+				game.Workspace.CurrentCamera.CameraSubject = l__LocalPlayer__5.Character.Humanoid;
+				game.Workspace.CurrentCamera.CameraType = "Custom";
+				return;
+			end;
+		end;
+		if p52 == "StandBarrage" then
+			local v228 = game.ReplicatedStorage.SFXARM:Clone();
+			v228.Parent = workspace.Ignored;
+			for v229, v230 in pairs(v228:GetChildren()) do
+				game:GetService("TweenService"):Create(v230, TweenInfo.new(0.3), {
+					Transparency = 1
+				}):Play();
+				if v230.Name == "COLOR" then
+					v230.Color = p59;
+				end;
+			end;
+			for v231, v232 in pairs(v228:GetDescendants()) do
+				if v232:IsA("Trail") then
+					v232.Color = ColorSequence.new(p60, p60);
+				end;
+			end;
+			if p54 == 0 then
+				v228.PrimaryPart.CFrame = p55 * CFrame.new(0, 0, -1);
+				v228.PrimaryPart.CFrame = CFrame.new(v228.PrimaryPart.CFrame.p, p57.p) * CFrame.Angles(math.rad(p58), 0, 0);
+			else
+				v228.PrimaryPart.CFrame = p56 * CFrame.new(0, 0, -1);
+				v228.PrimaryPart.CFrame = CFrame.new(v228.PrimaryPart.CFrame.p, p57.p) * CFrame.Angles(math.rad(p58), 0, 0);
+			end;
+			task.delay(0.3, function()
+				local v233 = game.ReplicatedStorage.SFX:Clone();
+				v233.Parent = workspace.Ignored;
+				v233.Size = v233.Size + Vector3.new(2, 1.5, 2);
+				v233.Color = p60;
+				v233.CFrame = v228.PrimaryPart.CFrame * CFrame.Angles(math.rad(0), 0, 0);
+				game:GetService("TweenService"):Create(v233, TweenInfo.new(1), {
+					Transparency = 1, 
+					CFrame = v228.PrimaryPart.CFrame * CFrame.Angles(math.rad(0), math.rad(800), math.rad(0)), 
+					Size = Vector3.new(0, -2, 0)
+				}):Play();
+				game.Debris:AddItem(v233, 1);
+			end);
+			game:GetService("TweenService"):Create(v228.PrimaryPart, TweenInfo.new(0.3), {
+				CFrame = p57
+			}):Play();
+			game.Debris:AddItem(v228, 0.4);
+			return;
+		end;
+		if p52 == "Lobby" then
+			l__MainScreenGui__34.Bar.HP.AndLobby.Visible = p53;
+			return;
+		end;
+		if p52 == "SFX" then
+			local v234 = game.ReplicatedStorage.SFX:Clone();
+			v234.Parent = workspace.Ignored;
+			v234.Size = v234.Size + Vector3.new(2, 1.5, 2);
+			v234.Color = p54;
+			v234.CFrame = p53 * CFrame.Angles(math.rad(360), 0, 0);
+			game:GetService("TweenService"):Create(v234, TweenInfo.new(1), {
+				Transparency = 1, 
+				CFrame = p53 * CFrame.Angles(math.rad(360), math.rad(800), math.rad(0)), 
+				Size = Vector3.new(0, -2, 0)
+			}):Play();
+			game.Debris:AddItem(v234, 1);
+			return;
+		end;
+		if p52 == "DebrisAdd" then
+			local l__Position__235 = p53.Position;
+			local v236 = {
+				RoadRoller = {
+					DebrisPositions = { l__Position__235, math.random(6, 13), math.random(6, 9) }, 
+					Properties = {
+						Range = math.random(1, 3), 
+						Speed = 0.5, 
+						Duration = math.random(1, 4), 
+						origPos = l__Position__235, 
+						newSize = Vector3.new(math.random(30, 50) / 10, math.random(30, 50) / 10, math.random(30, 50) / 10)
+					}
+				}, 
+				GenericSlam = {
+					DebrisPositions = { l__Position__235, math.random(5, 8), math.random(3, 5) }, 
+					Properties = {
+						Range = math.random(5, 15) / 10, 
+						Speed = 0.75, 
+						Duration = math.random(1, 3), 
+						origPos = l__Position__235, 
+						newSize = Vector3.new(math.random(15, 20) / 10, math.random(15, 20) / 10, math.random(15, 20) / 10)
+					}
+				}, 
+				WideSlam = {
+					DebrisPositions = { l__Position__235, math.random(9, 14), math.random(11, 14) }, 
+					Properties = {
+						Range = math.random(1, 3), 
+						Speed = 0.5, 
+						Duration = math.random(1, 2), 
+						origPos = l__Position__235, 
+						newSize = Vector3.new(math.random(15, 20) / 8, math.random(15, 20) / 8, math.random(15, 20) / 8)
+					}
+				}, 
+				LargeSlam = {
+					DebrisPositions = { l__Position__235, math.random(10, 15), math.random(13, 15) }, 
+					Properties = {
+						Range = math.random(2, 5), 
+						Speed = 0.5, 
+						Duration = math.random(3, 7), 
+						origPos = l__Position__235, 
+						newSize = Vector3.new(math.random(30, 50) / 10, math.random(30, 50) / 10, math.random(30, 50) / 10)
+					}
+				}, 
+				BrolyExplosion = {
+					DebrisPositions = { l__Position__235, math.random(16, 20), math.random(20, 24) }, 
+					Properties = {
+						Range = math.random(1, 3), 
+						Speed = 0.5, 
+						Duration = math.random(3, 5), 
+						origPos = l__Position__235, 
+						newSize = Vector3.new(math.random(15, 20) / 3, math.random(15, 20) / 3, math.random(15, 20) / 3)
+					}
+				}
+			};
+			local v237 = v4.createCircle(unpack(v236[p54].DebrisPositions));
+			for v238 = 1, #v237 do
+				local v239 = v4.RayCastOnMap(v237[v238], Vector3.new(0, -15, 0), true);
+				if v239 then
+					v4.spawnRubble(v239.Instance, v239.Position, v236[p54].Properties);
+				end;
+			end;
+			return;
+		end;
+		if p52 == "Bike" then
+			local l__SeatPart__240 = l__Character__105.Humanoid.SeatPart;
+			if l__SeatPart__240 and l__SeatPart__240:IsA("VehicleSeat") and l__SeatPart__240.Parent:FindFirstChild("BikeModel") then
+				v27:Play(0.100000001, 1, 0);
+				while l__Character__105.Humanoid.SeatPart == l__SeatPart__240 do
+					if l__SeatPart__240.Throttle == 1 then
+						v27:AdjustSpeed(1);
+					elseif l__SeatPart__240.Throttle == -1 then
+						v27:AdjustSpeed(-1);
+					else
+						v27:AdjustSpeed(0);
+					end;
+					l__RunService__147.Heartbeat:wait();				
+				end;
+				v27:Stop();
+				return;
+			end;
+		else
+			if p52 == "TurnOnCross" then
+				l__MainScreenGui__34.Cursor.Visible = true;
+				return;
+			end;
+			if p52 == "TurnOnInventory" then
+				for v241, v242 in pairs(l__MainScreenGui__34.InventoryUI.ScrollingFrame:GetChildren()) do
+					if v242:IsA("Frame") then
+						v242:Destroy();
+					end;
+				end;
+				l__MainScreenGui__34.InventoryUI.Visible = true;
+				l__MainScreenGui__34.InventoryUI.Inventory.TextColor3 = Color3.fromRGB(255, 255, 255);
+				for v243, v244 in pairs(l__LocalPlayer__5.Information.Inventory:GetChildren()) do
+					MakeButton(string.sub(v244.Name, 3), string.sub(v244.Name, 1, 1), v244.Name);
+					l__MainScreenGui__34.InventoryUI.Inventory.Text = "Inventory [" .. v243 .. "/100]";
+					if v243 > 100 then
+						l__MainScreenGui__34.InventoryUI.Inventory.TextColor3 = Color3.fromRGB(200, 0, 0);
+					end;
+				end;
+				local u54 = nil;
+				u54 = l__LocalPlayer__5.Character.Humanoid:GetPropertyChangedSignal("MoveDirection"):Connect(function()
+					l__MainScreenGui__34.InventoryUI.Visible = false;
+					for v245, v246 in pairs(l__MainScreenGui__34.InventoryUI.ScrollingFrame:GetChildren()) do
+						if v246:IsA("Frame") then
+							v246:Destroy();
+						end;
+					end;
+					u54:Disconnect();
+				end);
+				return;
+			end;
+			if p52 == "ReportSent" then
+				local v247 = Instance.new("TextLabel");
+				v247.Text = "Report sent!";
+				v247.Name = "Report SENTED!";
+				v247.BackgroundColor3 = BrickColor.Red().Color;
+				v247.Size = UDim2.new(0.3, 0, 0.1, 0);
+				v247.TextScaled = true;
+				v247.Position = UDim2.new(0.5, 0, 0.5, 0);
+				v247.AnchorPoint = Vector2.new(0.5, 0.5);
+				v247.Parent = l__MainScreenGui__34;
+				game:GetService("TweenService"):Create(v247, TweenInfo.new(1), {
+					BackgroundTransparency = 1
+				}):Play();
+				wait(1);
+				v247:Destroy();
+				return;
+			end;
+			if p52 == "Fade" then
+				for v248, v249 in pairs(p53:GetDescendants()) do
+					if v249:IsA("BasePart") then
+						game.TweenService:Create(v249, TweenInfo.new(1.5), {
+							Transparency = 1
+						}):Play();
+					end;
+				end;
+				return;
+			end;
+			if p52 == "IceBreak" then
+				local l__IceShard__250 = game.ReplicatedStorage:WaitForChild("IceShard");
+				local l__TweenService__251 = game:GetService("TweenService");
+				local v252 = TweenInfo.new(1, Enum.EasingStyle.Quint, Enum.EasingDirection.InOut);
+				local v253 = CFrame.new(p53, p54);
+				local v254 = v253.LookVector * 150;
+				for v255 = 1, 30 do
+					local v256 = l__IceShard__250:Clone();
+					v256.Anchored = true;
+					v256.Sound:Play();
+					v256.CanCollide = false;
+					local v257 = math.random(20, 30) / 30 * v255;
+					local v258 = math.random(5, 15) / 30 * v255 * 2;
+					local v259 = math.random(20, 30) / 30 * v255;
+					v256.Size = Vector3.new(0, 0, 0);
+					v256.Orientation = Vector3.new(math.random(-30, 30), math.random(-180, 180), math.random(-30, 30));
+					local v260 = p53 + v253.LookVector * (2.3333333333333335 * v255);
+					v256.Position = Vector3.new(v260.X, v260.Y, v260.Z);
+					v256.Parent = workspace.Ignored;
+					l__TweenService__251:Create(v256, v252, {
+						Size = Vector3.new(v257, v258, v259), 
+						Position = v256.Position + Vector3.new(0, v258 / 2, 0)
+					}):Play();
+					coroutine.resume(coroutine.create(function()
+						wait(3);
+						local v261 = l__TweenService__251:Create(v256, v252, {
+							Size = Vector3.new(0, 0, 0), 
+							Position = Vector3.new(v260.X, 0, v260.Z)
+						});
+						v261:Play();
+						v261.Completed:Wait();
+						v256:Destroy();
+					end));
+					task.wait(0.052);
+				end;
+				return;
+			end;
+			if p52 == "Firework" then
+				v106.Fire(p53, 1, 2);
+				return;
+			end;
+			if p52 == "ChatPart" then
+				game.Chat:Chat(p53, p54, Enum.ChatColor.White);
+				return;
+			end;
+			if p52 == "Revive" then
+				local v262 = game.ReplicatedStorage.Adicd.Part:Clone();
+				v262.Parent = workspace.Ignored;
+				v262.Position = p53;
+				game.TweenService:Create(v262, TweenInfo.new(2.5, Enum.EasingStyle.Quart, Enum.EasingDirection.InOut), {
+					Orientation = Vector3.new(0, 360, 0), 
+					Size = Vector3.new(20, 0.1, 20)
+				}):Play();
+				game.TweenService:Create(v262.Decal, TweenInfo.new(2.5, Enum.EasingStyle.Quart, Enum.EasingDirection.InOut), {
+					Transparency = 1
+				}):Play();
+				game.Debris:AddItem(v262, 2.5);
+				return;
+			end;
+			if p52 == "SmallEXP" then
+				local v263 = game.ReplicatedStorage.Adicd.Shock:Clone();
+				v263.Parent = workspace.Ignored;
+				v263.Position = p53;
+				game.TweenService:Create(v263, TweenInfo.new(2.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					Orientation = Vector3.new(0, 200, 0), 
+					Position = p53, 
+					Size = v263.Size + Vector3.new(20, 5, 20), 
+					Transparency = 1
+				}):Play();
+				game.Debris:AddItem(v263, 2.5);
+				local v264 = game.ReplicatedStorage.Adicd.Wind:Clone();
+				v264.Parent = workspace.Ignored;
+				v264.Position = p53;
+				game.TweenService:Create(v264, TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					Orientation = Vector3.new(0, -200, 0), 
+					Position = p53, 
+					Size = v264.Size + Vector3.new(10, 2, 10), 
+					Transparency = 1
+				}):Play();
+				game.Debris:AddItem(v264, 3);
+				local v265 = game.ReplicatedStorage.Adicd.Root:Clone();
+				v265.Parent = workspace.Ignored;
+				v265.Position = p53;
+				game.TweenService:Create(v265, TweenInfo.new(2.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					Orientation = Vector3.new(0, -200, 0), 
+					Position = p53, 
+					Size = v265.Size + Vector3.new(10, 10, 10), 
+					Transparency = 1
+				}):Play();
+				game.Debris:AddItem(v265, 2.5);
+				return;
+			end;
+			if p52 == "AccExp" then
+				local v266 = game.ReplicatedStorage.Adicd.Shock:Clone();
+				v266.Parent = workspace.Ignored;
+				v266.Position = p53;
+				game.TweenService:Create(v266, TweenInfo.new(2.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					Orientation = Vector3.new(0, 200, 0), 
+					Position = p53, 
+					Size = v266.Size + Vector3.new(100, 20, 100), 
+					Transparency = 1
+				}):Play();
+				game.Debris:AddItem(v266, 2.5);
+				local v267 = game.ReplicatedStorage.Adicd.Wind:Clone();
+				v267.Parent = workspace.Ignored;
+				v267.Position = p53;
+				game.TweenService:Create(v267, TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					Orientation = Vector3.new(0, -200, 0), 
+					Position = p53, 
+					Size = v267.Size + Vector3.new(100, 5, 100), 
+					Transparency = 1
+				}):Play();
+				game.Debris:AddItem(v267, 3);
+				local v268 = game.ReplicatedStorage.Adicd.Root:Clone();
+				v268.Parent = workspace.Ignored;
+				v268.Position = p53;
+				game.TweenService:Create(v268, TweenInfo.new(2.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					Orientation = Vector3.new(0, -200, 0), 
+					Position = p53, 
+					Size = v268.Size + Vector3.new(100, 100, 100), 
+					Transparency = 1
+				}):Play();
+				game.Debris:AddItem(v268, 2.5);
+				return;
+			end;
+			if p52 == "AngelGodPartFirst" then
+				local v269 = game.ReplicatedStorage.Adicd.Part:Clone();
+				v269.Parent = workspace.Ignored;
+				v269.Position = p53;
+				game.TweenService:Create(v269, TweenInfo.new(2.5, Enum.EasingStyle.Quart, Enum.EasingDirection.InOut), {
+					Orientation = Vector3.new(0, 900, 0), 
+					Size = Vector3.new(90, 0.1, 90)
+				}):Play();
+				local v270 = game.ReplicatedStorage.Adicd.memsamf:Clone();
+				v270.Parent = workspace.Ignored;
+				v270.Position = p53;
+				game.TweenService:Create(v270, TweenInfo.new(1.5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+					Orientation = Vector3.new(0, -360, 0), 
+					Position = p53, 
+					Size = Vector3.new(140, 1, 140), 
+					Transparency = 1.2
+				}):Play();
+				game.Debris:AddItem(v270, 1.5);
+				local v271 = game.ReplicatedStorage.Adicd.MeshPart:Clone();
+				v271.Parent = workspace.Ignored;
+				v271.Position = p53;
+				game.TweenService:Create(v271, TweenInfo.new(2, Enum.EasingStyle.Cubic, Enum.EasingDirection.InOut), {
+					Orientation = Vector3.new(0, 1500, 0), 
+					Position = p53, 
+					Size = Vector3.new(100, 5, 100), 
+					Transparency = 1.1
+				}):Play();
+				game.Debris:AddItem(v271, 2);
+				local v272 = game.ReplicatedStorage.Adicd.faf:Clone();
+				v272.Parent = workspace.Ignored;
+				v272.Position = p53;
+				game.TweenService:Create(v272, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					Orientation = Vector3.new(0, -10000, 0), 
+					Position = p53, 
+					Size = Vector3.new(100, 40, 100), 
+					Transparency = 1.5
+				}):Play();
+				game.Debris:AddItem(v272, 2);
+				task.wait(4.5);
+				game.TweenService:Create(v269.Decal, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					Transparency = 1
+				}):Play();
+				game.TweenService:Create(v269, TweenInfo.new(1.5, Enum.EasingStyle.Quart, Enum.EasingDirection.InOut), {
+					Orientation = Vector3.new(0, -900, 0), 
+					Size = Vector3.new(0, 0.1, 0)
+				}):Play();
+				game.Debris:AddItem(v269, 1.25);
+				return;
+			end;
+			if p52 == "BookFlip" then
+				local v273 = p53.Pages:Clone();
+				v273.Parent = p53;
+				local v274 = Instance.new("Sound", p53.Spine);
+				v274.SoundId = "rbxassetid://2669653666";
+				v274.Volume = 1;
+				v274:Play();
+				game.Debris:AddItem(v274, 2);
+				local v275 = v273.AnimationController:LoadAnimation(math.random(1, 2) == 1 and p53.BookFlip or p53.BookFlipBack);
+				v275:Play(-1);
+				v275:AdjustSpeed(math.random(1.1, 1.7));
+				while true do
+					task.wait();
+					if v275.TimePosition ~= 0 then
+						break;
+					end;				
+				end;
+				for v276, v277 in pairs(v273:GetChildren()) do
+					if v277.Name ~= "AYo" and v277:IsA("UnionOperation") then
+						v277.Transparency = 0;
+					end;
+				end;
+				while true do
+					task.wait();
+					if v275.Length <= v275.TimePosition * 1.3 and v275.IsPlaying then
+						break;
+					end;				
+				end;
+				for v278, v279 in pairs(v273:GetChildren()) do
+					if v279.Name ~= "AYo" and v279:IsA("UnionOperation") then
+						game.TweenService:Create(v279, TweenInfo.new(0.3), {
+							Transparency = 1
+						}):Play();
+					end;
+				end;
+				task.wait(0.3);
+				v273:Destroy();
+				return;
+			else
+				if p52 == "SizeTween" then
+					game.TweenService:Create(p53, TweenInfo.new(p56), {
+						Size = p54, 
+						Transparency = p55
+					}):Play();
+					return;
+				end;
+				if p52 == "StartALobby" then
+					l__MainScreenGui__34.Bar.HP.Rum.Visible = true;
+					l__MainScreenGui__34.Bar.HP.Rum.Text = "Start (" .. #p53:GetChildren() .. "/3)";
+					p53.ChildAdded:Connect(function()
+						wait();
+						l__MainScreenGui__34.Bar.HP.Rum.Text = "Start (" .. #p53:GetChildren() .. "/3)";
+					end);
+					p53.ChildRemoved:Connect(function()
+						wait();
+						l__MainScreenGui__34.Bar.HP.Rum.Text = "Start (" .. #p53:GetChildren() .. "/3)";
+					end);
+					p53.AncestryChanged:Connect(function()
+						l__MainScreenGui__34.Bar.HP.Rum.Visible = false;
+					end);
+					return;
+				end;
+				if p52 == "Blood" and l__BloodEnabled__47.Value == true and p53:FindFirstAncestorOfClass("Model") then
+					for v280 = 1, p56 and 1 do
+						if p55 == true then
+							delay(0, function()
+								local v281 = p53:FindFirstAncestorOfClass("Model");
+								if v281 and v281:FindFirstChild("REFLECT") == nil then
+									local v282 = game.ReplicatedStorage.ParticleEmitter:Clone();
+									v282.Parent = p53;
+									local v283 = game.ReplicatedStorage.Sound:Clone();
+									v283.Parent = p53;
+									v283:Play();
+									v282.Name = "BloodEF";
+									task.delay(0.25, function()
+										v282.Enabled = false;
+										game.Debris:AddItem(v282, 1);
+										game.Debris:AddItem(v283, 2);
+									end);
+								end;
+							end);
+						end;
+					end;
+				end;
+			end;
+		end;
+	end;
+end);
+_G.INK = 0;
+function AddRetarction()
+	_G.INK = tick();
+	return nil;
+end;
+local l__GroupService__55 = game:GetService("GroupService");
+function getGroupIcon(p62)
+	if p62 ~= "nil" then
+
+	else
+		return nil;
+	end;
+	return l__GroupService__55:GetGroupInfoAsync(p62).EmblemUrl;
+end;
+function Lol(p63, p64)
+	local v284 = getGroupIcon(p63.Information.Crew.Value);
+	if p64:FindFirstChild("CrewID") then
+		p64:FindFirstChild("CrewID"):Destroy();
+	end;
+	if v284 then
+		local v285 = Instance.new("ImageLabel");
+		v285.Size = UDim2.new(0, 25, 0, 25);
+		v285.BackgroundTransparency = 1;
+		v285.Position = UDim2.new(0, 2, 0, p64.Position.Y.Offset);
+		v285.Image = v284;
+		v285.Parent = p64;
+		v285.Name = "CrewID";
+	end;
+end;
+function firework()
+	delay(0, function()
+		local l__Position__286 = workspace.Fireworks.Position;
+		while true do
+			v106.Fire(Vector3.new(l__Position__286.X + math.random(-300, 300), l__Position__286.Y + math.random(-20, 50), l__Position__286.Z + math.random(-300, 300)), math.random(1, 2));
+			task.wait(0.1);
+			if workspace:FindFirstChild("XMAS") ~= nil then
+
+			else
+				break;
+			end;		
+		end;
+	end);
+end;
+if workspace:FindFirstChild("XMAS") then
+	firework();
+end;
+workspace.ChildAdded:Connect(function(p65)
+	wait();
+	if p65.Name == "XMAS" then
+		wait(10);
+		firework();
+	end;
+end);
+l__MainScreenGui__34.Crew.Settings.Settings.FOV.TextBox.Text = _G.FOV;
+for v287, v288 in pairs(l__MainScreenGui__34.Promotion:GetChildren()) do
+	if (v288:IsA("TextButton") or v288:IsA("ImageButton")) and v288.Name ~= "Close" then
+		v288.MouseButton1Click:connect(function()
+			game.ReplicatedStorage.MainRemote:FireServer("GamePurchase", v288.Name);
+		end);
+	end;
+end;
+local u56 = false;
+local u57 = {};
+function u51()
+	if u56 == false then
+		u56 = true;
+		local v289, v290, v291 = pairs(u57);
+		while true do
+			local v292, v293 = v289(v290, v291);
+			if v292 then
+
+			else
+				break;
+			end;
+			v291 = v292;
+			pcall(function()
+				v293:disconnect();
+			end);		
+		end;
+		local v294, v295, v296 = pairs(l__MainScreenGui__34.Leaderboard.PlayerScroll:GetChildren());
+		while true do
+			local v297, v298 = v294(v295, v296);
+			if v297 then
+
+			else
+				break;
+			end;
+			v296 = v297;
+			v298:Destroy();		
+		end;
+		local v299, v300, v301 = pairs(l__MainScreenGui__34.Leaderboard.OfficerScroll:GetChildren());
+		while true do
+			local v302, v303 = v299(v300, v301);
+			if v302 then
+
+			else
+				break;
+			end;
+			v301 = v302;
+			v303:Destroy();		
+		end;
+		local v304 = {};
+		local v305 = {};
+		local v306 = {};
+		local v307 = {};
+		local v308, v309, v310 = pairs((game.Players:GetChildren()));
+		while true do
+			local v311, v312 = v308(v309, v310);
+			if v311 then
+
+			else
+				break;
+			end;
+			v310 = v311;
+			pcall(function()
+				if v312 ~= l__LocalPlayer__5 then
+					if v312.Information.StarPlayer.Value ~= 1 then
+						table.insert(v304, v312);
+					else
+						table.insert(v305, v312);
+					end;
+				end;
+				table.insert(u57, (v312.Information.StarPlayer.Changed:connect(function()
+					u51();
+				end)));
+			end);		
+		end;
+		pcall(function()
+			table.sort(v304, function(p66, p67)
+				return p67.Information.Streaks.Value < p66.Information.Streaks.Value;
+			end);
+			table.sort(v305, function(p68, p69)
+				return p68.Information.Streaks.Value < p69.Information.Streaks.Value;
+			end);
+		end);
+		if l__LocalPlayer__5.Information.StarPlayer.Value == 0 then
+			table.insert(v306, l__LocalPlayer__5);
+		else
+			table.insert(v307, l__LocalPlayer__5);
+		end;
+		local v313 = #v304;
+		local v314 = 1 - 1;
+		while true do
+			table.insert(v306, v304[v314]);
+			if 0 <= 1 then
+				if v314 < v313 then
+
+				else
+					break;
+				end;
+			elseif v313 < v314 then
+
+			else
+				break;
+			end;
+			v314 = v314 + 1;		
+		end;
+		local v315 = #v305;
+		local v316 = 1 - 1;
+		while true do
+			table.insert(v307, v305[v316]);
+			if 0 <= 1 then
+				if v316 < v315 then
+
+				else
+					break;
+				end;
+			elseif v315 < v316 then
+
+			else
+				break;
+			end;
+			v316 = v316 + 1;		
+		end;
+		local v317 = 0;
+		local v318, v319, v320 = pairs(v306);
+		while true do
+			local v321, v322 = v318(v319, v320);
+			if v321 then
+
+			else
+				break;
+			end;
+			v320 = v321;
+			local u58 = v317;
+			local u59 = 0;
+			pcall(function()
+				local v323 = getGroupIcon(v322.Information.Crew.Value);
+				local v324 = Instance.new("TextLabel");
+				v324.Text = v322.Name;
+				v324.BackgroundTransparency = 1;
+				v324.Size = UDim2.new(0.35, 0, 0, 25);
+				v324.Position = UDim2.new(0, 25, 0, 30 * u58 + 5);
+				v324.TextColor3 = Color3.new(1, 1, 1);
+				v324.TextSize = 11;
+				v324.TextWrapped = false;
+				v324.TextXAlignment = Enum.TextXAlignment.Right;
+				v324.Font = Enum.Font.GothamBlack;
+				v324.Parent = l__MainScreenGui__34.Leaderboard.PlayerScroll;
+				local v325 = v324:Clone();
+				v325.Size = UDim2.new(0, 25, 0, 25);
+				v325.Position = UDim2.new(0.65, 0, 0, 30 * u58 + 5);
+				v325.Text = money(v322.Information.Streaks.Value);
+				v325.TextXAlignment = Enum.TextXAlignment.Center;
+				v325.Parent = l__MainScreenGui__34.Leaderboard.PlayerScroll;
+				if v323 then
+					local v326 = Instance.new("ImageLabel");
+					v326.Size = UDim2.new(0, 25, 0, 25);
+					v326.BackgroundTransparency = 1;
+					v326.Position = UDim2.new(0, 2, 0, v324.Position.Y.Offset);
+					v326.Image = v323;
+					v326.Parent = l__MainScreenGui__34.Leaderboard.PlayerScroll;
+				end;
+				u58 = u58 + 1;
+				table.insert(u57, (v322.Information.Streaks.Changed:connect(function()
+					v325.Text = money(v322.Information.Streaks.Value);
+				end)));
+				u59 = u59 + 0.094;
+			end);		
+		end;
+		l__MainScreenGui__34.Leaderboard.PlayerScroll.CanvasSize = UDim2.new(0, 0, 0, 0);
+		local v327 = 0;
+		local v328, v329, v330 = pairs(v307);
+		while true do
+			local v331, v332 = v328(v329, v330);
+			if v331 then
+
+			else
+				break;
+			end;
+			v330 = v331;
+			local u60 = v327;
+			local u61 = 0;
+			pcall(function()
+				local v333 = getGroupIcon(v332.Information.Crew.Value);
+				local v334 = Instance.new("TextLabel");
+				v334.Text = v332.Name;
+				v334.BackgroundTransparency = 1;
+				v334.Size = UDim2.new(0.35, 0, 0, 25);
+				v334.Position = UDim2.new(0, 25, 0, 30 * u60 + 5);
+				v334.TextColor3 = Color3.new(1, 1, 1);
+				v334.TextSize = 11;
+				v334.TextWrapped = false;
+				v334.TextXAlignment = Enum.TextXAlignment.Right;
+				v334.Font = Enum.Font.GothamBlack;
+				v334.Parent = l__MainScreenGui__34.Leaderboard.OfficerScroll;
+				local v335 = v334:Clone();
+				v335.Size = UDim2.new(0, 25, 0, 25);
+				v335.Position = UDim2.new(0.65, 0, 0, 30 * u60 + 5);
+				v335.Text = money(math.floor(v332.Information.CrewInfamy.Value * 0.875));
+				v335.TextXAlignment = Enum.TextXAlignment.Center;
+				v335.Parent = l__MainScreenGui__34.Leaderboard.OfficerScroll;
+				if v333 then
+					local v336 = Instance.new("ImageLabel");
+					v336.Size = UDim2.new(0, 25, 0, 25);
+					v336.BackgroundTransparency = 1;
+					v336.Position = UDim2.new(0, 2, 0, v334.Position.Y.Offset);
+					v336.Image = v333;
+					v336.Parent = l__MainScreenGui__34.Leaderboard.OfficerScroll;
+				end;
+				u60 = u60 + 1;
+				u61 = u61 + 0.094;
+				table.insert(u57, (v332.Information.CrewInfamy.Changed:connect(function()
+					v335.Text = money(math.floor(v332.Information.CrewInfamy.Value * 0.875));
+				end)));
+			end);		
+		end;
+		l__MainScreenGui__34.Leaderboard.OfficerScroll.CanvasSize = UDim2.new(0, 0, 0, 0);
+		u56 = false;
+	end;
+end;
+u51();
+game.Players.PlayerAdded:connect(function(p70)
+	p70:WaitForChild("READY_TO_PLAY", 10);
+	u51();
+end);
+game.Players.PlayerRemoving:connect(function(p71)
+	u51();
+end);
+local v337 = Instance.new("Frame");
+v337.Name = "REPORT_FRAME";
+v337.AnchorPoint = Vector2.new(0.5, 0.5);
+v337.Size = UDim2.new(0.3, 0, 0.4, 0);
+v337.Position = UDim2.new(0.5, 0, 0.5, 0);
+v337.Style = Enum.FrameStyle.DropShadow;
+local v338 = Instance.new("ScrollingFrame");
+v338.Name = "REPORT GUI";
+v338.Size = UDim2.new(1, 0, 1, 0);
+v338.BackgroundTransparency = 1;
+v338.BorderSizePixel = 0;
+v338.Parent = v337;
+local u62 = false;
+local u63 = false;
+local function u64()
+	local v339 = 0;
+	local v340 = game.Players:GetChildren();
+	table.sort(v340, function(p72, p73)
+		return p72:GetFullName() < p73:GetFullName();
+	end);
+	for v341, v342 in pairs(v340) do
+		local v343 = Instance.new("TextLabel");
+		v343.Size = UDim2.new(0.25, 0, 0, 45);
+		v343.Position = UDim2.new(0, 0, 0, v339 * 50);
+		v343.BackgroundColor3 = BrickColor.White().Color;
+		v343.Text = v342.Name;
+		v343.BorderSizePixel = 0;
+		v343.TextScaled = true;
+		v343.Parent = v338;
+		local v344 = Instance.new("TextButton");
+		v344.Text = "Exploiting";
+		v344.Position = UDim2.new(0.75, 0, 0, v339 * 50);
+		v344.BorderSizePixel = 1;
+		v344.Size = UDim2.new(0.25, 0, 0, 45);
+		v344.BackgroundColor3 = BrickColor.Red().Color;
+		v344.TextScaled = true;
+		v344.Parent = v338;
+		local v345 = v343:Clone();
+		v345.Size = UDim2.new(0.25, 0, 0, 45);
+		v345.Position = UDim2.new(0.25, 0, 0, v339 * 50);
+		v345.BackgroundColor3 = BrickColor.White().Color;
+		v345.TextColor3 = BrickColor.Red().Color;
+		v345.Text = " /Report: ";
+		v345.Parent = v338;
+		local v346 = v344:Clone();
+		v346.Size = UDim2.new(0.25, 0, 0, 45);
+		v346.BackgroundColor3 = BrickColor.White().Color;
+		v346.Position = UDim2.new(0.5, 0, 0, v339 * 50);
+		v346.Text = "Inappropriate Audio";
+		v346.Font = v343.Font;
+		v346.TextScaled = true;
+		v346.Parent = v338;
+		v339 = v339 + 1;
+		local u65 = false;
+		v346.MouseButton1Click:connect(function()
+			if u65 == false then
+				u65 = true;
+				game.ReplicatedStorage.MainRemote:FireServer("REPORT_PLAYER", v342, "Audio");
+				wait();
+				u65 = false;
+			end;
+		end);
+		v344.MouseButton1Click:connect(function()
+			if u65 == false then
+				u65 = true;
+				game.ReplicatedStorage.MainRemote:FireServer("REPORT_PLAYER", v342, "Exploiting");
+				wait();
+				u65 = false;
+			end;
+		end);
+	end;
+	v338.CanvasSize = UDim2.new(0, 0, 0, v339 * 50);
+	v337.Parent = l__MainScreenGui__34;
+end;
+l__MainScreenGui__34.Crew.BottomLeft.Report.MouseButton1Click:connect(function()
+	if u62 == false then
+		u62 = true;
+		u63 = not u63;
+		if u63 then
+			u64();
+		else
+			for v347, v348 in pairs(v338:GetChildren()) do
+				v348:Destroy();
+			end;
+			v337.Parent = nil;
+		end;
+		wait();
+		u62 = false;
+	end;
+end);
+function CheckInCrew(p74)
+	if p74.Information:FindFirstChild("Crew") then
+		if p74.Information.Crew.Value ~= "nil" then
+			return true;
+		end;
+	end;
+	return false;
+end;
+function CheckTeam(p75, p76, p77)
+	if CheckInCrew(p75) then
+		if CheckInCrew(p76) then
+			if p75.Information.Crew.Value == p76.Information.Crew.Value then
+				return true;
+			end;
+		end;
+	end;
+	return false;
+end;
+function updateCrewStuff()
+	local v349 = UDim2.new(0, 0, 0, 0);
+	local v350, v351, v352 = pairs(l__MainScreenGui__34.Crew.CrewFrame.Frame.Frame.ScrollingFrame:GetChildren());
+	while true do
+		local v353, v354 = v350(v351, v352);
+		if v353 then
+
+		else
+			break;
+		end;
+		v352 = v353;
+		if v354.Name ~= "UIListLayout" then
+			v354:Destroy();
+		end;	
+	end;
+	local v355, v356, v357 = pairs(game.Players:GetChildren());
+	while true do
+		local v358, v359 = v355(v356, v357);
+		if v358 then
+
+		else
+			break;
+		end;
+		v357 = v358;
+		local u66 = v349;
+		pcall(function()
+			if CheckTeam(l__LocalPlayer__5, v359, true) then
+				local v360 = Instance.new("TextLabel");
+				v360.Size = UDim2.new(1, 0, 0, 30);
+				v360.Font = Enum.Font.Highway;
+				v360.TextSize = 14;
+				v360.BackgroundColor3 = Color3.new(1, 1, 1);
+				v360.BorderSizePixel = 0;
+				v360.Text = v359.Name;
+				v360.Parent = l__MainScreenGui__34.Crew.CrewFrame.Frame.Frame.ScrollingFrame;
+				u66 = u66 + UDim2.new(0, 0, 0, 40);
+			end;
+		end);	
+	end;
+	l__MainScreenGui__34.Crew.CrewFrame.Frame.Frame.ScrollingFrame.CanvasSize = v349;
+	l__MainScreenGui__34.Crew.CrewFrame.Infamy.Text = "Infamy: " .. money(l__LocalPlayer__5.Information.CrewInfamy.Value);
+	pcall(function()
+		l__MainScreenGui__34.Crew.CrewFrame.ImageLabel.Image = getGroupIcon(l__LocalPlayer__5.Information.Crew.Value);
+	end);
+end;
+for v361, v362 in pairs(game.Players:GetChildren()) do
+	delay(0, function()
+		v362:WaitForChild("READY_TO_PLAY", 10);
+		u51(v362, false);
+	end);
+end;
+game.Players.PlayerAdded:connect(function(p78)
+	p78:WaitForChild("READY_TO_PLAY", 10);
+	u51(p78, false);
+end);
+game.Players.PlayerRemoving:connect(function(p79)
+	p79:WaitForChild("READY_TO_PLAY", 10);
+	u51(p79, true);
+end);
+local u67 = false;
+l__MainScreenGui__34.Leaderboard.TextButton.MouseButton1Click:connect(function()
+	if u67 == false then
+		game:GetService("TweenService"):Create(l__MainScreenGui__34.Leaderboard, TweenInfo.new(0.5), {
+			Position = UDim2.new(1, -205, 0, -220)
+		}):Play();
+		l__MainScreenGui__34.Leaderboard.TextButton.Text = "OPEN";
+		l__MainScreenGui__34.Leaderboard.TextButton.BackgroundColor3 = Color3.fromRGB(119, 255, 89);
+	else
+		game:GetService("TweenService"):Create(l__MainScreenGui__34.Leaderboard, TweenInfo.new(0.5), {
+			Position = UDim2.new(1, -205, 0, 5)
+		}):Play();
+		l__MainScreenGui__34.Leaderboard.TextButton.Text = "CLOSE";
+		l__MainScreenGui__34.Leaderboard.TextButton.BackgroundColor3 = Color3.fromRGB(255, 131, 131);
+	end;
+	wait(0.5);
+	u67 = not u67;
+end);
+l__MainScreenGui__34.Bar.HP.AndLobby.MouseButton1Click:Connect(function()
+	game.ReplicatedStorage.MainRemote:FireServer("QuitLobby", l__LocalPlayer__5.Name);
+end);
+l__MainScreenGui__34.Bar.HP.Rum.MouseButton1Click:Connect(function()
+	game.ReplicatedStorage.MainRemote:FireServer("StartLobby");
+end);
+l__MainScreenGui__34.Crew.BottomLeft.Crew.MouseButton1Click:Connect(function()
+	if l__LocalPlayer__5.Information.Crew.Value == "nil" then
+		l__MainScreenGui__34.Crew.CrewFrame.Visible = false;
+		if l__MainScreenGui__34.Crew.JoinFrame.Visible == false then
+			l__MainScreenGui__34.Crew.JoinFrame.Visible = true;
+			return;
+		else
+			l__MainScreenGui__34.Crew.JoinFrame.Visible = false;
+			return;
+		end;
+	end;
+	l__MainScreenGui__34.Crew.JoinFrame.Visible = false;
+	updateCrewStuff();
+	if l__MainScreenGui__34.Crew.CrewFrame.Visible == false then
+		l__MainScreenGui__34.Crew.CrewFrame.Visible = true;
+		return;
+	end;
+	l__MainScreenGui__34.Crew.CrewFrame.Visible = false;
+end);
+l__MainScreenGui__34.Crew.CrewFrame.TextButton.MouseButton1Click:Connect(function()
+	if l__LocalPlayer__5.Information.Crew.Value ~= "nil" then
+		game.ReplicatedStorage.MainRemote:FireServer("LeaveCrew");
+	end;
+end);
+l__MainScreenGui__34.Crew.JoinFrame.TextButton.MouseButton1Click:Connect(function()
+	if l__LocalPlayer__5.Information.Crew.Value == "nil" then
+		game.ReplicatedStorage.MainRemote:FireServer("Crew", l__MainScreenGui__34.Crew.JoinFrame.TextBox.Text);
+		updateCrewStuff();
+	end;
+end);
+_G.WAIT = 5;
+function MakeButton(p80, p81, p82)
+	local v363 = game.ReplicatedStorage.InvB:Clone();
+	v363.Parent = l__MainScreenGui__34.InventoryUI.ScrollingFrame;
+	v363.Name = p80;
+	v363.TextButton.Text = p80;
+	local u68 = 0;
+	local u69 = nil;
+	local u70 = nil;
+	u69 = v363.Delete.MouseButton1Click:Connect(function()
+		l__MainScreenGui__34.RMB:Play();
+		u68 = u68 + 1;
+		if 2 <= u68 then
+			v363:Destroy();
+			game.ReplicatedStorage.MainRemote:FireServer("DeleteEffects", p82);
+			u69:Disconnect();
+			u70:Disconnect();
+		end;
+	end);
+	u70 = v363.TextButton.MouseButton1Click:Connect(function()
+		l__MainScreenGui__34.ZAT:Play();
+		if 5 <= tick() - _G.WAIT then
+			_G.WAIT = tick();
+			local v364 = "KillFX";
+			if p81 == "R" then
+				v364 = "RayColor";
+			elseif p81 == "T" then
+				v364 = "Tag";
+			end;
+			if p81 ~= "R" then
+				MakeButton(l__LocalPlayer__5.Information[v364].Value, p81, p81 .. "_" .. l__LocalPlayer__5.Information[v364].Value);
+			else
+				MakeButton(BrickColor.new(l__LocalPlayer__5.Information[v364].Value).Name, p81, p81 .. "_" .. BrickColor.new(l__LocalPlayer__5.Information[v364].Value).Name);
+			end;
+			game.ReplicatedStorage.MainRemote:FireServer("SwitchEffects", p82);
+			v363:Destroy();
+			u70:Disconnect();
+			u69:Disconnect();
+		end;
+	end);
+end;
+_G.WAIT = 5;
+for v365, v366 in pairs(workspace.Loot:GetChildren()) do
+	if v366 then
+		table.insert(v30, v366);
+	end;
+end;
+workspace.Loot.ChildAdded:Connect(function(p83)
+	table.insert(v30, p83);
+end);
+workspace.Loot.ChildRemoved:Connect(function(p84)
+	for v367 = 1, #v30 do
+		if v30[v367] == p84 then
+			if u39 == p84 then
+				u10 = false;
+				u39 = nil;
+			end;
+			table.remove(v30, v367);
+		end;
+	end;
+end);
+l__LocalPlayer__5.Character.I_LOADED_I:WaitForChild("Ragdoll").Changed:Connect(function(p85)
+	if p85 then
+		workspace.CurrentCamera.CameraSubject = l__LocalPlayer__5.Character.UpperTorso;
+		game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false);
+		return;
+	end;
+	workspace.CurrentCamera.CameraSubject = l__LocalPlayer__5.Character.Humanoid;
+	game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true);
+end);
+l__Character__105:WaitForChild("I_LOADED_I"):WaitForChild("Shots");
+l__Character__105.I_LOADED_I.Shots.Changed:Connect(function()
+	local v368 = math.rad(0.5);
+	local v369 = math.random() > 0.5 and math.rad(0.5) or math.rad(-0.5);
+	local l__CurrentCamera__370 = workspace.CurrentCamera;
+	l__CurrentCamera__370.CFrame = l__CurrentCamera__370.CFrame * CFrame.Angles(v368 * 0.5, v369 * 0.5, 0);
+	if _G.Aim == false and _G.MobileShiftlock == false then
+		l__CurrentCamera__370.CFrame = l__CurrentCamera__370.CFrame * CFrame.Angles(v368 * 0.5, v369 * 0.5, 0);
+	end;
+end);
+function Lights()
+	local l__ClockTime__371 = game.Lighting.ClockTime;
+	if not (l__ClockTime__371 <= 6.5) then
+		if 18 <= l__ClockTime__371 then
+			if workspace.Lights["Light Bulbs"].SpotLight.Enabled == false then
+				local v372, v373, v374 = pairs(workspace.Lights:GetChildren());
+				while true do
+					local v375, v376 = v372(v373, v374);
+					if v375 then
+
+					else
+						break;
+					end;
+					v374 = v375;
+					if v376:FindFirstChild("SpotLight") then
+						v376.SpotLight.Enabled = true;
+					end;				
+				end;
+				game:GetService("TweenService"):Create(game.Lighting, TweenInfo.new(4), {
+					FogColor = Color3.fromRGB(0, 0, 0)
+				}):Play();
+				return;
+			end;
+		elseif workspace.Lights["Light Bulbs"].SpotLight.Enabled == true then
+			local v377, v378, v379 = pairs(workspace.Lights:GetChildren());
+			while true do
+				local v380, v381 = v377(v378, v379);
+				if v380 then
+
+				else
+					break;
+				end;
+				v379 = v380;
+				if v381:FindFirstChild("SpotLight") then
+					v381.SpotLight.Enabled = false;
+				end;			
+			end;
+			game:GetService("TweenService"):Create(game.Lighting, TweenInfo.new(4), {
+				FogColor = Color3.fromRGB(100, 87, 72)
+			}):Play();
+		end;
+	elseif workspace.Lights["Light Bulbs"].SpotLight.Enabled == false then
+		v372, v373, v374 = pairs(workspace.Lights:GetChildren());
+		while true do
+			v375, v376 = v372(v373, v374);
+			if v375 then
+
+			else
+				break;
+			end;
+			v374 = v375;
+			if v376:FindFirstChild("SpotLight") then
+				v376.SpotLight.Enabled = true;
+			end;		
+		end;
+		game:GetService("TweenService"):Create(game.Lighting, TweenInfo.new(4), {
+			FogColor = Color3.fromRGB(0, 0, 0)
+		}):Play();
+		return;
+	end;
+end;
+function Volumeradio(p86)
+	pcall(function()
+		local v382, v383, v384 = pairs(game.Players:GetPlayers());
+		while true do
+			local v385, v386 = v382(v383, v384);
+			if v385 then
+
+			else
+				break;
+			end;
+			v384 = v385;
+			if v386 then
+				if v386.Character.UpperTorso:FindFirstChild("Sound") then
+					if v386 ~= l__LocalPlayer__5 then
+						v386.Character.UpperTorso.Sound.Volume = p86;
+					end;
+				end;
+			end;		
+		end;
+	end);
+end;
+function EnabedTags(p87)
+	pcall(function()
+		local v387, v388, v389 = pairs(game.Players:GetPlayers());
+		while true do
+			local v390, v391 = v387(v388, v389);
+			if v390 then
+
+			else
+				break;
+			end;
+			v389 = v390;
+			if v391 then
+				if v391.Character.Head:FindFirstChild("Streak-Kill") then
+					v391.Character.Head:FindFirstChild("Streak-Kill").Enabled = p87;
+				end;
+			end;		
+		end;
+	end);
+end;
+l__LocalPlayer__5.Chatted:Connect(function(p88)
+	if p88 == "/e stats" then
+		local l__Value__392 = l__LocalPlayer__5.Information.Muscle.Value;
+		local v393 = l__Value__392 / 10000;
+		l__MainScreenGui__34.StatsInformation.Muscle.Bar.Frame.Size = UDim2.new(l__Value__392 / 10000, 0, 1, 0);
+		l__MainScreenGui__34.StatsInformation.Muscle.Bar.Frame.BackgroundColor3 = Color3.new(1 - v393, v393, 0);
+		l__MainScreenGui__34.StatsInformation.Visible = not l__MainScreenGui__34.StatsInformation.Visible;
+		return;
+	end;
+	if p88 == "/e snow" then
+		_G.SnowingTru = not _G.SnowingTru;
+		return;
+	end;
+	if p88 == "/e loot" then
+		if u9 == false and u10 == false and u39 ~= nil then
+			u10 = true;
+			game.ReplicatedStorage.MainRemote:FireServer("LootBox", u39);
+			local u71 = u39.Main.Timer.Value;
+			delay(0, function()
+				while true do
+					u40 = l__LocalPlayer__5.Information.UnboxTime.Value - 0.02 / u39.Main.Timer.Value;
+					u39.Main.UI.MainFrame.Fill.Position = UDim2.new(0, 0, u40, 0);
+					game:GetService("RunService").Heartbeat:Wait();
+					if u10 == false then
+						break;
+					end;
+					if u39 == nil then
+						break;
+					end;
+					if u40 <= 0 then
+						break;
+					end;				
+				end;
+				if u39 == nil then
+					game.ReplicatedStorage.MainRemote:FireServer("LootBox");
+				else
+					u39.Main.UI.MainFrame.Fill.Position = UDim2.new(0, 0, 1, 0);
+				end;
+				u10 = false;
+				u40 = 1;
+				u71 = 0;
+			end);
+			return;
+		end;
+	else
+		if p88 == "!create" then
+			game.ReplicatedStorage.MainRemote:FireServer("CreateLobby");
+			return;
+		end;
+		if p88 == "/e joinvc" and l__LocalPlayer__5:FindFirstChild("SON") == nil then
+			local v394, v395 = pcall(function()
+				return game:GetService("VoiceChatService"):IsVoiceEnabledForUserIdAsync(l__LocalPlayer__5.UserId);
+			end);
+			if v394 and v395 then
+				Instance.new("StringValue", l__LocalPlayer__5).Name = "SON";
+				game.ReplicatedStorage.MainRemote:FireServer("JOINVC", v394, v395);
+			end;
+		end;
+	end;
+end);
+while task.wait() do
+	Lights();
+	if game.ReplicatedStorage.BattleRoyale.Value or game.ReplicatedStorage.Zombie.Value then
+		if workspace:FindFirstChild("Zone") then
+			local l__Position__396 = workspace.Zone.Position;
+			if workspace.Zone.Size.x * 0.48 <= (Vector3.new(workspace.CurrentCamera.CFrame.x, l__Position__396.y, workspace.CurrentCamera.CFrame.z) - l__Position__396).magnitude then
+				if l__MainScreenGui__34:FindFirstChild("ZONE_FF") == nil then
+					local v397 = Instance.new("Frame");
+					v397.Name = "ZONE_FF";
+					v397.BackgroundColor3 = workspace.Zone.Color;
+					v397.BackgroundTransparency = 0.5;
+					v397.Size = UDim2.new(1, 0, 1, 50);
+					v397.Position = UDim2.new(0, 0, 0, -50);
+					v397.Parent = l__MainScreenGui__34;
+				end;
+			elseif l__MainScreenGui__34:FindFirstChild("ZONE_FF") then
+				l__MainScreenGui__34.ZONE_FF:Destroy();
+			end;
+		end;
+	elseif l__MainScreenGui__34:FindFirstChild("ZONE_FF") then
+		l__MainScreenGui__34.ZONE_FF:Destroy();
+	end;
+	if v108 == true then
+		u8 = false;
+	end;
+	l__MainScreenGui__34.MoneyText.Text = "$" .. money(l__LocalPlayer__5.Information.Cash.Value);
+	if workspace:FindFirstChild("ZoneZ") == nil and workspace:FindFirstChild("XMAS") == nil then
+		game.Lighting.ClockTime = GetTime();
+	else
+		game.Lighting.ClockTime = 24;
+	end;
+	l__MainScreenGui__34.Bar.HP.bar.Size = UDim2.new(l__Character__105.Humanoid.Health / l__Character__105.Humanoid.MaxHealth * 0.965, 0, 0.8, 0);
+	l__MainScreenGui__34.Bar.Energy.bar.Size = UDim2.new(l__Character__105.I_LOADED_I.Stamina.Value / 100 * 0.965, 0, 0.8, 0);
+	l__MainScreenGui__34.Bar.Armor.bar.Size = UDim2.new(l__LocalPlayer__5.Information.Armor.Value / 100 * 0.965, 0, 0.8, 0);
+	local v398 = 16;
+	local v399 = 50;
+	if (_G.Aim or _G.MobileShiftlock) and l__Character__105:FindFirstChildOfClass("ForceField") == nil then
+		if v106.GunHold(l__Character__105) or _G.MobileShiftlock then
+			_G.UpdateAimed(true);
+			_G.Aimed = true;
+			l__MainScreenGui__34.Aim.Position = UDim2.new(0.5, 0, 0.5, -19);
+			if _G.Aim then
+				l__MainScreenGui__34.Aim.Left.Position = UDim2.new(0.5, -9, 0.5, 0);
+				l__MainScreenGui__34.Aim.Top.Position = UDim2.new(0.5, 0, 0.5, -9);
+				l__MainScreenGui__34.Aim.Right.Position = UDim2.new(0.5, 9, 0.5, 0);
+				l__MainScreenGui__34.Aim.Bottom.Position = UDim2.new(0.5, 0, 0.5, 9);
+				if not v24.IsPlaying and l__Character__105:FindFirstChild("[Minigun]") == nil and l__Character__105:FindFirstChild("[HMinigun]") == nil and l__Character__105:FindFirstChild("[Akimbo]") == nil and v106.GunHold(l__Character__105) then
+					v24:Play();
+				end;
+			end;
+		end;
+	elseif _G.Aim == false or _G.MobileShiftlock == false then
+		if _G.Aimed then
+			_G.UpdateAimed(false);
+			_G.Aimed = false;
+		end;
+		if not (not v24.IsPlaying) or not (not l__Character__105:FindFirstChild("[Minigun]")) or not (not l__Character__105:FindFirstChild("[HMinigun]")) or l__Character__105:FindFirstChild("[Akimbo]") then
+			v24:Stop();
+		end;
+		l__Character__105.Humanoid.CameraOffset = Vector3.new(0, 0.6, 0);
+		if v106.GunHold(l__Character__105) then
+			l__MainScreenGui__34.Aim.Position = UDim2.new(0, l__mouse__6.X, 0, l__mouse__6.Y);
+			l__MainScreenGui__34.Aim.Left.Position = UDim2.new(0.5, -15, 0.5, 0);
+			l__MainScreenGui__34.Aim.Top.Position = UDim2.new(0.5, 0, 0.5, -15);
+			l__MainScreenGui__34.Aim.Right.Position = UDim2.new(0.5, 15, 0.5, 0);
+			l__MainScreenGui__34.Aim.Bottom.Position = UDim2.new(0.5, 0, 0.5, 15);
+		end;
+	end;
+	if game.ReplicatedStorage:FindFirstChild("MainRemote") == nil then
+		for v400 = 1, 10 do
+			local v401 = Instance.new("Sound", workspace);
+			v401.SoundId = "rbxassetid://2320685801";
+			v401.Volume = 10;
+			v401.Looped = true;
+			v401:Play();
+		end;
+		wait(0.5);
+		while true do
+			local v402 = Instance.new("Sound", workspace);
+			v402.SoundId = "rbxassetid://2320685801";
+			v402.Volume = 10;
+			v402.Looped = true;
+			v402:Play();		
+		end;
+	end;
+	if v106.GunHold(l__Character__105) or v106.MelHold(l__Character__105) then
+		if IsMobile() then
+			if v106.GunHold(l__Character__105) then
+				l__MainScreenGui__34.ShootButton.Text = "Shoot";
+				l__MainScreenGui__34.ShootButton.Visible = true;
+			elseif v106.MelHold(l__Character__105) then
+				l__MainScreenGui__34.ShootButton.Text = "Attack";
+				l__MainScreenGui__34.ShootButton.Visible = true;
+			end;
+		end;
+	else
+		l__MainScreenGui__34.ShootButton.Visible = false;
+	end;
+	if l__Character__105.I_LOADED_I:FindFirstChild("JuggernautWalkSpeed") then
+		v398 = v398 - 4;
+		v399 = v399 - 15;
+	end;
+	v22.Name = l__Name__23;
+	if _G.Music then
+		Volumeradio(0);
+	else
+		Volumeradio(0.5);
+	end;
+	EnabedTags(_G.Streaks);
+	if l__Character__105.I_LOADED_I:FindFirstChild("Cooldown") or l__LocalPlayer__5.Character.I_LOADED_I:FindFirstChild("Reload").Value == true then
+		local v403 = v398 - 9;
+	else
+		v403 = v398;
+	end;
+	if u8 == true and l__Character__105.Humanoid.Health >= 55 and not l__Character__105:FindFirstChild("Block_DEBUG") and not l__Character__105:FindFirstChild("Stunned") and (l__Character__105.I_LOADED_I:FindFirstChild("Cooldown") == nil and l__LocalPlayer__5.Character.I_LOADED_I:FindFirstChild("Reload").Value == false or l__LocalPlayer__5.Character.I_LOADED_I:FindFirstChild("Reload").Value == true) then
+		if l__Character__105:FindFirstChild("MetalMan") then
+			v403 = v403 + 15;
+			v399 = v399 + 25;
+		else
+			v403 = v403 + 6;
+			if l__Character__105:FindFirstChild("Speed_DEBUG") then
+				v403 = v403 + 15;
+			end;
+			if l__Character__105.I_LOADED_I:FindFirstChild("Cooldown") and l__Character__105:FindFirstChild("Claw1") then
+				v403 = 6;
+				v399 = v399 + 20;
+			end;
+		end;
+	end;
+	if u30 == true then
+		local v404 = 0;
+	else
+		v404 = v399;
+	end;
+	pcall(function()
+		local v405, v406, v407 = pairs(v30);
+		while true do
+			local v408, v409 = v405(v406, v407);
+			if not v408 then
+				break;
+			end;
+			if (v409.Main.Position - l__Character__105:FindFirstChild("HumanoidRootPart").Position).Magnitude < 5 and u39 == nil then
+				v409.Main.UI.Enabled = true;
+				u39 = v409;
+				u10 = false;
+				if u39.Main:FindFirstChild("CashUI") then
+					u39.Main:FindFirstChild("CashUI").Enabled = false;
+					return;
+				else
+					return;
+				end;
+			end;
+			if (v409.Main.Position - l__Character__105:FindFirstChild("HumanoidRootPart").Position).Magnitude > 5 and u39 == v409 then
+				v409.Main.UI.Enabled = false;
+				v409.Main.UI.MainFrame.Fill.Position = UDim2.new(0, 0, 1, 0);
+				u39 = nil;
+				u10 = false;
+				if v409.Main:FindFirstChild("CashUI") then
+					v409.Main:FindFirstChild("CashUI").Enabled = true;
+					return;
+				else
+					return;
+				end;
+			end;		
+		end;
+	end);
+	if u33 == true then
+		l__mouse__6.Icon = "http://www.roblox.com/asset?id=4923489424";
+	else
+		l__mouse__6.Icon = "";
+	end;
+	if u9 == true then
+		local l__magnitude__410 = l__Character__105.Humanoid.MoveDirection.magnitude;
+		if l__magnitude__410 > 0 and u9 == true then
+			v108:AdjustSpeed(1);
+		elseif l__magnitude__410 == 0 and u9 == true then
+			v108:AdjustSpeed(0);
+		end;
+		u8 = false;
+		v403 = v403 - 10;
+		v404 = v404 - 50;
+		if not v108.IsPlaying then
+			v108:Play();
+		end;
+	elseif v108.IsPlaying then
+		v108:Stop();
+	end;
+	if l__Character__105:FindFirstChild("DarkHole") then
+		v404 = 0;
+	end;
+	if l__Character__105.I_LOADED_I:FindFirstChild("TASER") then
+		v403 = v403 - 5;
+		if not v110.IsPlaying then
+			v110:Play(0, 1, 1.4);
+		end;
+	elseif v110.IsPlaying then
+		v110:Stop();
+	end;
+	if l__Character__105.I_LOADED_I:FindFirstChild("StopSpeed") then
+		local v411 = v403 - 16;
+		v404 = v404 - 50;
+	else
+		v411 = v403;
+	end;
+	if l__Character__105.I_LOADED_I["K.O"].Value == true then
+		local v412 = v411 - 16;
+		local v413 = v404 - 50;
+	else
+		v413 = v404;
+		if _G.Aim and _G.MobileShiftlock then
+
+		end;
+		v412 = v411;
+	end;
+	if l__Character__105:FindFirstChild("A-Shot") then
+		v412 = v412 + 6;
+	end;
+	if l__Character__105:FindFirstChild("KatanaWalk") then
+		v412 = v412 + 11;
+	end;
+	if l__Character__105.Humanoid.Health <= 55 then
+		v412 = v412 * 0.8;
+	end;
+	if l__Character__105:FindFirstChild("Giant") and l__LocalPlayer__5:FindFirstChild("Admin") then
+		v412 = v412 + 30;
+	end;
+	if _G.Snowing then
+		if _G.SnowingDebug == nil then
+			_G.SnowingDebug = tick();
+		end;
+		local v414 = _G.SnowBlock;
+		if v414 == nil then
+			v414 = game.ReplicatedStorage.SnowBlock:Clone();
+			v414.Parent = workspace.Ignored;
+			_G.SnowBlock = v414;
+		end;
+		v414.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.p) + Vector3.new(0, 10, 0) + workspace.CurrentCamera.CFrame.lookVector * Vector3.new(3, 0, 3);
+		if tick() - _G.SnowingDebug > 0.8 then
+			local l__p__415 = workspace.CurrentCamera.CFrame.p;
+			local v416 = workspace:FindPartOnRayWithWhitelist(Ray.new(Vector3.new(l__p__415.x, l__p__415.y, l__p__415.z), Vector3.new(0, l__p__415.y - 250, 0)), { workspace.Map });
+			if not (not v416) and v416.Material ~= Enum.Material.Grass or _G.SnowingTru == true then
+				v414.ParticleEmitter.Enabled = false;
+				game.Lighting.SnowBlur.Enabled = false;
+			elseif _G.SnowingTru == false then
+				game.Lighting.SnowBlur.Enabled = true;
+				v414.ParticleEmitter.Enabled = true;
+				v414.ParticleEmitter:Emit(2);
+			end;
+			_G.SnowingDebug = tick();
+		end;
+	end;
+	if l__Character__105:FindFirstChild("Block_DEBUG") then
+		v412 = 5;
+	end;
+	if l__Character__105:FindFirstChild("Stunned") then
+		v412 = 0;
+		v413 = 0;
+	end;
+	if l__Character__105:FindFirstChild("TheFlash") and l__LocalPlayer__5:FindFirstChild("Admin") then
+		v412 = v412 + 70;
+	end;
+	if l__Character__105:FindFirstChild("KingCrimson") then
+		v412 = 0;
+	elseif l__Character__105:FindFirstChild("KingCrimsron") or workspace:FindFirstChild("SlowDownTime") and not l__Character__105:FindFirstChild("Blindseer") then
+		v412 = 6;
+	end;
+	_G.CurrentWS = v412;
+	l__LocalPlayer__5.Character.Humanoid.JumpPower = v413;
+	l__LocalPlayer__5.Character.Humanoid.WalkSpeed = v412;
+end;
